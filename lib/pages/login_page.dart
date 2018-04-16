@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 
-import '../ui_helpers/gradient_overlay.dart';
+import '../ui_styles/gradient_overlay.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPageSate createState() => new LoginPageSate();
