@@ -35,6 +35,7 @@ flutter:
   assets:
     - assets/graphics/logo.png
     - assets/imgs/landing_bg.jpg
+    - assets/imgs/pattern.jpg
 
   fonts:
   - family: Avenir
