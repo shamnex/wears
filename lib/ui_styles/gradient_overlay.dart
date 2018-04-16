@@ -11,7 +11,7 @@ class GradientOverlay extends StatelessWidget {
     return new DecoratedBox(
           decoration: new BoxDecoration(
             gradient: new LinearGradient(
-              begin: const Alignment(0.0, 0.0),
+              begin: const Alignment(0.0, -1.0),
               end: const Alignment(0.0, 1.0),
               colors: gradientColors
             ),

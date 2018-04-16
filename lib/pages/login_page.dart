@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 
+import '../ui_styles/buttons.dart';
 import '../ui_styles/gradient_overlay.dart';
 
 class LoginPage extends StatefulWidget {
@@ -11,11 +12,10 @@ class LoginPageSate extends State<LoginPage> {
   Widget build(BuildContext context) {
     return new Material(
       child: new Stack(
-  
         fit: StackFit.expand,
         children: <Widget>[
           new Transform(
-            transform: new Matrix4.identity()..scale(1.0),
+            transform: new Matrix4.identity()..scale(1.65),
             child: new DecoratedBox(
               decoration: new BoxDecoration(
                   image: new DecorationImage(
@@ -26,8 +26,9 @@ class LoginPageSate extends State<LoginPage> {
           ),
           new GradientOverlay(
             <Color>[
-              const Color(0x000000).withOpacity(0.7),
-              const Color(0x2A0F00).withOpacity(0.8)
+              const Color(0x2A0F00).withOpacity(0.80),
+              const Color(0x170800).withOpacity(0.86),
+              const Color(0x000000).withOpacity(0.86),
             ],
           ),
           new Column(
@@ -37,34 +38,63 @@ class LoginPageSate extends State<LoginPage> {
               new Form(
                 child: new Theme(
                   data: new ThemeData(
+                    primaryColor: Colors.red,
+                    accentColor: Colors.white,
                     brightness: Brightness.dark,
-                    inputDecorationTheme: new InputDecorationTheme(
-                  
-                    ),
+                    inputDecorationTheme: new InputDecorationTheme(),
                     // primarySwatch: Colors.white
                   ),
-                   child: new Column(
+                  child: new Column(
                     children: <Widget>[
                       new Container(
-                        padding: new EdgeInsets.all(10.0),
-                          child: new TextFormField(
-                          keyboardType: TextInputType.text,
-                          decoration: new InputDecoration(
-                          
-                              hintText: "Username",
+                        padding: new EdgeInsets.all(16.0),
+                        child: new Column(
+                          children: <Widget>[
+                            new TextFormField(
+                              keyboardType: TextInputType.text,
+                              decoration: new InputDecoration(
+                                  hintText: "Username",
                                   labelStyle: new TextStyle(
-                        color: Colors.yellow,
-
-                        
-                      ),
-                              fillColor: Colors.white,
-                              icon: new Icon(Icons.person, color: Colors.white,)),
+                                    color: Colors.yellow,
+                                  ),
+                                  fillColor: Colors.white,
+                                  icon: new Icon(
+                                    Icons.person,
+                                    color: Colors.white,
+                                  )),
+                            ),
+                            new Padding(padding: new EdgeInsets.all(16.0)),
+                            new TextFormField(
+                              keyboardType: TextInputType.text,
+                              obscureText: true,
+                              decoration: new InputDecoration(
+                                  hintText: "Password",
+                                  labelStyle: new TextStyle(
+                                    color: Colors.yellow,
+                                  ),
+                                  fillColor: Colors.white,
+                                  icon: new Icon(
+                                    Icons.lock,
+                                    color: Colors.white,
+                                  )),
+                            ),
+                            new Padding(padding: new EdgeInsets.all(16.0)),
+                            new OutLineButton(
+                                "LOGIN", () => print('login tapped')),
+                          ],
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),
-              )
+              ),
+              new Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: <Widget>[
+                  new Text("hello"),
+                  new DefaultButton("SIGNUP", () => print('SIGNED UP tapped')),
+                ],
+              ),
             ],
           )
         ],
