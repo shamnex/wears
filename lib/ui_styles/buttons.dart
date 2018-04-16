@@ -12,8 +12,9 @@ class OutLineButton extends StatelessWidget {
       highlightColor: Colors.red,
       onTap: () => _onTap(),
       child: new Container(
+        height: 70.0,
         width: MediaQuery.of(context).size.width,
-        padding: new EdgeInsets.all(25.0),
+        padding: new EdgeInsets.all(28.0),
         decoration: new BoxDecoration(
           border: new Border.all(color: Colors.white, width: 2.0),
         ),
@@ -42,6 +43,8 @@ class DefaultButton extends StatelessWidget {
     return new InkWell(
       onTap: () => _onTap(),
       child: new Container(
+        width: MediaQuery.of(context).size.width,
+        height: 65.0,
         padding: new EdgeInsets.all(25.0),
         decoration: new BoxDecoration(
           color: Colors.white,
