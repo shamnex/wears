@@ -26,7 +26,7 @@ class LoginPageSate extends State<LoginPage> {
           ),
           new GradientOverlay(
             <Color>[
-              const Color(0x000000).withOpacity(0.80),
+              const Color(0x000000).withOpacity(0.87),
               const Color(0x170800).withOpacity(0.86),
             ],
           ),
