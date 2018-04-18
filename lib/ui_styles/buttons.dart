@@ -57,7 +57,7 @@ class DefaultButton extends StatelessWidget {
           height: 65.0,
           textTheme: ButtonTextTheme.accent,
           child: new Text(_buttonText),
-          onPressed: () => _onTap,
+          onPressed: () => _onTap(),
         ),
       ),
     );

@@ -33,8 +33,8 @@ class WelcomePageState extends State<WelcomePage> {
 
           new GradientOverlay(
             <Color>[
-              const Color(0xFF481300).withOpacity(0.45),
-              const Color(0xFF000000).withOpacity(0.46)
+              const Color(0xFF481300).withOpacity(0.25),
+              const Color(0xFF000000).withOpacity(0.26)
             ],
           ),
           new Column(

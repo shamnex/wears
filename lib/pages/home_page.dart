@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../ui_styles/home_styles.dart';
+
 class HomePage extends StatefulWidget {
   final Color _primaryColor = const Color(0xFF481300);
   @override
@@ -20,7 +22,7 @@ class HomePageState extends State<HomePage> {
         backgroundColor: Colors.transparent,
         title: new Center(
           child: new Padding(
-            padding: const EdgeInsets.only(right: 30.0),
+            padding: const EdgeInsets.only(right: 55.0),
             child: new Text(
               "HOME",
               style: new TextStyle(
@@ -36,7 +38,7 @@ class HomePageState extends State<HomePage> {
         child: new Column(
           children: <Widget>[
             new Expanded(
-              flex: 3,
+              flex: 5,
               child: new Row(
                 children: <Widget>[
                   new Expanded(
@@ -46,18 +48,15 @@ class HomePageState extends State<HomePage> {
                           flex: 1,
                           child: new Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: new Container(
-                              color: Colors.yellow,
-                            ),
+                            child: new HomeLinkStyle('WATCHES',"assets/imgs/watch.png" )
                           ),
                         ),
                         new Expanded(
                           flex: 1,
                           child: new Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: new Container(
-                              color: Colors.blue,
-                            ),
+                            child: new HomeLinkStyle('SHOES', 'assets/imgs/shoe.png')
+
                           ),
                         ),
                       ],
@@ -68,9 +67,7 @@ class HomePageState extends State<HomePage> {
                     flex: 1,
                     child: new Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: new Container(
-                        color: Colors.green,
-                      ),
+                       child: new HomeLinkStyle('SUITS','assets/imgs/landing_bg3.png')
                     ),
                   )
 
@@ -78,12 +75,10 @@ class HomePageState extends State<HomePage> {
               ),
             ),
             new Expanded(
-              flex: 3,
+              flex: 2,
               child: new Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: new Container(
-                  color: Colors.purple,
-                ),
+                 child: new HomeLinkStyle('ACCESORIES', 'assets/imgs/bag.png' )
               ),
             )
           ],
@@ -92,26 +87,3 @@ class HomePageState extends State<HomePage> {
     );
   }
 }
-// new Expanded(
-//   child: new Container(
-//     padding: new EdgeInsets.all(10.0),
-//     decoration: new BoxDecoration(),
-//     child: new Column(
-//       children: <Widget>[
-//         new Expanded(
-//           flex: 2,
-//           child: new Container(
-//             decoration: new BoxDecoration(
-//               image: new DecorationImage(
-//                 image: new AssetImage("assets/imgs/landing_bg3.png"),
-//                 fit: BoxFit.cover,
-//                 colorFilter: new ColorFilter.mode(const Color(0xFF481300).withOpacity(1.0), BlendMode.screen),
-//                 )
-//             ),
-//           ),
-
-//         ),
-//       ],
-//     ),
-//   ),
-// ),

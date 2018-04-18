@@ -41,6 +41,9 @@ flutter:
     - assets/imgs/landing_bg3.png
     - assets/imgs/landing_bg4.png
     - assets/imgs/pattern.jpg
+    - assets/imgs/shoe.png
+    - assets/imgs/bag.png
+    - assets/imgs/watch.png
 
   fonts:
   - family: Avenir
@@ -48,6 +51,15 @@ flutter:
       - asset: assets/fonts/Avenir-Medium.otf
       - asset: assets/fonts/Avenir-Heavy-Condensed.otf
         weight: 900
+
+
+  - family: Avenir-Condensed
+    fonts:
+      - asset: assets/fonts/Avenir-Heavy-Condensed-Italic.otf
+        style: italic
+
+
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.

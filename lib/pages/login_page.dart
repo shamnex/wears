@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../ui_styles/buttons.dart';
 import '../ui_styles/forms.dart';
+import 'home_page.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -34,7 +35,14 @@ class LoginPageState extends State<LoginPage> {
                     children: <Widget>[
                       new InputField("Username", Icons.person, false),
                       new InputField("Password", Icons.lock, true),
-                      new DefaultButton("SIGN IN", () => print('Hello'))
+                      new DefaultButton("SIGN IN",
+
+                    () => Navigator.of(context).pushAndRemoveUntil(
+                    new MaterialPageRoute(
+                        builder: (BuildContext build) => new HomePage()),
+                    (Route route) => route == null),   
+
+                       )
                     ],
                   ),
                 ),
