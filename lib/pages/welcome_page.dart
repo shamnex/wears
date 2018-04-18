@@ -21,17 +21,20 @@ class WelcomePageState extends State<WelcomePage> {
 
         child: new Stack(fit: StackFit.expand, children: [
           new DecoratedBox(
-              decoration: new BoxDecoration(
+            decoration: new BoxDecoration(
             image: new DecorationImage(
+              colorFilter: new ColorFilter.mode(const Color(0xFF481300).withOpacity(1.0), BlendMode.softLight),
               fit: BoxFit.cover,
-              image: new AssetImage("assets/imgs/landing_bg.jpg"),
+              image: new AssetImage("assets/imgs/landing_bg3.png"),
+              
               // ...
             ),
           )),
+
           new GradientOverlay(
             <Color>[
-              const Color(0x481300).withOpacity(0.75),
-              const Color(0x000000).withOpacity(0.86)
+              const Color(0xFF481300).withOpacity(0.45),
+              const Color(0xFF000000).withOpacity(0.46)
             ],
           ),
           new Column(

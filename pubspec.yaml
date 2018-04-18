@@ -35,7 +35,11 @@ flutter:
   assets:
     - assets/graphics/logo.png
     - assets/graphics/logo_color.png
-    - assets/imgs/landing_bg.jpg
+    - assets/imgs/landing_bg.png
+    - assets/imgs/landing_bg1.png
+    - assets/imgs/landing_bg2.png
+    - assets/imgs/landing_bg3.png
+    - assets/imgs/landing_bg4.png
     - assets/imgs/pattern.jpg
 
   fonts:

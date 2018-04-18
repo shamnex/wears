@@ -42,10 +42,12 @@ class LoginPageState extends State<LoginPage> {
             ],
           ),
         ),
-
         new Positioned(
           bottom: -16.0,
-          child: new WhiteButton('SIGN UP', (){}),
+          child:
+              new Column(children: <Widget>[
+                new Text("Don't have an account? "),
+                new WhiteButton('SIGN UP', () {})]),
         )
       ],
     ));
