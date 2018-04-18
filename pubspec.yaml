@@ -34,6 +34,7 @@ flutter:
 
   assets:
     - assets/graphics/logo.png
+    - assets/graphics/logo_color.png
     - assets/imgs/landing_bg.jpg
     - assets/imgs/pattern.jpg
 
