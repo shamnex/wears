@@ -28,12 +28,12 @@ class WelcomePageState extends State<WelcomePage> {
               // ...
             ),
           )),
-          // new GradientOverlay(
-          //   <Color>[
-          //     const Color(0x481300).withOpacity(0.75),
-          //     const Color(0x000000).withOpacity(0.86)
-          //   ],
-          // ),
+          new GradientOverlay(
+            <Color>[
+              const Color(0x481300).withOpacity(0.75),
+              const Color(0x000000).withOpacity(0.86)
+            ],
+          ),
           new Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[

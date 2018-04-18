@@ -1,115 +1,53 @@
-import "package:flutter/material.dart";
+import 'package:flutter/material.dart';
 
 import '../ui_styles/buttons.dart';
-import '../ui_styles/gradient_overlay.dart';
+import '../ui_styles/forms.dart';
 
 class LoginPage extends StatefulWidget {
-  LoginPageSate createState() => new LoginPageSate();
+  @override
+  LoginPageState createState() => new LoginPageState();
 }
 
-class LoginPageSate extends State<LoginPage> {
+class LoginPageState extends State<LoginPage> {
+  final Color _primaryColor = const Color(0xFF481300);
   @override
   Widget build(BuildContext context) {
     return new Material(
-      child: new Stack(
-        fit: StackFit.expand,
-        children: <Widget>[
-          new Transform(
-            transform: new Matrix4.identity()..scale(1.5),
-            child: new DecoratedBox(
-              decoration: new BoxDecoration(
-                  image: new DecorationImage(
-                fit: BoxFit.cover,
-                image: new AssetImage("assets/imgs/pattern.jpg"),
-              )),
-            ),
+        child: new Stack(
+      children: <Widget>[
+        new Container(
+          padding: new EdgeInsets.symmetric(vertical: 0.0, horizontal: 40.0),
+          decoration: new BoxDecoration(
+            color: const Color(0xffe6e6e6),
           ),
-          new GradientOverlay(
-            <Color>[
-              const Color(0x000000).withOpacity(0.87),
-              const Color(0x170800).withOpacity(0.86),
+          child: new Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              new Image.asset("assets/graphics/logo_color.png"),
+              new Form(
+                child: new Theme(
+                  data: new ThemeData(
+                      primaryColor: _primaryColor,
+                      primaryIconTheme:
+                          new IconThemeData(color: _primaryColor)),
+                  child: new Column(
+                    children: <Widget>[
+                      new InputField("Username", Icons.person, false),
+                      new InputField("Password", Icons.lock, true),
+                      new DefaultButton("SIGN IN", () => print('Hello'))
+                    ],
+                  ),
+                ),
+              )
             ],
           ),
-          new Container(
-            padding:
-                new EdgeInsets.symmetric(vertical: 110.0, horizontal: 30.0),
-            child: new Column(
-              children: <Widget>[
-                new Image.asset("assets/graphics/logo.png"),
-                new Padding(padding: new EdgeInsets.all(17.0)),
+        ),
 
-                new Form(
-                  child: new Theme(
-                    data: new ThemeData(
-                      accentColor: Colors.white,
-                      brightness: Brightness.dark,
-                    ),
-                    child: new Column(
-                      children: <Widget>[
-                        new TextFormField(
-                          keyboardType: TextInputType.text,
-                          decoration: new InputDecoration(
-                              hintText: "Username",
-                              labelStyle: new TextStyle(
-                                color: Colors.yellow,
-                              ),
-                              fillColor: Colors.white,
-                              icon: new Icon(
-                                Icons.person,
-                                color: Colors.white,
-                              )),
-                        ),
-                        new Padding(padding: new EdgeInsets.all(19.0)),
-                        new TextFormField(
-                          keyboardType: TextInputType.text,
-                          obscureText: true,
-                          decoration: new InputDecoration(
-                              hintText: "Password",
-                              labelStyle: new TextStyle(
-                                  color: Colors.yellow, fontSize: 20.0),
-                              fillColor: Colors.white,
-                              icon: new Icon(
-                                Icons.lock,
-                                color: Colors.white,
-                              )),
-                        ),
-                        new Padding(padding: new EdgeInsets.all(19.0)),
-                        new OutLineButton("LOGIN", () => print('login tapped')),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          new Stack(
-            children: [
-              new Positioned(
-                  child: new Center(
-                    child: new Text(
-                      "Don't have an account?",
-                      style: new TextStyle(
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                  bottom: 75.0,
-                  left: (MediaQuery.of(context).size.width / 4),
-                  right: MediaQuery.of(context).size.width / 4),
-              new Positioned(
-                // red box
-                child: new Container(
-                  child: new DefaultButton(
-                      "SIGNUP", () => print('SIGNED UP tapped')),
-                  decoration: new BoxDecoration(),
-                ),
-                bottom: 0.0,
-                left: 0.0,
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
+        new Positioned(
+          bottom: -16.0,
+          child: new WhiteButton('SIGN UP', (){}),
+        )
+      ],
+    ));
   }
 }
