@@ -9,6 +9,7 @@ class LoginPage extends StatefulWidget {
   LoginPageState createState() => new LoginPageState();
 }
 
+
 class LoginPageState extends State<LoginPage> {
   final Color _primaryColor = const Color(0xFF481300);
   @override
@@ -37,12 +38,12 @@ class LoginPageState extends State<LoginPage> {
                       new InputField("Password", Icons.lock, true),
                       new DefaultButton("SIGN IN",
 
-                    () => Navigator.of(context).pushAndRemoveUntil(
+                    () => Navigator.of(context).push(
                     new MaterialPageRoute(
-                        builder: (BuildContext build) => new HomePage()),
-                    (Route route) => route == null),   
+                        builder: (BuildContext build) => new HomePage())
+                
 
-                       )
+                       ))
                     ],
                   ),
                 ),

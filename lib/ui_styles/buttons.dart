@@ -64,6 +64,7 @@ class DefaultButton extends StatelessWidget {
   }
 }
 
+
 class WhiteButton extends StatelessWidget {
   final String _buttonText;
   final VoidCallback _onTap;

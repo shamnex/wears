@@ -8,6 +8,8 @@ class HomePage extends StatefulWidget {
   HomePageState createState() => new HomePageState();
 }
 
+
+
 class HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
@@ -16,8 +18,15 @@ class HomePageState extends State<HomePage> {
       appBar: new AppBar(
         leading: new IconButton(
           onPressed: () {},
-          icon: new Icon(Icons.menu, color: widget._primaryColor),
+          icon: new ImageIcon(
+            new AssetImage("assets/icons/menu.png"),
+            size: 30.0,
+            color: widget._primaryColor, 
+            
+            ),
+          // icon: new Icon(Icons.menu, color: widget._primaryColor),
         ),
+
         elevation: 0.0,
         backgroundColor: Colors.transparent,
         title: new Center(
@@ -44,6 +53,7 @@ class HomePageState extends State<HomePage> {
                   new Expanded(
                     child: new Column(
                       children: <Widget>[
+
                         new Expanded(
                           flex: 1,
                           child: new Padding(
@@ -51,6 +61,7 @@ class HomePageState extends State<HomePage> {
                             child: new HomeLinkStyle('WATCHES',"assets/imgs/watch.png" )
                           ),
                         ),
+                        
                         new Expanded(
                           flex: 1,
                           child: new Padding(
@@ -59,6 +70,7 @@ class HomePageState extends State<HomePage> {
 
                           ),
                         ),
+
                       ],
                     ),
                   ),
@@ -67,7 +79,7 @@ class HomePageState extends State<HomePage> {
                     flex: 1,
                     child: new Padding(
                       padding: const EdgeInsets.all(8.0),
-                       child: new HomeLinkStyle('SUITS','assets/imgs/landing_bg3.png')
+                       child: new HomeLinkStyle('SUITS', 'assets/imgs/landing_bg3.png')
                     ),
                   )
 
@@ -87,3 +99,27 @@ class HomePageState extends State<HomePage> {
     );
   }
 }
+
+
+// class HomePageState extends State<HomePage> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return new Material(
+//         child: new Column(
+//           children: <Widget>[
+//             new Expanded(
+//       child: new Stack(
+//             children: <Widget>[new Image.asset('assets/imgs/bag.png'),
+//             new Text(
+//               "HOME", style: new TextStyle(
+//                 color: widget._primaryColor,
+//                 fontSize: 50.0
+//               ),
+//             )
+//             ],
+//       ),
+//     ),
+//           ],
+//         ));
+//   }
+// }
