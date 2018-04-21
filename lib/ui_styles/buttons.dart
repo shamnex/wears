@@ -36,12 +36,16 @@ class OutLineButton extends StatelessWidget {
 class DefaultButton extends StatelessWidget {
   final String _buttonText;
   final VoidCallback _onTap;
-  DefaultButton(this._buttonText, this._onTap);
+  final double _marginTopBottom;
+  DefaultButton(
+    this._buttonText, 
+    this._marginTopBottom,
+    this._onTap);
 
   @override
   Widget build(BuildContext context) {
     return new Padding(
-      padding: new EdgeInsets.symmetric(vertical:16.0),
+      padding: new EdgeInsets.symmetric(vertical:_marginTopBottom),
       child: new Container(
         decoration: new BoxDecoration(
             gradient: new LinearGradient(

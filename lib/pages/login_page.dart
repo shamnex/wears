@@ -37,7 +37,7 @@ class LoginPageState extends State<LoginPage> {
                       
                       new InputField("Username", Icons.person, false),
                       new InputField("Password", Icons.lock, true),
-                      new DefaultButton("SIGN IN",
+                      new DefaultButton("SIGN IN",10.0,
 
                     () => Navigator.of(context).push(
                     new MaterialPageRoute(
