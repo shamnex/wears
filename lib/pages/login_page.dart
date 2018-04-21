@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../ui_styles/buttons.dart';
 import '../ui_styles/forms.dart';
-import 'home_page.dart';
+import 'home/home_page.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -34,6 +34,7 @@ class LoginPageState extends State<LoginPage> {
                           new IconThemeData(color: _primaryColor)),
                   child: new Column(
                     children: <Widget>[
+                      
                       new InputField("Username", Icons.person, false),
                       new InputField("Password", Icons.lock, true),
                       new DefaultButton("SIGN IN",

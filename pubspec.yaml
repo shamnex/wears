@@ -48,6 +48,8 @@ flutter:
     
     - assets/icons/back_arrow.png
     - assets/icons/menu.png
+    - assets/icons/close.png
+    - assets/icons/logo_icon.png
 
   fonts:
   - family: Avenir
@@ -55,6 +57,8 @@ flutter:
       - asset: assets/fonts/Avenir-Medium.otf
       - asset: assets/fonts/Avenir-Heavy-Condensed.otf
         weight: 900
+      - asset: assets/fonts/Avenir-Bold.otf
+        weight: 500
 
 
   - family: Avenir-Condensed

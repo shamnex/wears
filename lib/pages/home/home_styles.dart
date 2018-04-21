@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:wears/ui_styles/gradient_overlay.dart';
 
-import 'gradient_overlay.dart';
 
 class HomeLinkStyle extends StatelessWidget {
   final String _linkImage;
