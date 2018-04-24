@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../ui_styles/buttons.dart';
-import '../ui_styles/forms.dart';
-import 'home/home_page.dart';
+import '../ui_elements/buttons.dart';
+import '../ui_elements/forms.dart';
+import 'app/app_page.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -41,9 +41,8 @@ class LoginPageState extends State<LoginPage> {
 
                     () => Navigator.of(context).push(
                     new MaterialPageRoute(
-                        builder: (BuildContext build) => new HomePage())
-                
-
+                        builder: (BuildContext build) => new AppPage())
+  
                        ))
                     ],
                   ),

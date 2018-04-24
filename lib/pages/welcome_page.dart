@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../ui_styles/gradient_overlay.dart';
+import '../ui_elements/gradient_overlay.dart';
 import 'login_page.dart';
 
 class WelcomePage extends StatefulWidget {

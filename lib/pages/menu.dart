@@ -1,106 +1,10 @@
-import 'dart:ui';
-
+import 'dart:ui' show FontWeight, ImageFilter, Offset, VoidCallback;
 import 'package:flutter/material.dart';
-import '../../constants.dart';
-import '../../ui_styles/buttons.dart';
-import 'home_styles.dart';
 
-class HomePage extends StatefulWidget {
-  @override
-  HomePageState createState() => new HomePageState();
-}
+import '../constants.dart';
+import '../ui_elements/buttons.dart';
 
-class HomePageState extends State<HomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return new Material(
-      child: new Stack(
-        children: <Widget>[createHomePage(), blurContent(buildMenu())],
-      ),
-    );
-  }
-}
-
-createHomePage() {
-  return new Scaffold(
-    backgroundColor: AppColors.background,
-    appBar: new AppBar(
-      leading: new IconButton(
-        onPressed: () {},
-        icon: new ImageIcon(
-          new AssetImage("assets/icons/menu.png"),
-          size: 30.0,
-          color: AppColors.primary,
-        ),
-      ),
-      elevation: 0.0,
-      backgroundColor: Colors.transparent,
-      title: new Center(
-        child: new Padding(
-          padding: const EdgeInsets.only(right: 55.0),
-          child: new Text(
-            "HOME",
-            style: new TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20.0,
-                color: AppColors.primary),
-          ),
-        ),
-      ),
-    ),
-    body: new Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: new Column(
-        children: <Widget>[
-          new Expanded(
-            flex: 5,
-            child: new Row(
-              children: <Widget>[
-                new Expanded(
-                  child: new Column(
-                    children: <Widget>[
-                      new Expanded(
-                        flex: 1,
-                        child: new Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: new HomeLinkStyle(
-                                'WATCHES', "assets/imgs/watch.png")),
-                      ),
-                      new Expanded(
-                        flex: 1,
-                        child: new Container(
-                          child: new Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: new HomeLinkStyle(
-                                  'SHOES', 'assets/imgs/shoe.png')),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                new Expanded(
-                  flex: 1,
-                  child: new Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: new HomeLinkStyle(
-                          'SUITS', 'assets/imgs/landing_bg3.png')),
-                )
-              ],
-            ),
-          ),
-          new Expanded(
-            flex: 2,
-            child: new Padding(
-                padding: const EdgeInsets.all(2.0),
-                child: new HomeLinkStyle('ACCESORIES', 'assets/imgs/bag.png')),
-          )
-        ],
-      ),
-    ),
-  );
-}
-
-blurContent(Widget widget) {
+showBluredMenu(Widget widget) {
   return new Column(
     children: <Widget>[
       new Expanded(
@@ -130,6 +34,7 @@ blurContent(Widget widget) {
     ],
   );
 }
+
 
 buildMenu() {
   return new Column(
@@ -178,6 +83,7 @@ buildMenu() {
     ],
   );
 }
+
 
 Widget creatMenuItem(String _text, bool _isActive, VoidCallback _onPressed) {
   return new Container(
