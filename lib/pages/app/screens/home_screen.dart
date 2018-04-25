@@ -54,7 +54,7 @@ final Screen homeScreen = new Screen(
           new Expanded(
             flex: 2,
             child: new Padding(
-                padding: const EdgeInsets.all(2.0),
+                padding: const EdgeInsets.all(8.0),
                 child: new HomeLinkStyle('ACCESORIES', 'assets/imgs/bag.png')),
           )
 

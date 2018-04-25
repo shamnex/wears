@@ -4,35 +4,53 @@ import 'package:flutter/material.dart';
 import '../constants.dart';
 import '../ui_elements/buttons.dart';
 
-showBluredMenu(Widget widget) {
-  return new Column(
+class BluredMenu extends StatefulWidget {
+  BluredMenu();
+  @override
+  BluredMenuState createState() {
+   return  new BluredMenuState();
+  }
+}
+
+class BluredMenuState extends State<BluredMenu> {
+
+  @override
+  Widget build(BuildContext context) {
+      return new Column(
     children: <Widget>[
       new Expanded(
         child: new BackdropFilter(
           filter: new ImageFilter.blur(
             sigmaX: 17.0,
-            sigmaY: 17.0,
-          ),
-          child: new Container(
-            decoration: new BoxDecoration(
-              gradient: new LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    Colors.white.withOpacity(0.8),
-                    Colors.white.withOpacity(0.5),
-                    Colors.white.withOpacity(0.5),
-                    Colors.white.withOpacity(0.9),
-                  ]),
+            sigmaY: 17.0 ),
+          child: new Transform(
+            transform: new Matrix4.translationValues(0.0, 1000.0, 0.0),
+                      child: new Container(
+              decoration: new BoxDecoration(
+                gradient: new LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      Colors.white.withOpacity(0.8),
+                      Colors.white.withOpacity(0.5),
+                      Colors.white.withOpacity(0.5),
+                      Colors.white.withOpacity(0.9),
+                    ]),
+              ),
+              height: double.infinity,
+              width: double.infinity,
+              child: new Opacity(
+                opacity: 1.0, 
+                child: buildMenu(),
+              )
             ),
-            height: double.infinity,
-            width: double.infinity,
-            child: widget,
           ),
         ),
       )
     ],
   );
+  }
+
 }
 
 
@@ -109,3 +127,4 @@ Widget creatMenuItem(String _text, bool _isActive, VoidCallback _onPressed) {
     ),
   );
 }
+
