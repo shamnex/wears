@@ -1,28 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:wears/pages/menu.dart';
 import 'constants.dart';
+import 'pages/menu.dart';
 
 class BlurScaffold extends StatefulWidget {
   final Screen screen;
-  final Widget menu;
-  BlurScaffold({this.screen, this.menu});
-
+  BlurScaffold({this.screen});
   @override
   BlurScaffoldState createState()=> new BlurScaffoldState();
 }
 
 
-class BlurScaffoldState extends State<BlurScaffold> {
+class BlurScaffoldState extends State<BlurScaffold> with TickerProviderStateMixin {
   MenuController menuController;
   @override
   void initState() {
     super.initState();
-
-    menuController = new MenuController()
-    ..addListener(() => setState((){
-
-    }));
-
+    menuController = new MenuController(
+      vsync: this,
+    )
+    ..addListener(()=> setState(() {}));
   }
 
   @override
@@ -36,8 +32,8 @@ class BlurScaffoldState extends State<BlurScaffold> {
     return new Material(
       child: new Stack(
         children: <Widget>[
-           createScreen(widget.screen, context), 
-           new BluredMenu(),
+           createScreen(widget.screen, context, menuController), 
+           menuController.isOpen? new BluredMenu(menuController): new Container(),
            ],
       ),
     );
@@ -53,13 +49,13 @@ class Screen {
   });
 }
 
-createScreen(Screen activeScreen, BuildContext context) {
+createScreen(Screen activeScreen, BuildContext context, MenuController menuController) {
   return new Scaffold(
     backgroundColor: AppColors.background,
     appBar: new AppBar(
       leading: new IconButton(
         onPressed: () {           
-
+          menuController.toggle();
         },
         icon: new ImageIcon(
           new AssetImage("assets/icons/menu.png"),
@@ -86,21 +82,62 @@ createScreen(Screen activeScreen, BuildContext context) {
   );
 }
 
+
+
 class MenuController extends ChangeNotifier {
+  final TickerProvider vsync;
+  final AnimationController _animationController;
   MenuState state = MenuState.closed;
-  double percentOpen = 0.0;
-  double percentClose = 1.0;
+  bool isOpen = false;
+
+  
+
+  MenuController({
+    this.vsync
+  }):_animationController = new AnimationController(vsync: vsync) {
+    _animationController
+    ..duration = const Duration(milliseconds: 250)
+    ..addListener((){
+      notifyListeners();
+    })
+    ..addStatusListener((AnimationStatus status) {
+      switch(status) {
+        case AnimationStatus.forward:
+        state = MenuState.opening;
+        break;
+        case AnimationStatus.reverse:
+        state = MenuState.closing;
+        break;
+        case AnimationStatus.completed:
+        state = MenuState.open;
+        break;
+        case AnimationStatus.dismissed:
+        state = MenuState.closed;
+        break;
+      }
+      notifyListeners();
+    });
+  }
+
+  @override
+  dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
+  get blur {
+    return _animationController.value;
+  }
 
   open() {
-    state = MenuState.open;
-    percentOpen = 1.0;
-    notifyListeners();
+    isOpen = true;
+    _animationController.forward();
   }
 
   close() {
-    state = MenuState.closed;
-    percentClose = 0.0;
-    notifyListeners();
+     isOpen = true;
+    _animationController.reverse();
+
   }
 
   toggle() {
@@ -115,3 +152,4 @@ enum MenuState {
   open,
   closing
 }
+
