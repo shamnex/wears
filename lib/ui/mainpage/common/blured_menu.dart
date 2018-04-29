@@ -53,7 +53,6 @@ buildMenu(MenuController menuController) {
               children: <Widget>[
                 new MaterialButton(
                   child: new Image.asset(AppIcons.close),
-                  minWidth: double.MIN_POSITIVE,
                   onPressed: 
                    menuController.state == MenuState.closing || menuController.state == MenuState.opening
                    ?
@@ -101,7 +100,7 @@ buildMenu(MenuController menuController) {
 Widget creatMenuItem(String _text, bool _isActive, VoidCallback _onPressed) {
   return new Expanded(
     child: new Container(
-      width: double.INFINITY,
+      width: double.infinity,
       decoration: _isActive
           ? new BoxDecoration(color: Colors.white.withOpacity(0.75), boxShadow: [
               new BoxShadow(

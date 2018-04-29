@@ -8,12 +8,14 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.0
+  scoped_model: "^0.2.0"
 
 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
 
 
 # For information on the generic Dart part of this file, see the
@@ -37,10 +39,11 @@ flutter:
     - assets/graphics/logo_color.png
 
     - assets/imgs/landing_bg.png
-    - assets/imgs/landing_bg1.png
-    - assets/imgs/landing_bg2.png
+    - assets/imgs/suit1.png
+    - assets/imgs/suit2.png
+    - assets/imgs/suit3.png
+    - assets/imgs/suit4.jpg
     - assets/imgs/landing_bg3.png
-    - assets/imgs/landing_bg4.png
     - assets/imgs/pattern.jpg
     - assets/imgs/shoe.png
     - assets/imgs/bag.png
@@ -50,6 +53,8 @@ flutter:
     - assets/icons/menu.png
     - assets/icons/close.png
     - assets/icons/logo_icon.png
+    - assets/icons/search.png
+    - assets/icons/bag.png
 
   fonts:
   - family: Avenir
