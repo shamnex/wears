@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../../blur_scaffold.dart';
+
+import '../common/screen.dart';
+
 
 final otherScreen = new Screen(
   title: "Account",

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../ui_elements/gradient_overlay.dart';
-import 'login_page.dart';
+import '../common/gradient_overlay.dart';
+import '../login/login_page.dart';
 
 class WelcomePage extends StatefulWidget {
   @override

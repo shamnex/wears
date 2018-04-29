@@ -1,7 +1,8 @@
+import 'package:flutter/material.dart';
 
-import 'package:flutter/material.dart' show BuildContext, Column, Container, EdgeInsets, Expanded, Padding, Row, Widget;
-import '../../../blur_scaffold.dart';
-import '../ui/home_links.dart';
+import '../common/screen.dart';
+import './category_links.dart';
+
 
 
 final Screen homeScreen = new Screen(
@@ -23,7 +24,7 @@ final Screen homeScreen = new Screen(
                         flex: 1,
                         child: new Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: new HomeLinkStyle(
+                            child: new HomeLink(
                                 'WATCHES', "assets/imgs/watch.png")),
                       ),
                       new Expanded(
@@ -31,7 +32,7 @@ final Screen homeScreen = new Screen(
                         child: new Container(
                           child: new Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: new HomeLinkStyle(
+                              child: new HomeLink(
                                   'SHOES', 'assets/imgs/shoe.png')),
                         ),
                       ),
@@ -42,11 +43,10 @@ final Screen homeScreen = new Screen(
                 new Expanded(
                   flex: 1,
                   child: new Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: new HomeLinkStyle(
-                          'SUITS', 'assets/imgs/landing_bg3.png')),
+                        padding: const EdgeInsets.all(8.0),
+                        child: new HomeLink(
+                            'SUITS', 'assets/imgs/landing_bg3.png')),
                 )
-
               ],
             ),
           ),
@@ -55,15 +55,17 @@ final Screen homeScreen = new Screen(
             flex: 2,
             child: new Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: new HomeLinkStyle('ACCESORIES', 'assets/imgs/bag.png')),
+                child: new HomeLink('ACCESORIES', 'assets/imgs/bag.png')),
           )
-
         ],
       ),
     );
   }
   
 );
+
+class HomeLinkStyle {
+}
 
 
 

@@ -1,16 +1,17 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
-import 'constants.dart';
-import 'pages/menu.dart';
+import 'blured_menu.dart';
+import 'screen.dart';
 
-class BlurScaffold extends StatefulWidget {
+class BluredMenuScaffold extends StatefulWidget {
   final Screen screen;
-  BlurScaffold({this.screen});
+  BluredMenuScaffold({this.screen});
   @override
-  BlurScaffoldState createState()=> new BlurScaffoldState();
+  BluredMenuScaffoldState createState()=> new BluredMenuScaffoldState();
 }
 
 
-class BlurScaffoldState extends State<BlurScaffold> with TickerProviderStateMixin {
+class BluredMenuScaffoldState extends State<BluredMenuScaffold> with TickerProviderStateMixin {
   MenuController menuController;
   @override
   void initState() {
@@ -33,70 +34,24 @@ class BlurScaffoldState extends State<BlurScaffold> with TickerProviderStateMixi
       child: new Stack(
         children: <Widget>[
            createScreen(widget.screen, context, menuController), 
-           menuController.isOpen? new BluredMenu(menuController): new Container(),
-           ],
+           new BluredMenu(menuController)
+        ]
       ),
     );
   }
 }
 
-class Screen {
-  final String title;
-  final WidgetBuilder contenBuilder;
-
-  Screen(
-    {this.title, this.contenBuilder
-  });
-}
-
-createScreen(Screen activeScreen, BuildContext context, MenuController menuController) {
-  return new Scaffold(
-    backgroundColor: AppColors.background,
-    appBar: new AppBar(
-      leading: new IconButton(
-        onPressed: () {           
-          menuController.toggle();
-        },
-        icon: new ImageIcon(
-          new AssetImage("assets/icons/menu.png"),
-          size: 30.0,
-          color: AppColors.primary,
-        ),
-      ),
-      elevation: 0.0,
-      backgroundColor: Colors.transparent,
-      title: new Center(
-        child: new Padding(
-          padding: const EdgeInsets.only(right: 55.0),
-          child: new Text(
-           activeScreen.title,
-            style: new TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20.0,
-                color: AppColors.primary),
-          ),
-        ),
-      ),
-    ),
-    body: activeScreen.contenBuilder(context),
-  );
-}
-
-
-
 class MenuController extends ChangeNotifier {
   final TickerProvider vsync;
   final AnimationController _animationController;
   MenuState state = MenuState.closed;
-  bool isOpen = false;
-
-  
+  bool isOpen;
 
   MenuController({
     this.vsync
   }):_animationController = new AnimationController(vsync: vsync) {
     _animationController
-    ..duration = const Duration(milliseconds: 250)
+    ..duration = const Duration(milliseconds: 400)
     ..addListener((){
       notifyListeners();
     })
@@ -125,18 +80,27 @@ class MenuController extends ChangeNotifier {
     super.dispose();
   }
 
-  get blur {
+  get blurAnimation {
     return _animationController.value;
   }
 
+  double get noAnimation {
+    return isOpen == true? 1.0: 0.0;
+  }
+
+
   open() {
-    isOpen = true;
+
     _animationController.forward();
+    isOpen = true;
   }
 
   close() {
-     isOpen = true;
+
     _animationController.reverse();
+   new Timer(const Duration(milliseconds: 350), () {
+    isOpen = false;
+  });
 
   }
 
