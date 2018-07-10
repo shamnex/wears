@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:wears/data/constants.dart';
 
-import '../../../data/constants.dart';
-import '../../common/gradient_overlay.dart';
+import 'package:wears/ui/gradient_overlay.dart';
 
 class CategoryLink extends StatelessWidget {
   final String _linkImage;
@@ -12,21 +12,21 @@ class CategoryLink extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new Container(
-      child: new Column(
+    return Container(
+      child: Column(
         children: <Widget>[
-          new Expanded(
+          Expanded(
             flex: 2,
-            child: new Stack(
+            child: Stack(
               fit: StackFit.expand,
               children: <Widget>[
-                new Container(
-                  decoration: new BoxDecoration(
-                      image: new DecorationImage(
-                    image: new AssetImage(_linkImage),
+                Container(
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                    image: AssetImage(_linkImage),
                     fit: BoxFit.cover,
                     repeat: ImageRepeat.repeat,
-                    colorFilter: new ColorFilter.mode(
+                    colorFilter: ColorFilter.mode(
                         const Color(0xFF481300).withOpacity(0.4),
                         BlendMode.softLight),
                   )),
@@ -37,28 +37,28 @@ class CategoryLink extends StatelessWidget {
                     const Color(0xFF000000).withOpacity(0.4)
                   ],
                 ),
-                new Flex(
+                Flex(
                   direction: Axis.horizontal,
                   children: <Widget>[
-                    new Expanded(
-                        child: new Center(
-                            child: new MaterialButton(
+                    Expanded(
+                        child: Center(
+                            child: MaterialButton(
                       highlightColor: AppColors.primary.withOpacity(0.3),
                       splashColor: AppColors.primary.withOpacity(0.8),
                       elevation: 10.0,
                       minWidth: double.infinity,
                       height: MediaQuery.of(context).size.height,
                       onPressed: _onPressed,
-                      child: new Container(
-                        decoration: new BoxDecoration(boxShadow: [
-                          new BoxShadow(
+                      child: Container(
+                        decoration: BoxDecoration(boxShadow: [
+                          BoxShadow(
                             color: AppColors.primary.withOpacity(0.7),
-                            offset: new Offset(20.0, 0.0),
+                            offset: Offset(20.0, 0.0),
                           )
                         ]),
-                        child: new Text(
+                        child: Text(
                           _linkText,
-                          style: new TextStyle(
+                          style: TextStyle(
                               color: Colors.white,
                               fontSize: 27.0,
                               fontWeight: FontWeight.w900,

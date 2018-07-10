@@ -1,7 +1,7 @@
 import 'dart:ui' show FontWeight, ImageFilter, Offset, VoidCallback;
 import 'package:flutter/material.dart';
+import 'package:wears/ui/buttons.dart';
 import '../../../data/constants.dart';
-import '../../common/buttons.dart';
 import 'blured_menu_scaffold.dart';
 
 class BluredMenu extends StatefulWidget {
@@ -10,22 +10,22 @@ class BluredMenu extends StatefulWidget {
 
   @override
   BluredMenuState createState() {
-    return new BluredMenuState();
+    return BluredMenuState();
   }
 }
 
 class BluredMenuState extends State<BluredMenu> {
   @override
   Widget build(BuildContext context) {
-    return new Column(
+    return Column(
       children: <Widget>[
-        new Expanded(
-          child: new BackdropFilter(
-              filter: new ImageFilter.blur(
+        Expanded(
+          child: BackdropFilter(
+              filter: ImageFilter.blur(
                   sigmaX: 14.0 * widget.menuController.blurAnimation,
                   sigmaY: 14.0 * widget.menuController.blurAnimation),
-              child: new Transform(
-                transform: new Matrix4.identity()
+              child: Transform(
+                transform: Matrix4.identity()
                   ..scale(1.0 * widget.menuController.noAnimation),
                 child: buildMenu(widget.menuController),
               )),
@@ -36,19 +36,19 @@ class BluredMenuState extends State<BluredMenu> {
 }
 
 buildMenu(MenuController menuController) {
-  return new Opacity(
+  return Opacity(
     opacity: 1.0 * menuController.blurAnimation,
-    child: new Column(
+    child: Column(
       children: <Widget>[
-        new Expanded(
+        Expanded(
           flex: 1,
-          child: new Container(
-            decoration: new BoxDecoration(color: Colors.white.withOpacity(0.5)),
-            child: new Row(
+          child: Container(
+            decoration: BoxDecoration(color: Colors.white.withOpacity(0.5)),
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: <Widget>[
-                new MaterialButton(
+                MaterialButton(
                   child: Image.asset(AppIcons.close),
                   onPressed: menuController.state == MenuState.closing ||
                           menuController.state == MenuState.opening
@@ -57,19 +57,18 @@ buildMenu(MenuController menuController) {
                           menuController.close();
                         },
                 ),
-                new Transform(
-                  transform: new Matrix4.translationValues(0.0, 5.0, 0.0),
-                  child: new MaterialButton(
-                      onPressed: () {},
-                      child: new Image.asset(AppIcons.logoIcon)),
+                Transform(
+                  transform: Matrix4.translationValues(0.0, 5.0, 0.0),
+                  child: MaterialButton(
+                      onPressed: () {}, child: Image.asset(AppIcons.logoIcon)),
                 ),
               ],
             ),
           ),
         ),
-        new Expanded(
+        Expanded(
           flex: 8,
-          child: new Column(
+          child: Column(
             children: <Widget>[
               creatMenuItem('HOME', false, () {
                 menuController.close();
@@ -86,32 +85,30 @@ buildMenu(MenuController menuController) {
             ],
           ),
         ),
-        new Expanded(flex: 1, child: new DefaultButton("SIGN OUT", 0.0, () {}))
+        Expanded(flex: 1, child: DefaultButton("SIGN OUT", 0.0, () {}))
       ],
     ),
   );
 }
 
 Widget creatMenuItem(String _text, bool _isActive, VoidCallback _onPressed) {
-  return new Expanded(
-    child: new Container(
+  return Expanded(
+    child: Container(
       width: double.infinity,
       decoration: _isActive
-          ? new BoxDecoration(
-              color: Colors.white.withOpacity(0.75),
-              boxShadow: [
-                  new BoxShadow(
-                      offset: new Offset(0.0, 15.0),
-                      blurRadius: 12.0,
-                      color: Colors.black.withOpacity(0.5))
-                ])
-          : new BoxDecoration(color: Colors.white.withOpacity(0.5)),
-      child: new MaterialButton(
+          ? BoxDecoration(color: Colors.white.withOpacity(0.75), boxShadow: [
+              BoxShadow(
+                  offset: Offset(0.0, 15.0),
+                  blurRadius: 12.0,
+                  color: Colors.black.withOpacity(0.5))
+            ])
+          : BoxDecoration(color: Colors.white.withOpacity(0.5)),
+      child: MaterialButton(
         onPressed: _isActive ? null : _onPressed,
-        child: new Center(
-          child: new Text(
+        child: Center(
+          child: Text(
             _text,
-            style: new TextStyle(
+            style: TextStyle(
                 color: AppColors.primary,
                 fontWeight: _isActive ? FontWeight.w500 : FontWeight.normal),
           ),

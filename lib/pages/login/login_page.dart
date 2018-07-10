@@ -1,47 +1,44 @@
 import 'package:flutter/material.dart';
+import 'package:wears/ui/buttons.dart';
+import 'package:wears/ui/forms.dart';
 
-import '../common/buttons.dart';
-import '../common/forms.dart';
 import '../mainpage/main_page.dart';
 
 class LoginPage extends StatefulWidget {
   @override
-  LoginPageState createState() => new LoginPageState();
+  LoginPageState createState() => LoginPageState();
 }
 
 class LoginPageState extends State<LoginPage> {
   final Color _primaryColor = const Color(0xFF481300);
   @override
   Widget build(BuildContext context) {
-    return new Material(
-        child: new Stack(
+    return Material(
+        child: Stack(
       children: <Widget>[
-        new Container(
-          padding: new EdgeInsets.symmetric(vertical: 0.0, horizontal: 40.0),
-          decoration: new BoxDecoration(
+        Container(
+          padding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 40.0),
+          decoration: BoxDecoration(
             color: const Color(0xffe6e6e6),
           ),
-          child: new Column(
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              new Image.asset("assets/graphics/logo_color.png"),
-              new Form(
-                child: new Theme(
-                  data: new ThemeData(
+              Image.asset("assets/graphics/logo_color.png"),
+              Form(
+                child: Theme(
+                  data: ThemeData(
                       primaryColor: _primaryColor,
-                      primaryIconTheme:
-                          new IconThemeData(color: _primaryColor)),
-                  child: new Column(
+                      primaryIconTheme: IconThemeData(color: _primaryColor)),
+                  child: Column(
                     children: <Widget>[
-                      new InputField("Username", Icons.person, false),
-                      new InputField("Password", Icons.lock, true),
-                      new DefaultButton(
+                      InputField("Username", Icons.person, false),
+                      InputField("Password", Icons.lock, true),
+                      DefaultButton(
                           "SIGN IN",
                           10.0,
-                          () => Navigator.of(context).push(
-                              new MaterialPageRoute(
-                                  builder: (BuildContext build) =>
-                                      new MainPage())))
+                          () => Navigator.of(context).push(MaterialPageRoute(
+                              builder: (BuildContext build) => MainPage())))
                     ],
                   ),
                 ),
@@ -49,11 +46,11 @@ class LoginPageState extends State<LoginPage> {
             ],
           ),
         ),
-        new Positioned(
+        Positioned(
           bottom: -16.0,
-          child: new Column(children: <Widget>[
-            new Text("Don't have an account? "),
-            new WhiteButton('SIGN UP', () {})
+          child: Column(children: <Widget>[
+            Text("Don't have an account? "),
+            WhiteButton('SIGN UP', () {})
           ]),
         )
       ],

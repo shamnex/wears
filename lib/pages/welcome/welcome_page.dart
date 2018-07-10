@@ -1,57 +1,57 @@
 import 'package:flutter/material.dart';
-import '../common/gradient_overlay.dart';
+import 'package:wears/ui/gradient_overlay.dart';
 import '../login/login_page.dart';
 
 class WelcomePage extends StatefulWidget {
   @override
-  WelcomePageState createState() => new WelcomePageState();
+  WelcomePageState createState() => WelcomePageState();
 }
 
 class WelcomePageState extends State<WelcomePage> {
   @override
   Widget build(BuildContext context) {
-    return new Material(
-      child: new InkWell(
+    return Material(
+      child: InkWell(
         onTap: () => Navigator.of(context).pushAndRemoveUntil(
-            new MaterialPageRoute(
-                builder: (BuildContext build) => new LoginPage()),
+            MaterialPageRoute(builder: (BuildContext build) => LoginPage()),
             (Route route) => route == null),
-        // onTap: () => Navigator.of(context).push(new MaterialPageRoute(
-        //     builder: (BuildContext context) => new LoginPage())),
+        // onTap: () => Navigator.of(context).push( MaterialPageRoute(
+        //     builder: (BuildContext context) =>  LoginPage())),
 
-        child: new Stack(fit: StackFit.expand, children: [
-          new DecoratedBox(
-            decoration: new BoxDecoration(
-            image: new DecorationImage(
-              colorFilter: new ColorFilter.mode(const Color(0xFF481300).withOpacity(1.0), BlendMode.softLight),
+        child: Stack(fit: StackFit.expand, children: [
+          DecoratedBox(
+              decoration: BoxDecoration(
+            image: DecorationImage(
+              colorFilter: ColorFilter.mode(
+                  const Color(0xFF481300).withOpacity(1.0),
+                  BlendMode.softLight),
               fit: BoxFit.cover,
-              image: new AssetImage("assets/imgs/landing_bg3.png"),
-              
+              image: AssetImage("assets/imgs/landing_bg3.png"),
+
               // ...
             ),
           )),
-
-          new GradientOverlay(
+          GradientOverlay(
             <Color>[
               const Color(0xFF481300).withOpacity(0.25),
               const Color(0xFF000000).withOpacity(0.26)
             ],
           ),
-          new Column(
+          Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              new Image.asset("assets/graphics/logo.png"),
-              new Padding(padding: new EdgeInsets.symmetric(vertical: 4.0)),
-              new Text(
+              Image.asset("assets/graphics/logo.png"),
+              Padding(padding: EdgeInsets.symmetric(vertical: 4.0)),
+              Text(
                 "WEARS",
-                style: new TextStyle(
+                style: TextStyle(
                     color: Colors.white,
                     fontFamily: "Avenir",
                     fontSize: 42.0,
                     fontWeight: FontWeight.w900),
               ),
-              new Text("FOR MEN THEM",
-                  style: new TextStyle(
+              Text("FOR MEN THEM",
+                  style: TextStyle(
                     fontSize: 12.0,
                     color: Colors.white,
                     letterSpacing: 4.0,
