@@ -6,7 +6,6 @@ class InputField extends StatefulWidget {
   final bool _hideText ; 
 
   InputField(this._hintText, this._icon, this._hideText);
-  
   @override
   InputFieldState createState() => new InputFieldState();
 }

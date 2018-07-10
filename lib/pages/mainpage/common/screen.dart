@@ -11,13 +11,13 @@ class Screen {
   Screen({this.title, this.contenBuilder});
 }
 
-createScreen(
+buildScreen(
     Screen activeScreen, BuildContext context, MenuController menuController) {
   if (activeScreen == homeScreen) {
     return new Scaffold(
       backgroundColor: AppColors.background,
       appBar: new AppBar(
-        toolbarOpacity: 0.0,
+        toolbarOpacity: 1.0,
         leading: new IconButton(
           color: AppColors.primary,
           onPressed: menuController.state == MenuState.closing ||

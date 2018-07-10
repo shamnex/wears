@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 class OutLineButton extends StatelessWidget {
   final String _buttonText;
   final VoidCallback _onTap;
-
   OutLineButton(this._buttonText, this._onTap);
 
   @override
@@ -32,27 +31,22 @@ class OutLineButton extends StatelessWidget {
   }
 }
 
-
 class DefaultButton extends StatelessWidget {
   final String _buttonText;
   final VoidCallback _onTap;
   final double _marginTopBottom;
-  DefaultButton(
-    this._buttonText, 
-    this._marginTopBottom,
-    this._onTap);
+  DefaultButton(this._buttonText, this._marginTopBottom, this._onTap);
 
   @override
   Widget build(BuildContext context) {
     return new Padding(
-      padding: new EdgeInsets.symmetric(vertical:_marginTopBottom),
+      padding: new EdgeInsets.symmetric(vertical: _marginTopBottom),
       child: new Container(
         decoration: new BoxDecoration(
             gradient: new LinearGradient(
-              begin: Alignment.centerLeft,
+                begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
                 colors: [const Color(0xFF481300), const Color(0xFF160800)])),
-
         child: new MaterialButton(
           color: Colors.transparent,
           textColor: Colors.white,
@@ -68,7 +62,6 @@ class DefaultButton extends StatelessWidget {
   }
 }
 
-
 class WhiteButton extends StatelessWidget {
   final String _buttonText;
   final VoidCallback _onTap;
@@ -77,23 +70,20 @@ class WhiteButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Padding(
-      padding: new EdgeInsets.symmetric(vertical:16.0),
+      padding: new EdgeInsets.symmetric(vertical: 16.0),
       child: new Container(
         decoration: new BoxDecoration(
-          boxShadow: [
-            new BoxShadow(
-              color: Colors.black.withOpacity(0.3),
-              spreadRadius: 0.0,
-              offset: Offset.zero,
-              blurRadius: 18.0
-
-            )
-          ],
+            boxShadow: [
+              new BoxShadow(
+                  color: Colors.black.withOpacity(0.3),
+                  spreadRadius: 0.0,
+                  offset: Offset.zero,
+                  blurRadius: 18.0)
+            ],
             gradient: new LinearGradient(
-              begin: Alignment.centerLeft,
+                begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
-                colors: [ Colors.white,  Colors.white])),
-
+                colors: [Colors.white, Colors.white])),
         child: new MaterialButton(
           color: Colors.white,
           textColor: const Color(0xFF481300),

@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 
+import '../../../data/constants.dart';
 import '../../common/gradient_overlay.dart';
 
-class HomeLink extends StatelessWidget {
+class CategoryLink extends StatelessWidget {
   final String _linkImage;
   final String _linkText;
-  final Color _primaryColor = const Color(0xFF481300);
+  final VoidCallback _onPressed;
 
-  HomeLink(
-    this._linkText,
-    this._linkImage,
-  );
+  CategoryLink(this._linkText, this._linkImage, this._onPressed);
 
   @override
   Widget build(BuildContext context) {
@@ -31,8 +29,7 @@ class HomeLink extends StatelessWidget {
                     colorFilter: new ColorFilter.mode(
                         const Color(0xFF481300).withOpacity(0.4),
                         BlendMode.softLight),
-                  )
-                  ),
+                  )),
                 ),
                 new GradientOverlay(
                   <Color>[
@@ -46,16 +43,16 @@ class HomeLink extends StatelessWidget {
                     new Expanded(
                         child: new Center(
                             child: new MaterialButton(
-                      highlightColor: _primaryColor.withOpacity(0.3),
-                      splashColor: _primaryColor.withOpacity(0.8),
+                      highlightColor: AppColors.primary.withOpacity(0.3),
+                      splashColor: AppColors.primary.withOpacity(0.8),
                       elevation: 10.0,
                       minWidth: double.infinity,
                       height: MediaQuery.of(context).size.height,
-                      onPressed: () {},
+                      onPressed: _onPressed,
                       child: new Container(
                         decoration: new BoxDecoration(boxShadow: [
                           new BoxShadow(
-                            color: _primaryColor.withOpacity(0.7),
+                            color: AppColors.primary.withOpacity(0.7),
                             offset: new Offset(20.0, 0.0),
                           )
                         ]),
@@ -65,6 +62,7 @@ class HomeLink extends StatelessWidget {
                               color: Colors.white,
                               fontSize: 27.0,
                               fontWeight: FontWeight.w900,
+                              fontStyle: FontStyle.italic,
                               fontFamily: 'Avenir-Condensed'),
                         ),
                       ),

@@ -3,6 +3,7 @@ import 'package:flutter/painting.dart';
 
 class AppColors {
   static const Color primaryDark = const Color(0xFF270000);
+  static const Color primaryDark2 = const Color(0xFF160800);
   static const Color primary = const Color(0xFF481300);
   static const Color background = const Color(0xFFE8E8E8);
 
@@ -15,5 +16,4 @@ class AppIcons {
   static const String logoIcon =  "assets/icons/logo_icon.png";
   static const String cart =  "assets/icons/bag.png";
   static const String search =  "assets/icons/search.png";
-
 }

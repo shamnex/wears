@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import 'ui/mainpage/main_page.dart';
+import 'data/constants.dart';
+import 'pages/welcome/welcome_page.dart';
 
 void main() {
   runApp(new MaterialApp(
-      home: new MainPage(),
+      home: new WelcomePage(),
       theme: new ThemeData(
-          fontFamily: 'Avenir', primaryColor: const Color(0xFF481300))));
+          backgroundColor: AppColors.background,
+          fontFamily: 'Avenir',
+          primaryColor: AppColors.primary)));
 }

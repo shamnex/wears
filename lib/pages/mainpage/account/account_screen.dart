@@ -13,6 +13,5 @@ final otherScreen = new Screen(
       ),
       child: new Text("ACCOUNT"),
     );
-    
   }
 );

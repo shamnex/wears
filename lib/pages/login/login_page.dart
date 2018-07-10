@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:wears/ui/mainpage/main_page.dart';
 
 import '../common/buttons.dart';
 import '../common/forms.dart';
-
+import '../mainpage/main_page.dart';
 
 class LoginPage extends StatefulWidget {
   @override
   LoginPageState createState() => new LoginPageState();
 }
-
 
 class LoginPageState extends State<LoginPage> {
   final Color _primaryColor = const Color(0xFF481300);
@@ -35,16 +33,15 @@ class LoginPageState extends State<LoginPage> {
                           new IconThemeData(color: _primaryColor)),
                   child: new Column(
                     children: <Widget>[
-                      
                       new InputField("Username", Icons.person, false),
                       new InputField("Password", Icons.lock, true),
-                      new DefaultButton("SIGN IN",10.0,
-
-                    () => Navigator.of(context).push(
-                    new MaterialPageRoute(
-                        builder: (BuildContext build) => new MainPage())
-  
-                       ))
+                      new DefaultButton(
+                          "SIGN IN",
+                          10.0,
+                          () => Navigator.of(context).push(
+                              new MaterialPageRoute(
+                                  builder: (BuildContext build) =>
+                                      new MainPage())))
                     ],
                   ),
                 ),
@@ -54,10 +51,10 @@ class LoginPageState extends State<LoginPage> {
         ),
         new Positioned(
           bottom: -16.0,
-          child:
-              new Column(children: <Widget>[
-                new Text("Don't have an account? "),
-                new WhiteButton('SIGN UP', () {})]),
+          child: new Column(children: <Widget>[
+            new Text("Don't have an account? "),
+            new WhiteButton('SIGN UP', () {})
+          ]),
         )
       ],
     ));

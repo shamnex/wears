@@ -44,7 +44,6 @@ flutter:
     - assets/imgs/suit3.png
     - assets/imgs/suit4.jpg
     - assets/imgs/landing_bg3.png
-    - assets/imgs/pattern.jpg
     - assets/imgs/shoe.png
     - assets/imgs/bag.png
     - assets/imgs/watch.png
@@ -59,17 +58,40 @@ flutter:
   fonts:
   - family: Avenir
     fonts:
+      - asset: assets/fonts/Avenir-Light.otf
+        weight: 200
+      - asset: assets/fonts/Avenir-Light-Italic.otf
+        weight: 200
+        style: italic
+
+      - asset: assets/fonts/Avenir-Regular.otf
+      - asset: assets/fonts/Avenir-Regular-Italic.otf
+        style: italic
+
       - asset: assets/fonts/Avenir-Medium.otf
-      - asset: assets/fonts/Avenir-Heavy-Condensed.otf
-        weight: 900
+        weight: 400
+      - asset: assets/fonts/Avenir-Medium-Italic.otf
+        weight: 400
+        style: italic
+
       - asset: assets/fonts/Avenir-Bold.otf
         weight: 500
 
+      - asset: assets/fonts/Avenir-Heavy.otf
+        weight: 900
+      - asset: assets/fonts/Avenir-Heavy-Italic.otf
+        weight: 900
+        style: italic
 
   - family: Avenir-Condensed
     fonts:
+      - asset: assets/fonts/Avenir-Heavy-Condensed.otf
+        weight: 900
       - asset: assets/fonts/Avenir-Heavy-Condensed-Italic.otf
         style: italic
+
+
+
 
 
 
