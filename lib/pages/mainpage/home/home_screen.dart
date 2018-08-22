@@ -4,48 +4,48 @@ import '../category/category.dart';
 import '../common/screen.dart';
 import './category_links.dart';
 
-final Screen homeScreen =  Screen(
+final Screen homeScreen = Screen(
     title: "HOME",
     contenBuilder: (BuildContext context) {
-      return  Padding(
+      return Padding(
         padding: const EdgeInsets.all(8.0),
-        child:  Column(
+        child: Column(
           children: <Widget>[
-             Expanded(
+            Expanded(
               flex: 6,
-              child:  Row(
+              child: Row(
                 children: <Widget>[
-                   Expanded(
-                    child:  Column(
+                  Expanded(
+                    child: Column(
                       children: <Widget>[
-                         Expanded(
+                        Expanded(
                           flex: 1,
-                          child:  Padding(
+                          child: Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child:  CategoryLink(
+                              child: CategoryLink(
                                   'WATCHES', "assets/imgs/watch.png", () {})),
                         ),
-                         Expanded(
+                        Expanded(
                           flex: 1,
-                          child:  Container(
-                            child:  Padding(
+                          child: Container(
+                            child: Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child:  CategoryLink(
+                                child: CategoryLink(
                                     'SHOES', 'assets/imgs/shoe.png', () {})),
                           ),
                         ),
                       ],
                     ),
                   ),
-                   Expanded(
+                  Expanded(
                     flex: 1,
-                    child:  Padding(
+                    child: Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child:  CategoryLink(
+                        child: CategoryLink(
                             'SUITS', 'assets/imgs/landing_bg3.png', () {
                           Navigator.push(context, MaterialPageRoute(
                               builder: (BuildContext context) {
-                            return  Category(
+                            return Category(
                                 'SUITS', 'assets/imgs/landing_bg3.png');
                           }));
                         })),
@@ -53,12 +53,12 @@ final Screen homeScreen =  Screen(
                 ],
               ),
             ),
-             Expanded(
+            Expanded(
               flex: 3,
-              child:  Padding(
+              child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child:  CategoryLink(
-                      'ACCESORIES', 'assets/imgs/bag.png', () {})),
+                  child:
+                      CategoryLink('ACCESORIES', 'assets/imgs/bag.png', () {})),
             )
           ],
         ),
