@@ -10,27 +10,27 @@ class Category extends StatefulWidget {
     this._linkImage,
   );
   @override
-  CategoryState createState() => new CategoryState();
+  CategoryState createState() => CategoryState();
 }
 
 class CategoryState extends State<Category>
     with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
-    return new DefaultTabController(
+    return DefaultTabController(
       length: 2,
-      child: new Scaffold(
-        body: new NestedScrollView(
+      child: Scaffold(
+        body: NestedScrollView(
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return <Widget>[
-              new SliverAppBar(
+              SliverAppBar(
                 forceElevated: innerBoxIsScrolled,
-                leading: new Container(
-                  padding: new EdgeInsets.only(top: 0.0),
+                leading: Container(
+                  padding: EdgeInsets.only(top: 0.0),
                   decoration:
-                      new BoxDecoration(color: Colors.white.withOpacity(0.0)),
-                  child: new MaterialButton(
-                    child: new Image.asset(
+                      BoxDecoration(color: Colors.white.withOpacity(0.0)),
+                  child: MaterialButton(
+                    child: Image.asset(
                       AppIcons.back,
                       color: Colors.white,
                     ),
@@ -44,46 +44,46 @@ class CategoryState extends State<Category>
                 floating: false,
                 pinned: true,
                 expandedHeight: 250.0,
-                flexibleSpace: new FlexibleSpaceBar(
+                flexibleSpace: FlexibleSpaceBar(
                   centerTitle: true,
                   title: Container(
                     padding: EdgeInsets.all(70.0),
-                    child: new Text(
+                    child: Text(
                       widget._title,
-                      style: new TextStyle(
+                      style: TextStyle(
                           color: Colors.white,
                           fontSize: 26.0,
                           fontWeight: FontWeight.w900,
                           fontFamily: 'Avenir-Condensed'),
                     ),
                   ),
-                  background: new Container(
-                    decoration: new BoxDecoration(
-                        image: new DecorationImage(
-                      image: new AssetImage(widget._linkImage),
+                  background: Container(
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                      image: AssetImage(widget._linkImage),
                       fit: BoxFit.cover,
                       repeat: ImageRepeat.repeat,
-                      colorFilter: new ColorFilter.mode(
+                      colorFilter: ColorFilter.mode(
                           const Color(0xFF481300).withOpacity(0.7),
                           BlendMode.softLight),
                     )),
                   ),
                 ),
                 actions: <Widget>[
-                  new IconButton(
+                  IconButton(
                     onPressed: () {},
                     disabledColor: Colors.grey,
-                    icon: new ImageIcon(
-                      new AssetImage(AppIcons.cart),
+                    icon: ImageIcon(
+                      AssetImage(AppIcons.cart),
                       size: 20.0,
                       color: Colors.white,
                     ),
                   ),
-                  new IconButton(
+                  IconButton(
                     onPressed: () {},
                     disabledColor: Colors.grey,
-                    icon: new ImageIcon(
-                      new AssetImage(AppIcons.search),
+                    icon: ImageIcon(
+                      AssetImage(AppIcons.search),
                       size: 20.0,
                       color: Colors.white,
                     ),
@@ -93,24 +93,21 @@ class CategoryState extends State<Category>
                   indicatorColor: Colors.white,
                   indicatorPadding: EdgeInsets.all(0.0),
                   indicatorWeight: 6.0,
-                  labelStyle: new TextStyle(fontWeight: FontWeight.w500),
-                  tabs: <Widget>[
-                    new Tab(text: "REGULAR"),
-                    new Tab(text: "CLASSIC")
-                  ],
+                  labelStyle: TextStyle(fontWeight: FontWeight.w500),
+                  tabs: <Widget>[Tab(text: "REGULAR"), Tab(text: "CLASSIC")],
                 ),
               ),
             ];
           },
-          body: new TabBarView(
+          body: TabBarView(
             children: <Widget>[
-              new Padding(
+              Padding(
                 padding: EdgeInsets.symmetric(horizontal: 8.0),
                 child: CategoryGrid().build(context),
               ),
-              new Center(
-                child: new Center(
-                  child: new Text("COMING SOON"),
+              Center(
+                child: Center(
+                  child: Text("COMING SOON"),
                 ),
               ),
             ],
@@ -129,7 +126,7 @@ class CategoryGrid {
         elevation: 9.0,
         child: Container(
           decoration: BoxDecoration(
-            image: new DecorationImage(
+            image: DecorationImage(
               fit: BoxFit.cover,
               image: AssetImage(imgLink),
             ),
@@ -146,7 +143,7 @@ class CategoryGrid {
                   padding:
                       EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
                   decoration: BoxDecoration(
-                      gradient: new LinearGradient(
+                      gradient: LinearGradient(
                     colors: [
                       AppColors.primaryDark2.withOpacity(0.7),
                       AppColors.primaryDark2.withOpacity(0.7),
@@ -159,20 +156,19 @@ class CategoryGrid {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
-                      new Text(
+                      Text(
                         name,
-                        style: new TextStyle(
+                        style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.w900,
                             fontSize: 15.0),
                       ),
-                      new Padding(
+                      Padding(
                         padding: EdgeInsets.all(3.0),
                       ),
-                      new Text(
+                      Text(
                         price.toString(),
-                        style:
-                            new TextStyle(color: Colors.white, fontSize: 12.0),
+                        style: TextStyle(color: Colors.white, fontSize: 12.0),
                       ),
                     ],
                   ),

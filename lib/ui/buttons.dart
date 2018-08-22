@@ -7,20 +7,20 @@ class OutLineButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new InkWell(
+    return  InkWell(
       highlightColor: Colors.red,
       onTap: () => _onTap(),
-      child: new Container(
+      child:  Container(
         height: 70.0,
         width: MediaQuery.of(context).size.width,
-        padding: new EdgeInsets.all(28.0),
-        decoration: new BoxDecoration(
-          border: new Border.all(color: Colors.white, width: 2.0),
+        padding:  EdgeInsets.all(28.0),
+        decoration:  BoxDecoration(
+          border:  Border.all(color: Colors.white, width: 2.0),
         ),
-        child: new Center(
-          child: new Text(
+        child:  Center(
+          child:  Text(
             _buttonText,
-            style: new TextStyle(
+            style:  TextStyle(
               color: Colors.white,
               fontSize: 14.0,
             ),
@@ -39,22 +39,22 @@ class DefaultButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new Padding(
-      padding: new EdgeInsets.symmetric(vertical: _marginTopBottom),
-      child: new Container(
-        decoration: new BoxDecoration(
-            gradient: new LinearGradient(
+    return  Padding(
+      padding:  EdgeInsets.symmetric(vertical: _marginTopBottom),
+      child:  Container(
+        decoration:  BoxDecoration(
+            gradient:  LinearGradient(
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
                 colors: [const Color(0xFF481300), const Color(0xFF160800)])),
-        child: new MaterialButton(
+        child:  MaterialButton(
           color: Colors.transparent,
           textColor: Colors.white,
           minWidth: MediaQuery.of(context).size.width,
           padding: const EdgeInsets.all(10.0),
           height: 65.0,
           textTheme: ButtonTextTheme.accent,
-          child: new Text(_buttonText),
+          child:  Text(_buttonText),
           onPressed: () => _onTap(),
         ),
       ),
@@ -64,34 +64,34 @@ class DefaultButton extends StatelessWidget {
 
 class WhiteButton extends StatelessWidget {
   final String _buttonText;
-  final VoidCallback _onTap;
+  final Function _onTap;
   WhiteButton(this._buttonText, this._onTap);
 
   @override
   Widget build(BuildContext context) {
-    return new Padding(
-      padding: new EdgeInsets.symmetric(vertical: 16.0),
-      child: new Container(
-        decoration: new BoxDecoration(
+    return  Padding(
+      padding:  EdgeInsets.symmetric(vertical: 16.0),
+      child:  Container(
+        decoration:  BoxDecoration(
             boxShadow: [
-              new BoxShadow(
+               BoxShadow(
                   color: Colors.black.withOpacity(0.3),
                   spreadRadius: 0.0,
                   offset: Offset.zero,
                   blurRadius: 18.0)
             ],
-            gradient: new LinearGradient(
+            gradient:  LinearGradient(
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
                 colors: [Colors.white, Colors.white])),
-        child: new MaterialButton(
+        child:  MaterialButton(
           color: Colors.white,
           textColor: const Color(0xFF481300),
           minWidth: MediaQuery.of(context).size.width,
           padding: const EdgeInsets.all(10.0),
           height: 65.0,
           textTheme: ButtonTextTheme.accent,
-          child: new Text(_buttonText),
+          child:  Text(_buttonText),
           onPressed: () => _onTap,
         ),
       ),
