@@ -1,55 +1,10 @@
 import 'package:flutter/material.dart';
-import '../data/constants.dart';
 import '../widgets/category_links.dart';
 
 class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: buildAppBar(context),
-      body: buildHome3(context),
-    );
+    return buildHome3(context);
   }
-}
-
-Widget buildAppBar(BuildContext context) {
-  return AppBar(
-      toolbarOpacity: 1.0,
-      leading: IconButton(
-        padding: const EdgeInsets.fromLTRB(24.0, 0.0, 0.0, 0.0),
-        color: AppColors.primary,
-        onPressed: () {},
-        disabledColor: Colors.grey,
-        icon: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Container(
-              height: 2.0,
-              width: 35.0,
-              color: Theme.of(context).primaryColor,
-              margin: EdgeInsets.only(bottom: 5.0),
-            ),
-            Container(
-              height: 2.0,
-              width: 25.5,
-              color: Theme.of(context).primaryColor,
-            ),
-          ],
-        ),
-      ),
-      elevation: .0,
-      backgroundColor: Colors.transparent,
-      title: Container(
-        alignment: Alignment.center,
-        padding: const EdgeInsets.only(right: 55.0),
-        child: Text(
-          "HOME",
-          style: TextStyle(
-              fontWeight: FontWeight.w900,
-              fontSize: 20.0,
-              color: AppColors.primary),
-        ),
-      ));
 }
 
 Widget buildHome3(BuildContext context) {
