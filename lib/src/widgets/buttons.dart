@@ -42,23 +42,25 @@ class DefaultButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
+        color: Colors.grey,
         gradient: LinearGradient(
           begin: Alignment.centerLeft,
           end: Alignment.centerRight,
-          colors: isDisabled
-              ? [
-                  const Color(0xFF160800).withOpacity(0.4),
-                  const Color(0xFF481300).withOpacity(0.4),
-                ]
-              : [
-                  const Color(0xFF160800),
-                  const Color(0xFF481300),
-                ],
+          colors: [
+            const Color(0xFF160800),
+            const Color(0xFF481300),
+          ],
         ),
       ),
       child: MaterialButton(
-        color: Colors.transparent,
-        textColor: Colors.white,
+        color: isDisabled ? 
+        Colors.white.withOpacity(0.4) : 
+        Colors.transparent,
+
+        textColor: isDisabled ? 
+        Colors.white.withOpacity(0.4) :
+         Colors.white,
+
         minWidth: MediaQuery.of(context).size.width,
         padding: const EdgeInsets.all(10.0),
         height: 65.0,

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-import '../../../data/constants.dart';
+import '../data/constants.dart';
 
 class Category extends StatefulWidget {
-  final String _linkImage;
-  final String _title;
+  final String linkImage;
+  final String title;
   Category(
-    this._title,
-    this._linkImage,
+   { this.title,
+    this.linkImage,}
   );
   @override
   CategoryState createState() => CategoryState();
@@ -49,7 +49,7 @@ class CategoryState extends State<Category>
                   title: Container(
                     padding: EdgeInsets.all(70.0),
                     child: Text(
-                      widget._title,
+                      widget.title,
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 26.0,
@@ -60,7 +60,7 @@ class CategoryState extends State<Category>
                   background: Container(
                     decoration: BoxDecoration(
                         image: DecorationImage(
-                      image: AssetImage(widget._linkImage),
+                      image: AssetImage(widget.linkImage),
                       fit: BoxFit.cover,
                       repeat: ImageRepeat.repeat,
                       colorFilter: ColorFilter.mode(

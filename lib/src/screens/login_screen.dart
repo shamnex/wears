@@ -16,8 +16,8 @@ class LoginScreen extends StatelessWidget {
             image: DecorationImage(
               fit: BoxFit.fitHeight,
               alignment: Alignment(-2.0, 4.0),
-              colorFilter: new ColorFilter.mode(
-                Colors.white.withOpacity(0.03),
+              colorFilter: ColorFilter.mode(
+                Colors.white.withOpacity(0.07),
                 BlendMode.dstATop,
               ),
               image: AssetImage("assets/graphics/logo_color.png"),
