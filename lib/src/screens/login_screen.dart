@@ -37,7 +37,10 @@ class LoginScreen extends StatelessWidget {
           bottom: -16.0,
           child: Column(children: <Widget>[
             Text("Don't have an account? "),
-            WhiteButton('SIGN UP', () {})
+            WhiteButton(
+              text: 'SIGN UP',
+              onPressed: () {},
+            )
           ]),
         )
       ],
@@ -143,7 +146,6 @@ class LoginScreen extends StatelessWidget {
     return StreamBuilder(
       stream: bloc.submitValid,
       builder: (context, AsyncSnapshot<bool> snapshot) {
-        
         return DefaultButton(
           text: Text("SIGN IN"),
           onPressed: snapshot.hasData ? bloc.submit : null,

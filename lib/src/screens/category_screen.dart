@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 
 import '../data/constants.dart';
 
-class Category extends StatefulWidget {
+class CategoryScreen extends StatefulWidget {
   final String linkImage;
   final String title;
-  Category(
+  CategoryScreen(
    { this.title,
     this.linkImage,}
   );
   @override
-  CategoryState createState() => CategoryState();
+  CategoryScreenState createState() => CategoryScreenState();
 }
 
-class CategoryState extends State<Category>
+class CategoryScreenState extends State<CategoryScreen>
     with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {

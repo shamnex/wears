@@ -73,9 +73,9 @@ class DefaultButton extends StatelessWidget {
 }
 
 class WhiteButton extends StatelessWidget {
-  final String _buttonText;
-  final Function _onTap;
-  WhiteButton(this._buttonText, this._onTap);
+  final String text;
+  final Function onPressed;
+  WhiteButton({this.text, this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -101,8 +101,8 @@ class WhiteButton extends StatelessWidget {
           padding: const EdgeInsets.all(10.0),
           height: 65.0,
           textTheme: ButtonTextTheme.accent,
-          child: Text(_buttonText),
-          onPressed: () => _onTap,
+          child: Text(text),
+          onPressed: () => onPressed,
         ),
       ),
     );
