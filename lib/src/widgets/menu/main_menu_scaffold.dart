@@ -14,7 +14,11 @@ class MainMenuScaffold extends StatelessWidget {
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         return Material(
           child: Stack(children: <Widget>[
-            snapshot.hasData? snapshot.data: Center(child:Text("Loading"),),
+            snapshot.hasData
+                ? snapshot.data
+                : Center(
+                    child: Text("Loading"),
+                  ),
             MainMenu(bloc),
           ]),
         );

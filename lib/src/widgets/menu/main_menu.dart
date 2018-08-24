@@ -4,6 +4,8 @@ import '../../blocs/menu_bloc.dart';
 import '../../data/constants.dart';
 import '../../widgets/buttons.dart';
 
+enum menuController{opened,opening,closed,closing}
+
 class MainMenu extends StatefulWidget {
   final MenuBloc bloc;
   MainMenu(this.bloc);
@@ -14,7 +16,34 @@ class MainMenu extends StatefulWidget {
   }
 }
 
-class MainMenuState extends State<MainMenu> {
+class MainMenuState extends State<MainMenu> with TickerProviderStateMixin {
+  Animation<double> blurBGAnimation;
+  AnimationController blurBGController;
+
+  initState() {
+    super.initState();
+    blurBGController = AnimationController(
+      duration: Duration(milliseconds: 400),
+      vsync: this,
+    );
+
+    blurBGAnimation = Tween(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(
+        curve: Curves.easeIn,
+        parent: blurBGController,
+      ),
+    );
+
+    widget.bloc.menuOpen$.listen((bool data) {
+      if (blurBGController.status == AnimationStatus.dismissed && data) {
+        blurBGController.forward();
+      } else if (blurBGController.status == AnimationStatus.completed &&data == false) {
+        print(blurBGController.status);
+        blurBGController.reverse();
+      } 
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return buildMenu(widget.bloc);
@@ -27,23 +56,32 @@ class MainMenuState extends State<MainMenu> {
         return Column(
           children: <Widget>[
             Expanded(
-              child: BackdropFilter(
-                  filter: ImageFilter.blur(sigmaX: 14.0, sigmaY: 14.0),
-                  child: Transform(
-                    transform: Matrix4.identity()..translate(0.0),
-                    // transform: Matrix4.identity()..scale(1.0),
-                    child: snapshot.data == true
-                        ? Opacity(
-                            opacity: 1.0,
-                            child: Column(
-                              children: <Widget>[
-                                buildMenuBar(bloc),
-                                buildMenuList(bloc),
-                              ],
-                            ),
-                          )
-                        : Container(),
-                  )),
+              child: AnimatedBuilder(
+                animation: blurBGAnimation,
+                builder: (BuildContext context, Widget child) {
+                  return BackdropFilter(
+                    filter: ImageFilter.blur(
+                      sigmaX: 14 * blurBGAnimation.value,
+                      sigmaY: 14 * blurBGAnimation.value,
+                    ),
+                    child: Transform(
+                      transform: Matrix4.identity()..scale(1.0),
+                      // transform: Matrix4.identity()..scale(1.0),
+                      child: snapshot.data == true
+                          ? Opacity(
+                              opacity: 1.0*blurBGAnimation.value,
+                              child: Column(
+                                children: <Widget>[
+                                  buildMenuBar(bloc),
+                                  buildMenuList(bloc),
+                                ],
+                              ),
+                            )
+                          : Container(),
+                    ),
+                  );
+                },
+              ),
             )
           ],
         );
@@ -55,24 +93,31 @@ class MainMenuState extends State<MainMenu> {
     return Expanded(
       flex: 2,
       child: Container(
-         padding: EdgeInsets.only( top: 15.0),
+        padding: EdgeInsets.only(top: 15.0),
         decoration: BoxDecoration(
-          color: Theme.of(context).primaryColor.withOpacity(0.5)),
-          // color: Colors.white.withOpacity(0.5)),
+            color: Theme.of(context).primaryColor.withOpacity(0.5)),
+        // color: Colors.white.withOpacity(0.5)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             MaterialButton(
-              child: Image.asset(AppIcons.close, color: Colors.white,),
+              child: Image.asset(
+                AppIcons.close,
+                color: Colors.white,
+              ),
               onPressed: () {
                 bloc.toggleMenu$(false);
               },
             ),
-         
-             MaterialButton(
-                  onPressed: () {}, child: Image.asset(AppIcons.logoIcon, color: Colors.white,), height: 10.0,),
-            
+            MaterialButton(
+              onPressed: () {},
+              child: Image.asset(
+                AppIcons.logoIcon,
+                color: Colors.white,
+              ),
+              height: 10.0,
+            ),
           ],
         ),
       ),
@@ -84,7 +129,7 @@ class MainMenuState extends State<MainMenu> {
       stream: bloc.activeScreenTitle$,
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         return Expanded(
-          flex: 8,
+          flex: 12,
           child: Column(
             children: <Widget>[
               buildMenuItem(
@@ -139,9 +184,11 @@ class MainMenuState extends State<MainMenu> {
           onPressed: isActive ? null : onPressed,
           child: Center(
             child: Text(
-              title, 
+              title,
               style: TextStyle(
-                  color: isActive? AppColors.primary: Colors.black.withOpacity(0.6),
+                  color: isActive
+                      ? AppColors.primary
+                      : Colors.black.withOpacity(0.6),
                   fontWeight: isActive ? FontWeight.w500 : FontWeight.normal),
             ),
           ),
