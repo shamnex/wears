@@ -7,14 +7,21 @@ class LoginBloc extends Object with Validators {
   final _password$ = BehaviorSubject<String>();
 
   //add data to stream
-  Stream<String> get username$ =>
-      _username$.stream.delay(Duration(milliseconds: 1500)).transform(validateUsername);
+  Stream<String> get username$ => _username$.stream
+      .delay(Duration(milliseconds: 1500))
+      .transform(validateUsername);
 
   Stream<String> get password$ => _password$.stream
-    .delay(Duration(milliseconds: 1500)).transform(validatePassword);
+      .delay(Duration(milliseconds: 1500))
+      .transform(validatePassword);
 
   Stream<bool> get submitValid =>
-      Observable.combineLatest2(username$, password$, (e, p) => true);
+      Observable.combineLatest2(username$, password$, (e, p) {
+        print(e);
+        print(p);
+
+        return true;
+      });
   //change Data
   Function(String) get changeUsername$ => _username$.sink.add;
   Function(String) get changePassword$ => _password$.sink.add;

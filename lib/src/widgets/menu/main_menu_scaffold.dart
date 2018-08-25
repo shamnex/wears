@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import '../../screens/home_screen.dart';
 import 'main_menu.dart';
 import 'screen.dart';
-import '../../blocs/menu_bloc.dart';
-import '../../blocs/menu_provider.dart';
+import '../../blocs/menu/menu_bloc.dart';
+import '../../blocs/menu/menu_provider.dart';
 
 class MainMenuScaffold extends StatelessWidget {
   @override

@@ -1,10 +1,10 @@
 import 'dart:ui' show FontWeight, ImageFilter, Offset, VoidCallback;
 import 'package:flutter/material.dart';
-import '../../blocs/menu_bloc.dart';
+import '../../blocs/menu/menu_bloc.dart';
 import '../../data/constants.dart';
 import '../../widgets/buttons.dart';
 
-enum menuController{opened,opening,closed,closing}
+enum menuController { opened, opening, closed, closing }
 
 class MainMenu extends StatefulWidget {
   final MenuBloc bloc;
@@ -17,30 +17,79 @@ class MainMenu extends StatefulWidget {
 }
 
 class MainMenuState extends State<MainMenu> with TickerProviderStateMixin {
-  Animation<double> blurBGAnimation;
-  AnimationController blurBGController;
+  Animation<double> blur;
+  Animation<double> scale;
+  Animation<double> opacity;
+  AnimationController controller;
+  //menu animation
+  Animation<double> menuAnimation;
+  AnimationController menuController;
 
   initState() {
     super.initState();
-    blurBGController = AnimationController(
-      duration: Duration(milliseconds: 400),
+    controller = AnimationController(
+      duration: Duration(milliseconds: 600),
       vsync: this,
     );
 
-    blurBGAnimation = Tween(begin: 0.0, end: 1.0).animate(
+    controller.addStatusListener((AnimationStatus status) {
+      widget.bloc.changeAnimationStatus$(status);
+    });
+
+    opacity = Tween<double>(
+      begin: 0.0,
+      end: 1.0,
+    ).animate(
       CurvedAnimation(
-        curve: Curves.easeIn,
-        parent: blurBGController,
+        parent: controller,
+        curve: Interval(
+          0.000,
+          0.400,
+          curve: Curves.ease,
+        ),
       ),
     );
 
-    widget.bloc.menuOpen$.listen((bool data) {
-      if (blurBGController.status == AnimationStatus.dismissed && data) {
-        blurBGController.forward();
-      } else if (blurBGController.status == AnimationStatus.completed &&data == false) {
-        print(blurBGController.status);
-        blurBGController.reverse();
-      } 
+    blur = Tween(
+      begin: 0.0,
+      end: 14.0,
+    ).animate(
+      CurvedAnimation(
+        parent: controller,
+        curve: Interval(
+          0.2,
+          0.700,
+          curve: Curves.ease,
+        ),
+        reverseCurve: Interval(
+          0.2,
+          0.700,
+          curve: Curves.decelerate,
+        )
+      ),
+    );
+
+    scale = Tween(
+      begin: 0.0,
+      end: 1.0,
+    ).animate(
+      CurvedAnimation(
+        parent: controller,
+        curve: Interval(
+          0.0,
+          0.400,
+          curve: Curves.fastOutSlowIn,
+        ),
+        reverseCurve: Interval(
+          0.0,
+          0.400,
+          curve: Curves.fastOutSlowIn,
+        ),
+      ),
+    );
+
+    widget.bloc.ismenuOpen$.listen((data) {
+      data == true ? controller.forward() : controller.reverse();
     });
   }
 
@@ -50,42 +99,43 @@ class MainMenuState extends State<MainMenu> with TickerProviderStateMixin {
   }
 
   buildMenu(MenuBloc bloc) {
-    return StreamBuilder(
-      stream: bloc.menuOpen$,
-      builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
-        return Column(
-          children: <Widget>[
-            Expanded(
-              child: AnimatedBuilder(
-                animation: blurBGAnimation,
+    return Column(
+      children: <Widget>[
+        Expanded(
+          child: StreamBuilder(
+            stream: bloc.ismenuOpen$,
+            builder: (BuildContext context, snapshot) {
+              return AnimatedBuilder(
+                animation: blur,
+                child: AnimatedBuilder(
+                  animation: opacity,
+                  child: Column(
+                    children: <Widget>[
+                      buildMenuBar(bloc),
+                      buildMenuList(bloc),
+                    ],
+                  ),
+                  builder: (BuildContext context, Widget child) {
+                    return Transform(
+                        transform: Matrix4.identity()..scale(1.0, scale.value),
+                        // transform: Matrix4.identity()..scale(1.0)
+                        child: child);
+                  },
+                ),
                 builder: (BuildContext context, Widget child) {
                   return BackdropFilter(
                     filter: ImageFilter.blur(
-                      sigmaX: 14 * blurBGAnimation.value,
-                      sigmaY: 14 * blurBGAnimation.value,
+                      sigmaX: blur.value,
+                      sigmaY: blur.value,
                     ),
-                    child: Transform(
-                      transform: Matrix4.identity()..scale(1.0),
-                      // transform: Matrix4.identity()..scale(1.0),
-                      child: snapshot.data == true
-                          ? Opacity(
-                              opacity: 1.0*blurBGAnimation.value,
-                              child: Column(
-                                children: <Widget>[
-                                  buildMenuBar(bloc),
-                                  buildMenuList(bloc),
-                                ],
-                              ),
-                            )
-                          : Container(),
-                    ),
+                    child: child,
                   );
                 },
-              ),
-            )
-          ],
-        );
-      },
+              );
+            },
+          ),
+        ),
+      ],
     );
   }
 
@@ -111,13 +161,13 @@ class MainMenuState extends State<MainMenu> with TickerProviderStateMixin {
               },
             ),
             MaterialButton(
-              onPressed: () {},
+              onPressed: null,
               child: Image.asset(
                 AppIcons.logoIcon,
                 color: Colors.white,
               ),
               height: 10.0,
-            ),
+            )
           ],
         ),
       ),
