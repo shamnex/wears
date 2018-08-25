@@ -52,21 +52,20 @@ class MainMenuState extends State<MainMenu> with TickerProviderStateMixin {
 
     blur = Tween(
       begin: 0.0,
-      end: 14.0,
+      end: 16.0,
     ).animate(
       CurvedAnimation(
-        parent: controller,
-        curve: Interval(
-          0.2,
-          0.700,
-          curve: Curves.ease,
-        ),
-        reverseCurve: Interval(
-          0.2,
-          0.700,
-          curve: Curves.decelerate,
-        )
-      ),
+          parent: controller,
+          curve: Interval(
+            0.2,
+            0.700,
+            curve: Curves.ease,
+          ),
+          reverseCurve: Interval(
+            0.2,
+            0.700,
+            curve: Curves.decelerate,
+          )),
     );
 
     scale = Tween(
@@ -108,7 +107,7 @@ class MainMenuState extends State<MainMenu> with TickerProviderStateMixin {
               return AnimatedBuilder(
                 animation: blur,
                 child: AnimatedBuilder(
-                  animation: opacity,
+                  animation: scale,
                   child: Column(
                     children: <Widget>[
                       buildMenuBar(bloc),
@@ -145,8 +144,8 @@ class MainMenuState extends State<MainMenu> with TickerProviderStateMixin {
       child: Container(
         padding: EdgeInsets.only(top: 15.0),
         decoration: BoxDecoration(
-            color: Theme.of(context).primaryColor.withOpacity(0.5)),
-        // color: Colors.white.withOpacity(0.5)),
+            // color: Theme.of(context).primaryColor.withOpacity(0.5)),
+            color: Colors.white.withOpacity(0.5)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -154,7 +153,8 @@ class MainMenuState extends State<MainMenu> with TickerProviderStateMixin {
             MaterialButton(
               child: Image.asset(
                 AppIcons.close,
-                color: Colors.white,
+                color: Theme.of(context).primaryColor
+//  color: Colors.white,
               ),
               onPressed: () {
                 bloc.toggleMenu$(false);
@@ -164,7 +164,8 @@ class MainMenuState extends State<MainMenu> with TickerProviderStateMixin {
               onPressed: null,
               child: Image.asset(
                 AppIcons.logoIcon,
-                color: Colors.white,
+                color: Theme.of(context).primaryColor
+                // color: Colors.white,
               ),
               height: 10.0,
             )

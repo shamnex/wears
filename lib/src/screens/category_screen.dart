@@ -5,10 +5,10 @@ import '../data/constants.dart';
 class CategoryScreen extends StatefulWidget {
   final String linkImage;
   final String title;
-  CategoryScreen(
-   { this.title,
-    this.linkImage,}
-  );
+  CategoryScreen({
+    this.title,
+    this.linkImage,
+  });
   @override
   CategoryScreenState createState() => CategoryScreenState();
 }
@@ -94,7 +94,10 @@ class CategoryScreenState extends State<CategoryScreen>
                   indicatorPadding: EdgeInsets.all(0.0),
                   indicatorWeight: 6.0,
                   labelStyle: TextStyle(fontWeight: FontWeight.w500),
-                  tabs: <Widget>[Tab(text: "REGULAR"), Tab(text: "CLASSIC")],
+                  tabs: <Widget>[
+                    Tab(text: "REGULAR"),
+                    Tab(text: "CLASSIC"),
+                  ],
                 ),
               ),
             ];
@@ -103,7 +106,7 @@ class CategoryScreenState extends State<CategoryScreen>
             children: <Widget>[
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 8.0),
-                child: CategoryGrid().build(context),
+                child: CategoryGrid().buildGrid(context),
               ),
               Center(
                 child: Center(
@@ -181,7 +184,7 @@ class CategoryGrid {
     );
   }
 
-  GridView build(context) {
+  GridView buildGrid(context) {
     return GridView.count(
       childAspectRatio: 1.0,
       crossAxisCount: 2,
