@@ -18,15 +18,13 @@ class MenuBloc {
       BehaviorSubject<AnimationStatus>();
 
   //getters
-  Stream<Screen> get activeScreen$ => _activeScreen$.stream;
+  Stream<Screen> get activeScreen$ => _activeScreen$.stream.distinct();
   Stream<String> get activeScreenTitle$ =>
       _activeScreen$.stream.map((data) => data.title);
-  // Stream<bool> get isMenuAnimating$ =>
-  //     _animationStatus$.stream.transform(waitForAnimation);
+      
   Stream<bool> get ismenuOpen$ =>
-      _ismenuOpen$.stream.distinct().throttle(Duration(milliseconds: 0));
-
-
+      _ismenuOpen$.stream.distinct()
+        .throttle(Duration(milliseconds: 0));
 
   final waitForAnimation =
       StreamTransformer<AnimationStatus, bool>.fromHandlers(

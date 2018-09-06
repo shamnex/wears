@@ -1,8 +1,15 @@
 import 'dart:ui' show FontWeight, ImageFilter, Offset, VoidCallback;
 import 'package:flutter/material.dart';
-import '../../blocs/menu/menu_bloc.dart';
 import '../../data/constants.dart';
+import '../../blocs/menu/menu_bloc.dart';
+import '../menu/screen.dart';
+
 import '../../widgets/buttons.dart';
+
+import '../../screens/home_screen.dart';
+import '../../screens/favorites_screen.dart';
+import '../../screens/cart_screen.dart';
+import '../../screens/settings_screen.dart';
 
 enum menuController { opened, opening, closed, closing }
 
@@ -20,6 +27,7 @@ class MainMenuState extends State<MainMenu> with TickerProviderStateMixin {
   Animation<double> blur;
   Animation<double> scale;
   Animation<double> opacity;
+  Animation<double> translate;
   AnimationController controller;
   //menu animation
   Animation<double> menuAnimation;
@@ -28,7 +36,7 @@ class MainMenuState extends State<MainMenu> with TickerProviderStateMixin {
   initState() {
     super.initState();
     controller = AnimationController(
-      duration: Duration(milliseconds: 600),
+      duration: Duration(milliseconds: 700),
       vsync: this,
     );
 
@@ -64,7 +72,7 @@ class MainMenuState extends State<MainMenu> with TickerProviderStateMixin {
           reverseCurve: Interval(
             0.2,
             0.700,
-            curve: Curves.decelerate,
+            curve: Curves.ease,
           )),
     );
 
@@ -83,6 +91,25 @@ class MainMenuState extends State<MainMenu> with TickerProviderStateMixin {
           0.0,
           0.400,
           curve: Curves.fastOutSlowIn,
+        ),
+      ),
+    );
+
+    translate = Tween(
+      begin: 1.0,
+      end: 0.0,
+    ).animate(
+      CurvedAnimation(
+        parent: controller,
+        curve: Interval(
+          0.0,
+          0.500,
+          curve: Curves.bounceInOut,
+        ),
+        reverseCurve: Interval(
+          0.0,
+          0.400,
+          curve: Curves.easeOut,
         ),
       ),
     );
@@ -116,7 +143,8 @@ class MainMenuState extends State<MainMenu> with TickerProviderStateMixin {
                   ),
                   builder: (BuildContext context, Widget child) {
                     return Transform(
-                        transform: Matrix4.identity()..scale(1.0, scale.value),
+                        transform: Matrix4.identity()
+                          ..translate(1.0, translate.value * 1000),
                         // transform: Matrix4.identity()..scale(1.0)
                         child: child);
                   },
@@ -151,22 +179,20 @@ class MainMenuState extends State<MainMenu> with TickerProviderStateMixin {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             MaterialButton(
-              child: Image.asset(
-                AppIcons.close,
-                color: Theme.of(context).primaryColor
+              child: Image.asset(AppIcons.close,
+                  color: Theme.of(context).primaryColor
 //  color: Colors.white,
-              ),
+                  ),
               onPressed: () {
                 bloc.toggleMenu$(false);
               },
             ),
             MaterialButton(
               onPressed: null,
-              child: Image.asset(
-                AppIcons.logoIcon,
-                color: Theme.of(context).primaryColor
-                // color: Colors.white,
-              ),
+              child: Image.asset(AppIcons.logoIcon,
+                  color: Theme.of(context).primaryColor
+                  // color: Colors.white,
+                  ),
               height: 10.0,
             )
           ],
@@ -186,22 +212,49 @@ class MainMenuState extends State<MainMenu> with TickerProviderStateMixin {
               buildMenuItem(
                 title: 'HOME',
                 isActive: snapshot.data == "HOME",
-                onPressed: () {},
+                onPressed: () {
+                  bloc.changeActiveScreeen$(Screen(
+                    title: "HOME",
+                    body: HomeScreen(),
+                  ));
+                  bloc.toggleMenu$(false);
+                },
               ),
               buildMenuItem(
                 title: "CART",
                 isActive: snapshot.data == "CART",
-                onPressed: () {},
+                onPressed: () {
+                  bloc.changeActiveScreeen$(Screen(
+                    title: "CART",
+                    body: CartScreen(),
+                  ));
+                  bloc.toggleMenu$(false);
+                },
               ),
               buildMenuItem(
                 title: 'FAVORITES',
                 isActive: snapshot.data == "FAVORITES",
-                onPressed: () {},
+                onPressed: () {
+
+                    bloc.changeActiveScreeen$(Screen(
+                    title: "FAVORITES",
+                    body: FavoritesScreen(),
+                  ));
+
+                  bloc.toggleMenu$(false);
+                },
               ),
               buildMenuItem(
                 title: 'SETTINGS',
                 isActive: snapshot.data == "SETTINGS",
-                onPressed: () {},
+                onPressed: () {
+
+                   bloc.changeActiveScreeen$(Screen(
+                    title: "SETTINGS",
+                    body: SettingsScreen(),
+                  ));
+                  
+                  bloc.toggleMenu$(false);                },
               ),
               Expanded(
                 flex: 1,

@@ -1,6 +1,6 @@
 import 'dart:async';
-import 'package:rxdart/rxdart.dart';
 import 'input_validators.dart';
+import 'package:rxdart/rxdart.dart';
 
 class LoginBloc extends Object with Validators {
   final _username$ = BehaviorSubject<String>();

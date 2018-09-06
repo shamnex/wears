@@ -10,8 +10,8 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       
-      home: CategoryScreen(title: "SHOES",linkImage: "assets/imgs/landing_bg3.png", ),
-      // home: MenuProvider(child:MainMenuScaffold()),
+      // home: CategoryScreen(title: "SHOES",linkImage: "assets/imgs/landing_bg3.png", ),
+      home: MenuProvider(child:MainMenuScaffold()),
       // home: LoginProvider(child:LoginScreen()),
       theme: ThemeData(
         iconTheme: IconThemeData(color: Colors.grey),
