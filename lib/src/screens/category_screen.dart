@@ -54,7 +54,7 @@ class CategoryScreenState extends State<CategoryScreen>
                           color: Colors.white,
                           fontSize: 26.0,
                           fontWeight: FontWeight.w900,
-                          fontFamily: 'Avenir-Condensed'),
+                          fontFamily: 'Antonio'),
                     ),
                   ),
                   background: Container(

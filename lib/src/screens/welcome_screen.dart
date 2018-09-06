@@ -48,7 +48,7 @@ class WelcomeScreen extends StatelessWidget {
           "WEARS",
           style: TextStyle(
               color: Colors.white,
-              fontFamily: "Avenir",
+              fontFamily: "Antonio",
               fontSize: 42.0,
               fontWeight: FontWeight.w900),
         ),
@@ -57,7 +57,7 @@ class WelcomeScreen extends StatelessWidget {
               fontSize: 12.0,
               color: Colors.white,
               letterSpacing: 6.0,
-              fontFamily: "Avenir",
+              fontFamily: "Antonio",
             ))
       ],
     );

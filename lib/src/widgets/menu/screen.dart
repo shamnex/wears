@@ -21,10 +21,7 @@ class Screen extends StatelessWidget {
     return AppBar(
       toolbarOpacity: 1.0,
       leading: IconButton(
-        onPressed: () {
-          print("openingMenu");
-          bloc.toggleMenu$(true);
-        },
+        onPressed: () => bloc.openMenu$,
         padding: const EdgeInsets.only(left: 24.0),
         color: AppColors.primary,
         disabledColor: Colors.grey,
@@ -54,8 +51,9 @@ class Screen extends StatelessWidget {
         child: Text(
           title,
           style: TextStyle(
+            fontFamily: 'Antonio',
               fontWeight: FontWeight.w900,
-              fontSize: 20.0,
+              fontSize: 22.0,
               color: AppColors.primary),
         ),
       ),

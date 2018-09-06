@@ -27,51 +27,89 @@ class CategoryLink extends StatelessWidget {
                     repeat: ImageRepeat.repeat,
                     colorFilter: ColorFilter.mode(
                         const Color(0xFF481300).withOpacity(0.4),
-                        BlendMode.softLight),
+                        BlendMode.screen),
                   )),
                 ),
                 GradientOverlay(
                   colors: <Color>[
-                    const Color(0xFF481300).withOpacity(0.4),
-                    const Color(0xFF000000).withOpacity(0.4)
+                    const Color(0xFF481300).withOpacity(0.6),
+                    const Color(0xFF000000).withOpacity(0.6)
                   ],
                 ),
                 Flex(
-                  direction: Axis.horizontal,
+                  direction: Axis.vertical,
                   children: <Widget>[
-                    Expanded(
-                        child: Center(
-                            child: MaterialButton(
-                      highlightColor: AppColors.primary.withOpacity(0.3),
-                      splashColor: AppColors.primary.withOpacity(0.8),
-                      elevation: 10.0,
-                      minWidth: double.infinity,
-                      height: MediaQuery.of(context).size.height,
-                      onPressed: onPressed,
-                      child: Container(
-                        decoration: BoxDecoration(boxShadow: [
-                          BoxShadow(
-                            color: AppColors.primary.withOpacity(0.7),
-                            offset: Offset(20.0, 0.0),
-                          )
-                        ]),
-                        child: Text(
-                          text,
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20.0,
-                              fontWeight: FontWeight.w900,
-                              fontStyle: FontStyle.italic,
-                              fontFamily: 'Avenir-Condensed'),
-                        ),
-                      ),
-                    ))),
+                    Expanded(child: buildText(context)),
                   ],
                 ),
               ],
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget buildText(BuildContext context) {
+    return MaterialButton(
+        highlightColor: AppColors.primary.withOpacity(0.3),
+        splashColor: AppColors.primary.withOpacity(0.8),
+        elevation: 10.0,
+        minWidth: double.infinity,
+        height: MediaQuery.of(context).size.height,
+        onPressed: onPressed,
+        child: Stack(children: [
+          Positioned(
+            bottom: 20.0,
+            child: RotatedBox(
+              quarterTurns: -1,
+              child: Container(
+                alignment: Alignment.bottomLeft,
+                decoration: BoxDecoration(boxShadow: [
+                  BoxShadow(
+                    color: AppColors.primary.withOpacity(0.7),
+                    offset: Offset(20.0, 0.0),
+                  )
+                ]),
+                child: Text(
+                  text,
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 24.0,
+                      fontWeight: FontWeight.w900,
+                      fontFamily: 'Antonio'),
+                ),
+              ),
+            ),
+          ),
+        ]));
+  }
+
+  Widget buildText2(BuildContext context) {
+    return Center(
+      child: MaterialButton(
+        highlightColor: AppColors.primary.withOpacity(0.3),
+        splashColor: AppColors.primary.withOpacity(0.8),
+        elevation: 10.0,
+        minWidth: double.infinity,
+        height: MediaQuery.of(context).size.height,
+        onPressed: onPressed,
+        child: Container(
+          decoration: BoxDecoration(boxShadow: [
+            BoxShadow(
+              color: AppColors.primary.withOpacity(0.7),
+              offset: Offset(20.0, 0.0),
+            )
+          ]),
+          child: Text(
+            text,
+            style: TextStyle(
+                color: Colors.white,
+                fontSize: 20.0,
+                fontWeight: FontWeight.w900,
+                fontFamily: 'Antonio'),
+          ),
+        ),
       ),
     );
   }

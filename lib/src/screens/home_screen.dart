@@ -3,7 +3,7 @@ import '../widgets/category_links.dart';
 
 class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
-    return buildHome2(context);
+    return buildHome3(context);
   }
 }
 

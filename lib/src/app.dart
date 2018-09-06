@@ -16,7 +16,7 @@ class App extends StatelessWidget {
       theme: ThemeData(
         iconTheme: IconThemeData(color: Colors.grey),
         backgroundColor: AppColors.background,
-        fontFamily: 'Avenir',
+        fontFamily: 'Raleway',
         primaryColor: AppColors.primary,
       ),
     );

@@ -52,39 +52,26 @@ flutter:
     - assets/icons/bag.png
 
   fonts:
-  - family: Avenir
+  - family: Antonio
     fonts:
-      - asset: assets/fonts/Avenir-Light.otf
+      - asset: assets/fonts/Antonio-Regular.ttf
+      - asset: assets/fonts/Antonio-Light.ttf
         weight: 200
-      - asset: assets/fonts/Avenir-Light-Italic.otf
-        weight: 200
-        style: italic
+ 
+      - asset: assets/fonts/Antonio-Bold.ttf
+        weight: 700
 
-      - asset: assets/fonts/Avenir-Regular.otf
-      - asset: assets/fonts/Avenir-Regular-Italic.otf
-        style: italic
-
-      - asset: assets/fonts/Avenir-Medium.otf
-        weight: 400
-      - asset: assets/fonts/Avenir-Medium-Italic.otf
-        weight: 400
-        style: italic
-
-      - asset: assets/fonts/Avenir-Bold.otf
-        weight: 500
-
-      - asset: assets/fonts/Avenir-Heavy.otf
+      - asset: assets/fonts/Anton-Regular.ttf
         weight: 900
-      - asset: assets/fonts/Avenir-Heavy-Italic.otf
-        weight: 900
-        style: italic
 
-  - family: Avenir-Condensed
+
+  - family: Raleway
     fonts:
-      - asset: assets/fonts/Avenir-Heavy-Condensed.otf
+      - asset: assets/fonts/Raleway-Regular.ttf
+      - asset: assets/fonts/Raleway-Thin.ttf
+        weight: 200
+      - asset: assets/fonts/Raleway-Black.ttf
         weight: 900
-      - asset: assets/fonts/Avenir-Heavy-Condensed-Italic.otf
-        style: italic
 
 
 

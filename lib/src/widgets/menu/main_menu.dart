@@ -103,8 +103,8 @@ class MainMenuState extends State<MainMenu> with TickerProviderStateMixin {
         parent: controller,
         curve: Interval(
           0.0,
-          0.500,
-          curve: Curves.bounceInOut,
+          0.900,
+          curve: Curves.elasticOut,
         ),
         reverseCurve: Interval(
           0.0,
@@ -144,7 +144,7 @@ class MainMenuState extends State<MainMenu> with TickerProviderStateMixin {
                   builder: (BuildContext context, Widget child) {
                     return Transform(
                         transform: Matrix4.identity()
-                          ..translate(1.0, translate.value * 1000),
+                          ..translate( 0.0, translate.value *  - (MediaQuery.of(context).size.height+10.0)),
                         // transform: Matrix4.identity()..scale(1.0)
                         child: child);
                   },
@@ -183,9 +183,8 @@ class MainMenuState extends State<MainMenu> with TickerProviderStateMixin {
                   color: Theme.of(context).primaryColor
 //  color: Colors.white,
                   ),
-              onPressed: () {
-                bloc.toggleMenu$(false);
-              },
+                 onPressed: () => bloc.closeMenu$,
+
             ),
             MaterialButton(
               onPressed: null,
@@ -217,7 +216,7 @@ class MainMenuState extends State<MainMenu> with TickerProviderStateMixin {
                     title: "HOME",
                     body: HomeScreen(),
                   ));
-                  bloc.toggleMenu$(false);
+                  bloc.closeMenu$;
                 },
               ),
               buildMenuItem(
@@ -228,7 +227,7 @@ class MainMenuState extends State<MainMenu> with TickerProviderStateMixin {
                     title: "CART",
                     body: CartScreen(),
                   ));
-                  bloc.toggleMenu$(false);
+                  bloc.closeMenu$;
                 },
               ),
               buildMenuItem(
@@ -241,7 +240,7 @@ class MainMenuState extends State<MainMenu> with TickerProviderStateMixin {
                     body: FavoritesScreen(),
                   ));
 
-                  bloc.toggleMenu$(false);
+                  bloc.closeMenu$;
                 },
               ),
               buildMenuItem(
@@ -254,7 +253,7 @@ class MainMenuState extends State<MainMenu> with TickerProviderStateMixin {
                     body: SettingsScreen(),
                   ));
                   
-                  bloc.toggleMenu$(false);                },
+                  bloc.closeMenu$;                },
               ),
               Expanded(
                 flex: 1,
@@ -279,9 +278,10 @@ class MainMenuState extends State<MainMenu> with TickerProviderStateMixin {
         decoration: isActive
             ? BoxDecoration(color: Colors.white.withOpacity(0.75), boxShadow: [
                 BoxShadow(
-                    offset: Offset(0.0, 15.0),
-                    blurRadius: 12.0,
-                    color: Colors.black.withOpacity(0.5))
+                    offset: Offset(0.0, 5.0),
+                    blurRadius: 20.0,
+                    spreadRadius: 1.0,
+                    color: Colors.black.withOpacity(0.3))
               ])
             : BoxDecoration(color: Colors.white.withOpacity(0.5)),
         child: MaterialButton(
@@ -293,7 +293,7 @@ class MainMenuState extends State<MainMenu> with TickerProviderStateMixin {
                   color: isActive
                       ? AppColors.primary
                       : Colors.black.withOpacity(0.6),
-                  fontWeight: isActive ? FontWeight.w500 : FontWeight.normal),
+                  fontWeight: isActive ? FontWeight.w900 : FontWeight.normal),
             ),
           ),
         ),
