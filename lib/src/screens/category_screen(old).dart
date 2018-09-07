@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../data/constants.dart';
+import '../../data/constants.dart';
 
 class CategoryScreen extends StatefulWidget {
   final String linkImage;

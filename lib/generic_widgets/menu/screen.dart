@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
-import '../../blocs/menu/menu_bloc.dart';
-import '../../blocs/menu/menu_provider.dart';
+
+import 'menu_controller.dart';
 import '../../data/constants.dart';
 
 class Screen extends StatelessWidget {
-  final String title;
-  final Widget body;
+   @required final String title;
+   @required final Widget body;
+
   Screen({this.title, this.body});
 
   Widget build(BuildContext context) {
-    MenuBloc bloc = MenuProvider.of(context);
     return Scaffold(
       backgroundColor: AppColors.background,
-      appBar: buildAppBar(context, bloc),
+      appBar: buildAppBar(context, menuController),
       body: body,
     );
   }
 
-  Widget buildAppBar(BuildContext context, MenuBloc bloc) {
+  Widget buildAppBar(BuildContext context, MenuController bloc) {
     return AppBar(
       toolbarOpacity: 1.0,
       leading: IconButton(

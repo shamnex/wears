@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wears/src/data/constants.dart';
+import '../../data/constants.dart';
 
 class CategoryScreen extends StatelessWidget {
   Widget build(BuildContext context) {

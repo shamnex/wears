@@ -1,21 +1,13 @@
-import 'dart:ui' show FontWeight, ImageFilter, Offset, VoidCallback;
+import 'dart:ui' show FontWeight, ImageFilter, Offset;
 import 'package:flutter/material.dart';
 import '../../data/constants.dart';
-import '../../blocs/menu/menu_bloc.dart';
+import 'menu_controller.dart';
 import '../menu/screen.dart';
 
-import '../../widgets/buttons.dart';
-
-import '../../screens/home_screen.dart';
-import '../../screens/favorites_screen.dart';
-import '../../screens/cart_screen.dart';
-import '../../screens/settings_screen.dart';
-
-enum menuController { opened, opening, closed, closing }
-
 class MainMenu extends StatefulWidget {
-  final MenuBloc bloc;
-  MainMenu(this.bloc);
+  final List<Screen> screens;
+
+  MainMenu({this.screens});
 
   @override
   MainMenuState createState() {
@@ -28,20 +20,19 @@ class MainMenuState extends State<MainMenu> with TickerProviderStateMixin {
   Animation<double> scale;
   Animation<double> opacity;
   Animation<double> translate;
-  AnimationController controller;
+  AnimationController menuAnimcontroller;
   //menu animation
   Animation<double> menuAnimation;
-  AnimationController menuController;
 
   initState() {
     super.initState();
-    controller = AnimationController(
+    menuAnimcontroller = AnimationController(
       duration: Duration(milliseconds: 700),
       vsync: this,
     );
 
-    controller.addStatusListener((AnimationStatus status) {
-      widget.bloc.changeAnimationStatus$(status);
+    menuAnimcontroller.addStatusListener((AnimationStatus status) {
+      menuController.changeAnimationStatus$(status);
     });
 
     opacity = Tween<double>(
@@ -49,7 +40,7 @@ class MainMenuState extends State<MainMenu> with TickerProviderStateMixin {
       end: 1.0,
     ).animate(
       CurvedAnimation(
-        parent: controller,
+        parent: menuAnimcontroller,
         curve: Interval(
           0.000,
           0.400,
@@ -63,15 +54,15 @@ class MainMenuState extends State<MainMenu> with TickerProviderStateMixin {
       end: 16.0,
     ).animate(
       CurvedAnimation(
-          parent: controller,
+          parent: menuAnimcontroller,
           curve: Interval(
             0.2,
             0.700,
             curve: Curves.ease,
           ),
           reverseCurve: Interval(
-            0.2,
-            0.700,
+            0.0,
+            1.00,
             curve: Curves.ease,
           )),
     );
@@ -81,7 +72,7 @@ class MainMenuState extends State<MainMenu> with TickerProviderStateMixin {
       end: 1.0,
     ).animate(
       CurvedAnimation(
-        parent: controller,
+        parent: menuAnimcontroller,
         curve: Interval(
           0.0,
           0.400,
@@ -100,7 +91,7 @@ class MainMenuState extends State<MainMenu> with TickerProviderStateMixin {
       end: 0.0,
     ).animate(
       CurvedAnimation(
-        parent: controller,
+        parent: menuAnimcontroller,
         curve: Interval(
           0.0,
           0.900,
@@ -108,28 +99,30 @@ class MainMenuState extends State<MainMenu> with TickerProviderStateMixin {
         ),
         reverseCurve: Interval(
           0.0,
-          0.400,
-          curve: Curves.easeOut,
+          .4,
+          curve: Curves.easeIn,
         ),
       ),
     );
 
-    widget.bloc.ismenuOpen$.listen((data) {
-      data == true ? controller.forward() : controller.reverse();
+    menuController.ismenuOpen$.listen((data) {
+      data == true
+          ? menuAnimcontroller.forward()
+          : menuAnimcontroller.reverse();
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return buildMenu(widget.bloc);
+    return buildMenu();
   }
 
-  buildMenu(MenuBloc bloc) {
+  buildMenu() {
     return Column(
       children: <Widget>[
         Expanded(
           child: StreamBuilder(
-            stream: bloc.ismenuOpen$,
+            stream: menuController.ismenuOpen$,
             builder: (BuildContext context, snapshot) {
               return AnimatedBuilder(
                 animation: blur,
@@ -137,14 +130,17 @@ class MainMenuState extends State<MainMenu> with TickerProviderStateMixin {
                   animation: scale,
                   child: Column(
                     children: <Widget>[
-                      buildMenuBar(bloc),
-                      buildMenuList(bloc),
+                      buildMenuBar(),
+                      buildMenuList(),
                     ],
                   ),
                   builder: (BuildContext context, Widget child) {
                     return Transform(
                         transform: Matrix4.identity()
-                          ..translate( 0.0, translate.value *  - (MediaQuery.of(context).size.height+10.0)),
+                          ..translate(
+                              0.0,
+                              translate.value *
+                                  -(MediaQuery.of(context).size.height + 10.0)),
                         // transform: Matrix4.identity()..scale(1.0)
                         child: child);
                   },
@@ -166,25 +162,20 @@ class MainMenuState extends State<MainMenu> with TickerProviderStateMixin {
     );
   }
 
-  Widget buildMenuBar(MenuBloc bloc) {
+  Widget buildMenuBar() {
     return Expanded(
       flex: 2,
       child: Container(
         padding: EdgeInsets.only(top: 15.0),
-        decoration: BoxDecoration(
-            // color: Theme.of(context).primaryColor.withOpacity(0.5)),
-            color: Colors.white.withOpacity(0.5)),
+        decoration: BoxDecoration(color: Colors.white.withOpacity(0.5)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             MaterialButton(
               child: Image.asset(AppIcons.close,
-                  color: Theme.of(context).primaryColor
-//  color: Colors.white,
-                  ),
-                 onPressed: () => bloc.closeMenu$,
-
+                  color: Theme.of(context).primaryColor),
+              onPressed: () => menuController.closeMenu$,
             ),
             MaterialButton(
               onPressed: null,
@@ -200,71 +191,23 @@ class MainMenuState extends State<MainMenu> with TickerProviderStateMixin {
     );
   }
 
-  Widget buildMenuList(MenuBloc bloc) {
+  Widget buildMenuList() {
     return StreamBuilder(
-      stream: bloc.activeScreenTitle$,
+      stream: menuController.activeScreenTitle$,
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         return Expanded(
           flex: 12,
           child: Column(
-            children: <Widget>[
-              buildMenuItem(
-                title: 'HOME',
-                isActive: snapshot.data == "HOME",
-                onPressed: () {
-                  bloc.changeActiveScreeen$(Screen(
-                    title: "HOME",
-                    body: HomeScreen(),
-                  ));
-                  bloc.closeMenu$;
-                },
-              ),
-              buildMenuItem(
-                title: "CART",
-                isActive: snapshot.data == "CART",
-                onPressed: () {
-                  bloc.changeActiveScreeen$(Screen(
-                    title: "CART",
-                    body: CartScreen(),
-                  ));
-                  bloc.closeMenu$;
-                },
-              ),
-              buildMenuItem(
-                title: 'FAVORITES',
-                isActive: snapshot.data == "FAVORITES",
-                onPressed: () {
-
-                    bloc.changeActiveScreeen$(Screen(
-                    title: "FAVORITES",
-                    body: FavoritesScreen(),
-                  ));
-
-                  bloc.closeMenu$;
-                },
-              ),
-              buildMenuItem(
-                title: 'SETTINGS',
-                isActive: snapshot.data == "SETTINGS",
-                onPressed: () {
-
-                   bloc.changeActiveScreeen$(Screen(
-                    title: "SETTINGS",
-                    body: SettingsScreen(),
-                  ));
-                  
-                  bloc.closeMenu$;                },
-              ),
-              Expanded(
-                flex: 1,
-                child: DefaultButton(
-                  text: Text("SIGN OUT"),
-                  isDisabled: false,
-                  onPressed: () {},
-                ),
-              ),
-            ],
-          ),
+              children: widget.screens
+                  .map((Screen screen) => buildMenuItem(
+                        title: screen.title,
+                        isActive: snapshot.data == screen.title,
+                        onPressed: () {
+                          menuController.changeActiveScreeen$(screen);
+                          menuController.closeMenu$;
+                        },
+                      ))
+                  .toList()),
         );
       },
     );

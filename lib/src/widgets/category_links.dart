@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../data/constants.dart';
+import '../../data/constants.dart';
 import '../../src/widgets/gradient_overlay.dart';
 
 class CategoryLink extends StatelessWidget {

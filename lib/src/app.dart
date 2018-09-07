@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'screens/category_screen.dart';
-import 'blocs/menu/menu_provider.dart';
-import 'screens/login_screen.dart';
-import 'widgets/menu/main_menu_scaffold.dart';
-import 'blocs/login/login_provider.dart';
-import 'data/constants.dart';
+import '../generic_widgets/menu/main_menu_scaffold.dart';
+import '../data/constants.dart';
+
+import '../src/screens/home_screen.dart';
+import '../src/screens/settings_screen.dart';
+import '../src/screens/favorites_screen.dart';
+import '../src/screens/cart_screen.dart';
 
 class App extends StatelessWidget {
   Widget build(BuildContext context) {
@@ -22,8 +24,7 @@ class App extends StatelessWidget {
           case "/suits":
             {
               return MaterialPageRoute(builder: (context) {
-                return CategoryScreen(
-                );
+                return CategoryScreen();
                 // return CategoryScreen(
                 //   title: "SUITS",
                 //   linkImage: "assets/imgs/landing_bg3.png",
@@ -34,7 +35,26 @@ class App extends StatelessWidget {
         }
 
         return MaterialPageRoute(builder: (context) {
-          return MenuProvider(child: MainMenuScaffold());
+       return MainMenuScaffold(
+            screens: [
+              Screen(
+                title: "Home",
+                body: HomeScreen(),
+              ),
+              Screen(
+                title: "Cart",
+                body: CartScreen(),
+              ),
+              Screen(
+                title: "Favorites",
+                body: FavoritesScreen(),
+              ),
+              Screen(
+                title: "Settings",
+                body: SettingsScreen(),
+              ),
+            ],
+          );
         });
       },
     );
