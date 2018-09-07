@@ -22,7 +22,9 @@ Widget buildHome3(BuildContext context) {
                   child: CategoryLink(
                     text: 'SUITS',
                     image: AssetImage('assets/imgs/landing_bg3.png'),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, "/suits");
+                    },
                   ),
                 ),
               ),

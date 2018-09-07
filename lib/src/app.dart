@@ -9,9 +9,6 @@ import 'data/constants.dart';
 class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
-      
-      // home: CategoryScreen(title: "SHOES",linkImage: "assets/imgs/landing_bg3.png", ),
-      home: MenuProvider(child:MainMenuScaffold()),
       // home: LoginProvider(child:LoginScreen()),
       theme: ThemeData(
         iconTheme: IconThemeData(color: Colors.grey),
@@ -19,6 +16,27 @@ class App extends StatelessWidget {
         fontFamily: 'Raleway',
         primaryColor: AppColors.primary,
       ),
+
+      onGenerateRoute: (RouteSettings settings) {
+        switch (settings.name) {
+          case "/suits":
+            {
+              return MaterialPageRoute(builder: (context) {
+                return CategoryScreen(
+                );
+                // return CategoryScreen(
+                //   title: "SUITS",
+                //   linkImage: "assets/imgs/landing_bg3.png",
+                // );
+              });
+            }
+            break;
+        }
+
+        return MaterialPageRoute(builder: (context) {
+          return MenuProvider(child: MainMenuScaffold());
+        });
+      },
     );
   }
 }
