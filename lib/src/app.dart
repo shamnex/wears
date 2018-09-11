@@ -8,6 +8,7 @@ import '../src/screens/settings_screen.dart';
 import '../src/screens/favorites_screen.dart';
 import '../src/screens/cart_screen.dart';
 
+
 class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -21,7 +22,7 @@ class App extends StatelessWidget {
 
       onGenerateRoute: (RouteSettings settings) {
         switch (settings.name) {
-          case "/suits":
+          case "/suits": 
             {
               return MaterialPageRoute(builder: (context) {
                 return CategoryScreen();

@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'package:flutter/animation.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -6,34 +5,45 @@ import 'screen.dart';
 
 class MenuController {
   final _activeScreen$ = BehaviorSubject<Screen>();
-
   final _ismenuOpen$ = BehaviorSubject<bool>(seedValue: false);
   final _animationStatus$ = BehaviorSubject<AnimationStatus>();
 
   //getters
-  Stream<Screen> get activeScreen$ =>
-      _activeScreen$.stream
-      .distinct()
-      .throttle(Duration(milliseconds: 200));
+  Observable<Screen> get activeScreen$ => _activeScreen$.stream.distinct();
 
-  Stream<String> get activeScreenTitle$ =>
-      _activeScreen$.stream
-      .map((data) => data.title);
+  Observable<String> get activeScreenTitle$ =>
+      _activeScreen$.stream.map((data) => data.title);
+  Observable<bool> get ismenuOpen$ => _ismenuOpen$.stream.distinct();
 
-  Stream<bool> get ismenuOpen$ =>
-      _ismenuOpen$.stream
-      .distinct()
-      .throttle(Duration(milliseconds: 200));
- 
+  Observable<AnimationStatus> get animationStatus$ => _animationStatus$.stream;
+
+  bool get isAnimating {
+    switch (_animationStatus$.value) {
+      case AnimationStatus.completed:
+        return false;
+        break;
+      case AnimationStatus.forward:
+        return true;
+        break;
+      case AnimationStatus.reverse:
+        return true;
+        break;
+      case AnimationStatus.completed:
+        return false;
+      default:
+        return false;
+    }
+  }
+
   //setters
   Function(Screen) get changeActiveScreeen$ => _activeScreen$.sink.add;
-  void get toggleMenu$ =>  _ismenuOpen$.sink.add(!_ismenuOpen$.value);
-  void get closeMenu$ =>  _ismenuOpen$.sink.add(false);
-  void get openMenu$ =>  _ismenuOpen$.sink.add(true);
-  
-  Function(AnimationStatus) get changeAnimationStatus$ {
-    return _animationStatus$.sink.add;
-  }
+
+  Function(AnimationStatus) get changeAnimationStatus$ =>
+      _animationStatus$.sink.add;
+
+  void get toggleMenu$ => isAnimating ? null : _ismenuOpen$.sink.add(!_ismenuOpen$.value);
+  void get openMenu$ => isAnimating ? null : _ismenuOpen$.sink.add(true);
+  void get closeMenu$ => isAnimating ? null : _ismenuOpen$.sink.add(false);
 
   dispose() {
     _activeScreen$.close();

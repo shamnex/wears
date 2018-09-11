@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../widgets/category_links.dart';
+import 'category_links.dart';
 
 class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {

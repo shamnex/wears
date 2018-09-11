@@ -1,4 +1,3 @@
-import 'dart:ui' show FontWeight, ImageFilter, Offset;
 import 'package:flutter/material.dart';
 import '../../data/constants.dart';
 import 'menu_controller.dart';
@@ -125,34 +124,20 @@ class MainMenuState extends State<MainMenu> with TickerProviderStateMixin {
             stream: menuController.ismenuOpen$,
             builder: (BuildContext context, snapshot) {
               return AnimatedBuilder(
-                animation: blur,
-                child: AnimatedBuilder(
-                  animation: scale,
-                  child: Column(
-                    children: <Widget>[
-                      buildMenuBar(),
-                      buildMenuList(),
-                    ],
-                  ),
-                  builder: (BuildContext context, Widget child) {
-                    return Transform(
-                        transform: Matrix4.identity()
-                          ..translate(
-                              0.0,
-                              translate.value *
-                                  -(MediaQuery.of(context).size.height + 10.0)),
-                        // transform: Matrix4.identity()..scale(1.0)
-                        child: child);
-                  },
+                animation: scale,
+                child: Column(
+                  children: <Widget>[
+                    buildMenuBar(),
+                    buildMenuList(),
+                  ],
                 ),
                 builder: (BuildContext context, Widget child) {
-                  return BackdropFilter(
-                    filter: ImageFilter.blur(
-                      sigmaX: blur.value,
-                      sigmaY: blur.value,
-                    ),
-                    child: child,
-                  );
+                  return Transform(
+                      transform: Matrix4.identity()
+                        ..translate(translate.value *
+                            -(MediaQuery.of(context).size.width + 10.0)),
+                      // transform: Matrix4.identity()..scale(1.0)
+                      child: child);
                 },
               );
             },
@@ -175,7 +160,7 @@ class MainMenuState extends State<MainMenu> with TickerProviderStateMixin {
             MaterialButton(
               child: Image.asset(AppIcons.close,
                   color: Theme.of(context).primaryColor),
-              onPressed: () => menuController.closeMenu$,
+              onPressed: () => menuController.closeMenu$
             ),
             MaterialButton(
               onPressed: null,
