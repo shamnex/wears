@@ -1,27 +1,30 @@
 import 'package:flutter/material.dart';
 
-import 'menu_controller.dart';
+import 'blured_menu_controller.dart';
 import '../../data/constants.dart';
 
 class Screen extends StatelessWidget {
-   @required final String title;
-   @required final Widget body;
+  @required
+  final String title;
+  @required
+  final Widget body;
 
   Screen({this.title, this.body});
 
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.background,
-      appBar: buildAppBar(context, menuController),
+      appBar: buildAppBar(context),
       body: body,
+      
     );
   }
 
-  Widget buildAppBar(BuildContext context, MenuController bloc) {
+  Widget buildAppBar(BuildContext context) {
     return AppBar(
       toolbarOpacity: 1.0,
       leading: IconButton(
-        onPressed: () => bloc.openMenu$,
+        onPressed: () => menuController.openMenu$,
         padding: const EdgeInsets.only(left: 24.0),
         color: AppColors.primary,
         disabledColor: Colors.grey,
@@ -51,7 +54,7 @@ class Screen extends StatelessWidget {
         child: Text(
           title,
           style: TextStyle(
-            fontFamily: 'Antonio',
+              fontFamily: 'Antonio',
               fontWeight: FontWeight.w900,
               fontSize: 22.0,
               color: AppColors.primary),

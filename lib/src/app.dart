@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'screens/category_screen.dart';
-import '../generic_widgets/menu/main_menu_scaffold.dart';
+import '../generic_widgets/menu/blured_menu_scaffold.dart';
 import '../data/constants.dart';
 
-import '../src/screens/home_screen.dart';
+import '../src/screens/home/home_screen.dart';
 import '../src/screens/settings_screen.dart';
 import '../src/screens/favorites_screen.dart';
 import '../src/screens/cart_screen.dart';
@@ -36,10 +36,10 @@ class App extends StatelessWidget {
         }
 
         return MaterialPageRoute(builder: (context) {
-       return MainMenuScaffold(
+       return BluredMenuScaffold(
             screens: [
               Screen(
-                title: "Home",
+                title: "Category",
                 body: HomeScreen(),
               ),
               Screen(

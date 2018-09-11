@@ -2,20 +2,20 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 export 'screen.dart';
-import 'main_menu.dart';
-import 'menu_controller.dart';
+import 'blured_menu.dart';
+import 'blured_menu_controller.dart';
 import 'screen.dart';
 export 'screen.dart';
 
-class MainMenuScaffold extends StatefulWidget {
+class BluredMenuScaffold extends StatefulWidget {
   final List<Screen> screens;
-  MainMenuScaffold({this.screens});
+  BluredMenuScaffold({this.screens});
 
   @override
-  MainMenuScaffoldState createState() => MainMenuScaffoldState();
+  BluredMenuScaffoldState createState() => BluredMenuScaffoldState();
 }
 
-class MainMenuScaffoldState extends State<MainMenuScaffold>
+class BluredMenuScaffoldState extends State<BluredMenuScaffold>
     with TickerProviderStateMixin {
   AnimationController animationController;
   Animation<double> blur;

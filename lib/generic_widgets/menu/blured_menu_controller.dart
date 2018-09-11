@@ -9,7 +9,7 @@ class MenuController {
   final _animationStatus$ = BehaviorSubject<AnimationStatus>();
 
   //getters
-  Observable<Screen> get activeScreen$ => _activeScreen$.stream.distinct();
+  Observable<Screen> get activeScreen$ => _activeScreen$.stream.throttle(Duration(milliseconds:400)).distinct();
 
   Observable<String> get activeScreenTitle$ =>
       _activeScreen$.stream.map((data) => data.title);
@@ -43,7 +43,7 @@ class MenuController {
 
   void get toggleMenu$ => isAnimating ? null : _ismenuOpen$.sink.add(!_ismenuOpen$.value);
   void get openMenu$ => isAnimating ? null : _ismenuOpen$.sink.add(true);
-  void get closeMenu$ => isAnimating ? null : _ismenuOpen$.sink.add(false);
+  get closeMenu$ => isAnimating ? null : _ismenuOpen$.sink.add(false);
 
   dispose() {
     _activeScreen$.close();

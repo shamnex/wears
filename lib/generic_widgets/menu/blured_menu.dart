@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../data/constants.dart';
-import 'menu_controller.dart';
+import 'blured_menu_controller.dart';
 import '../menu/screen.dart';
 
 class MainMenu extends StatefulWidget {
@@ -158,10 +158,11 @@ class MainMenuState extends State<MainMenu> with TickerProviderStateMixin {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             MaterialButton(
-              child: Image.asset(AppIcons.close,
-                  color: Theme.of(context).primaryColor),
-              onPressed: () => menuController.closeMenu$
-            ),
+                child: Image.asset(AppIcons.close,
+                    color: Theme.of(context).primaryColor),
+                onPressed: () => menuController.isAnimating
+                    ? null
+                    : menuController.closeMenu$),
             MaterialButton(
               onPressed: null,
               child: Image.asset(AppIcons.logoIcon,
@@ -188,8 +189,12 @@ class MainMenuState extends State<MainMenu> with TickerProviderStateMixin {
                         title: screen.title,
                         isActive: snapshot.data == screen.title,
                         onPressed: () {
-                          menuController.changeActiveScreeen$(screen);
+                          if(menuAnimcontroller.isAnimating) {
+                            return null;
+                          }
+                          
                           menuController.closeMenu$;
+                          menuController.changeActiveScreeen$(screen);
                         },
                       ))
                   .toList()),

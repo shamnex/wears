@@ -1,9 +1,54 @@
 import 'package:flutter/material.dart';
-import 'category_links.dart';
+import 'package:wears/data/constants.dart';
+import '../category_links.dart';
 
 class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
-    return buildHome3(context);
+    // return buildHome3(context);
+
+    return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+      floatingActionButton: FloatingActionButton(
+        clipBehavior: Clip.antiAlias,
+        backgroundColor: Colors.white,
+        child: Image.asset(AppIcons.logoIcon),
+        onPressed: () {},
+      ),
+      body: buildHome3(context),
+      backgroundColor: AppColors.background,
+      bottomNavigationBar: BottomAppBar(
+        shape: CircularNotchedRectangle(),
+        child: Material(
+          color: Theme.of(context).primaryColor,
+          child: new SafeArea(
+              child: Padding(
+            padding: EdgeInsets.fromLTRB(0.0, 0.0, 90.0, 0.0),
+            child: Row(
+              children: <Widget>[
+                IconButton(
+                  icon: Icon(
+                    Icons.mood,
+                  ),
+                  onPressed: () {},
+                ),
+                IconButton(
+                  icon: Icon(
+                    Icons.show_chart,
+                  ),
+                  onPressed: () {},
+                ),
+                IconButton(
+                  icon: Icon(
+                    Icons.settings,
+                  ),
+                  onPressed: () {},
+                ),
+              ],
+            ),
+          )),
+        ),
+      ),
+    );
   }
 }
 
