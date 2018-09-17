@@ -4,12 +4,12 @@ import 'package:rxdart/rxdart.dart';
 import 'screen.dart';
 
 class MenuController {
-  final _activeScreen$ = BehaviorSubject<Screen>();
+  final _activeScreen$ = BehaviorSubject<BluredMenuScreen>();
   final _ismenuOpen$ = BehaviorSubject<bool>(seedValue: false);
   final _animationStatus$ = BehaviorSubject<AnimationStatus>();
 
   //getters
-  Observable<Screen> get activeScreen$ => _activeScreen$.stream.throttle(Duration(milliseconds:400)).distinct();
+  Observable<BluredMenuScreen> get activeScreen$ => _activeScreen$.stream.throttle(Duration(milliseconds:300)).distinct();
 
   Observable<String> get activeScreenTitle$ =>
       _activeScreen$.stream.map((data) => data.title);
@@ -36,7 +36,7 @@ class MenuController {
   }
 
   //setters
-  Function(Screen) get changeActiveScreeen$ => _activeScreen$.sink.add;
+  Function(BluredMenuScreen) get changeActiveScreeen$ => _activeScreen$.sink.add;
 
   Function(AnimationStatus) get changeAnimationStatus$ =>
       _animationStatus$.sink.add;

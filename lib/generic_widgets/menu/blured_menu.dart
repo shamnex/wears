@@ -3,18 +3,18 @@ import '../../data/constants.dart';
 import 'blured_menu_controller.dart';
 import '../menu/screen.dart';
 
-class MainMenu extends StatefulWidget {
-  final List<Screen> screens;
+class BluredMenu extends StatefulWidget {
+  final List<BluredMenuScreen> screens;
 
-  MainMenu({this.screens});
+  BluredMenu({this.screens});
 
   @override
-  MainMenuState createState() {
-    return MainMenuState();
+  BluredMenuState createState() {
+    return BluredMenuState();
   }
 }
 
-class MainMenuState extends State<MainMenu> with TickerProviderStateMixin {
+class BluredMenuState extends State<BluredMenu> with TickerProviderStateMixin {
   Animation<double> blur;
   Animation<double> scale;
   Animation<double> opacity;
@@ -26,7 +26,7 @@ class MainMenuState extends State<MainMenu> with TickerProviderStateMixin {
   initState() {
     super.initState();
     menuAnimcontroller = AnimationController(
-      duration: Duration(milliseconds: 700),
+      duration: Duration(milliseconds: 600),
       vsync: this,
     );
 
@@ -148,32 +148,30 @@ class MainMenuState extends State<MainMenu> with TickerProviderStateMixin {
   }
 
   Widget buildMenuBar() {
-    return Expanded(
-      flex: 2,
-      child: Container(
-        padding: EdgeInsets.only(top: 15.0),
-        decoration: BoxDecoration(color: Colors.white.withOpacity(0.5)),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            MaterialButton(
-                child: Image.asset(AppIcons.close,
-                    color: Theme.of(context).primaryColor),
-                onPressed: () => menuController.isAnimating
-                    ? null
-                    : menuController.closeMenu$),
-            MaterialButton(
-              onPressed: null,
-              child: Image.asset(AppIcons.logoIcon,
-                  color: Theme.of(context).primaryColor
-                  // color: Colors.white,
-                  ),
-              height: 10.0,
-            )
-          ],
-        ),
-      ),
+    return Container(
+      height: 80.0,
+      // padding: EdgeInsets.only(top: 15.0),
+      // decoration: BoxDecoration(color: Colors.white.withOpacity(0.5)),
+      // child: Row(
+      //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      //   crossAxisAlignment: CrossAxisAlignment.center,
+      //   children: <Widget>[
+      //     MaterialButton(
+      //         child: Image.asset(AppIcons.close,
+      //             color: Theme.of(context).primaryColor),
+      //         onPressed: () => menuController.isAnimating
+      //             ? null
+      //             : menuController.closeMenu$),
+      //     MaterialButton(
+      //       onPressed: null,
+      //       child: Image.asset(AppIcons.logoIcon,
+      //           color: Theme.of(context).primaryColor
+      //           // color: Colors.white,
+      //           ),
+      //       height: 10.0,
+      //     )
+      //   ],
+      // ),
     );
   }
 
@@ -185,7 +183,7 @@ class MainMenuState extends State<MainMenu> with TickerProviderStateMixin {
           flex: 12,
           child: Column(
               children: widget.screens
-                  .map((Screen screen) => buildMenuItem(
+                  .map((BluredMenuScreen screen) => buildMenuItem(
                         title: screen.title,
                         isActive: snapshot.data == screen.title,
                         onPressed: () {

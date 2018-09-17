@@ -42,14 +42,20 @@ flutter:
     - assets/imgs/landing_bg3.png
     - assets/imgs/shoe.png
     - assets/imgs/bag.png
-    - assets/imgs/watch.png
+    - assets/imgs/suits_bg.jpg
+    - assets/imgs/watch.jpg
+    - assets/imgs/tie.jpg
     
     - assets/icons/back_arrow.png
     - assets/icons/menu.png
     - assets/icons/close.png
     - assets/icons/logo_icon.png
     - assets/icons/search.png
-    - assets/icons/bag.png
+    - assets/icons/cart.png
+    - assets/icons/category.png
+    - assets/icons/home.png
+    - assets/icons/favorite.png
+    - assets/icons/user.png
 
   fonts:
   - family: Antonio

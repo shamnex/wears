@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'screens/category_screen.dart';
+import 'package:wears/src/screens/wears/cart_screen.dart';
+import 'package:wears/src/screens/wears/category_screen.dart';
+import 'package:wears/src/screens/wears/favorites_screen.dart';
+import 'package:wears/src/screens/wears/main_screen.dart';
+import 'package:wears/src/screens/wears/settings_screen.dart';
 import '../generic_widgets/menu/blured_menu_scaffold.dart';
 import '../data/constants.dart';
 
-import '../src/screens/home/home_screen.dart';
-import '../src/screens/settings_screen.dart';
-import '../src/screens/favorites_screen.dart';
-import '../src/screens/cart_screen.dart';
 
 
 class App extends StatelessWidget {
@@ -38,19 +38,19 @@ class App extends StatelessWidget {
         return MaterialPageRoute(builder: (context) {
        return BluredMenuScaffold(
             screens: [
-              Screen(
-                title: "Category",
-                body: HomeScreen(),
+              BluredMenuScreen(
+                title: "Home",
+                body: MainScreen(),
               ),
-              Screen(
+              BluredMenuScreen(
                 title: "Cart",
                 body: CartScreen(),
               ),
-              Screen(
+              BluredMenuScreen(
                 title: "Favorites",
                 body: FavoritesScreen(),
               ),
-              Screen(
+              BluredMenuScreen(
                 title: "Settings",
                 body: SettingsScreen(),
               ),

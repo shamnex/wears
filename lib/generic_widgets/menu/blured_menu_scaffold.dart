@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:wears/data/constants.dart';
 export 'screen.dart';
 import 'blured_menu.dart';
 import 'blured_menu_controller.dart';
@@ -8,7 +9,7 @@ import 'screen.dart';
 export 'screen.dart';
 
 class BluredMenuScaffold extends StatefulWidget {
-  final List<Screen> screens;
+  final List<BluredMenuScreen> screens;
   BluredMenuScaffold({this.screens});
 
   @override
@@ -20,12 +21,13 @@ class BluredMenuScaffoldState extends State<BluredMenuScaffold>
   AnimationController animationController;
   Animation<double> blur;
   Animation<double> opacity;
+  Animation<double> menuAnimation;
 
   @override
   void initState() {
     super.initState();
     animationController = AnimationController(
-        vsync: this, duration: Duration(milliseconds: 1500));
+        vsync: this, duration: Duration(milliseconds: 800));
 
     blur = Tween(
       begin: 0.0,
@@ -53,13 +55,31 @@ class BluredMenuScaffoldState extends State<BluredMenuScaffold>
           parent: animationController,
           curve: Interval(
             0.0,
-            0.02,
+            0.2,
             curve: Curves.ease,
           ),
           reverseCurve: Interval(
             0.0,
             0.2,
             curve: Curves.ease,
+          )),
+    );
+
+    menuAnimation = Tween(
+      begin: 0.0,
+      end: 1.0,
+    ).animate(
+      CurvedAnimation(
+          parent: animationController,
+          curve: Interval(
+            0.0,
+            0.3,
+            curve: Curves.easeInOut,
+          ),
+          reverseCurve: Interval(
+            0.0,
+            0.3,
+            curve: Curves.easeInOut,
           )),
     );
 
@@ -80,7 +100,8 @@ class BluredMenuScaffoldState extends State<BluredMenuScaffold>
 
     return StreamBuilder(
       stream: menuController.activeScreen$,
-      builder: (BuildContext context, AsyncSnapshot<Screen> snapshot) {
+      builder:
+          (BuildContext context, AsyncSnapshot<BluredMenuScreen> snapshot) {
         return Material(
           child: new Stack(children: <Widget>[
             snapshot.hasData
@@ -102,8 +123,49 @@ class BluredMenuScaffoldState extends State<BluredMenuScaffold>
                     ));
               },
             ),
-            MainMenu(
+            BluredMenu(
               screens: widget.screens,
+            ),
+            GestureDetector(
+              onTap: () => menuController.toggleMenu$,
+              child: Container(
+                alignment: Alignment.center,
+                width: 50.0,
+                color: Colors.transparent,
+                height: 50.0,
+                margin: EdgeInsets.symmetric(vertical: 25.0, horizontal: 15.0),
+                child: Stack(
+                  children: <Widget>[
+                    AnimatedBuilder(
+                      animation: menuAnimation,
+                      builder: (context, child) {
+                        return Transform.rotate(
+                          angle: -0.785398 * menuAnimation.value,
+                          child: Container(
+                            height:2.5,
+                            width: 30.0 + (menuAnimation.value * 10),
+                            color: Theme.of(context).primaryColor,
+                          ),
+                        );
+                      },
+                    ),
+                    AnimatedBuilder(
+                      animation: menuAnimation,
+                      builder: (context, child) {
+                        return Transform.rotate(
+                          angle: 0.785398 * menuAnimation.value,
+                          child: Container(
+                            margin: EdgeInsets.only(top: 8.0 * (1 -menuAnimation.value)),
+                            height:2.5,
+                            width: 40.0,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                        );
+                      },
+                    ),
+                  ],
+                ),
+              ),
             ),
           ]),
         );
