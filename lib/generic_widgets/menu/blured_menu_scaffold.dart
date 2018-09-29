@@ -1,7 +1,6 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:wears/data/constants.dart';
 export 'screen.dart';
 import 'blured_menu.dart';
 import 'blured_menu_controller.dart';

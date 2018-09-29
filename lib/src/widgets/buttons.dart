@@ -32,7 +32,7 @@ class OutLineButton extends StatelessWidget {
 }
 
 class DefaultButton extends StatelessWidget {
-  final Widget text;
+  final String text;
   final Function onPressed;
   final bool isDisabled;
 
@@ -41,6 +41,7 @@ class DefaultButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: 140.0,
       decoration: BoxDecoration(
         color: Colors.grey,
         gradient: LinearGradient(
@@ -63,9 +64,9 @@ class DefaultButton extends StatelessWidget {
 
         minWidth: MediaQuery.of(context).size.width,
         padding: const EdgeInsets.all(10.0),
-        height: 65.0,
+        height: 60.0,
         textTheme: ButtonTextTheme.accent,
-        child: text,
+          child: Text(text, style: TextStyle( fontFamily: "Antonio", fontSize: 16.0),),
         onPressed: onPressed,
       ),
     );
@@ -82,6 +83,7 @@ class WhiteButton extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 16.0),
       child: Container(
+        width: 140.0,
         decoration: BoxDecoration(
             boxShadow: [
               BoxShadow(
@@ -99,9 +101,9 @@ class WhiteButton extends StatelessWidget {
           textColor: const Color(0xFF481300),
           minWidth: MediaQuery.of(context).size.width,
           padding: const EdgeInsets.all(10.0),
-          height: 65.0,
+          height: 60.0,
           textTheme: ButtonTextTheme.accent,
-          child: Text(text),
+          child: Text(text, style: TextStyle( fontFamily: "Antonio", fontSize: 16.0),),
           onPressed: () => onPressed,
         ),
       ),

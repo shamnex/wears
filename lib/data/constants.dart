@@ -14,7 +14,7 @@ class AppIcons {
   static const String menu =  "assets/icons/menu.png";
   static const String back =  "assets/icons/back_arrow.png";
   static const String logoIcon =  "assets/icons/logo_icon.png";
-  static const String cart =  "assets/icons/bag.png";
+  static const String cart =  "assets/icons/cart.png";
   static const String search =  "assets/icons/search.png";
   static const String user =  "assets/icons/user.png";
   static const String settings =  "assets/icons/settings.png";

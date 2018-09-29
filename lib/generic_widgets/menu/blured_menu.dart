@@ -127,7 +127,7 @@ class BluredMenuState extends State<BluredMenu> with TickerProviderStateMixin {
                 animation: scale,
                 child: Column(
                   children: <Widget>[
-                    buildMenuBar(),
+                    // buildMenuBar(),
                     buildMenuList(),
                   ],
                 ),

@@ -1,51 +1,54 @@
 import 'package:flutter/material.dart';
+import 'package:wears/src/blocs/bloc.dart';
 import 'package:wears/src/blocs/login/login_bloc.dart';
-import 'package:wears/src/blocs/login/login_provider.dart';
 import 'package:wears/src/widgets/buttons.dart';
-
 
 class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    LoginBloc bloc = LoginProvider.of(context);
-    return Material(
-        child: Stack(
-      children: <Widget>[
-        Container(
-          padding: EdgeInsets.all(35.0),
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              fit: BoxFit.fitHeight,
-              alignment: Alignment(-2.0, 4.0),
-              colorFilter: ColorFilter.mode(
-                Colors.white.withOpacity(0.07),
-                BlendMode.dstATop,
+    final LoginBloc bloc = BlocProvider.of<LoginBloc>(context);
+    return Scaffold(
+        resizeToAvoidBottomPadding: false,
+        body: Stack(
+          children: <Widget>[
+            _buildBg(bloc),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 40.0, vertical: 60.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  Image.asset(
+                    "assets/graphics/logo_color.png",
+                    // color: Colors.green.shade100,
+                    height: 100.0,
+                  ),
+                  buildUsername(bloc),
+                  buildPassword(bloc),
+                  builtButton(bloc),
+                  Text("Forgot Password?")
+                ],
               ),
-              image: AssetImage("assets/graphics/logo_color.png"),
             ),
+          ],
+        ));
+  }
+
+  Widget _buildBg(bloc) {
+    return Container(
+      padding: EdgeInsets.all(35.0),
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          fit: BoxFit.fitHeight,
+          alignment: Alignment(-2.0, 4.0),
+          colorFilter: ColorFilter.mode(
+            Colors.white.withOpacity(0.07),
+            // Colors.white.withOpacity(0.1),
+            BlendMode.dstATop,
           ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Image.asset("assets/graphics/logo_color.png"),
-              buildUsername(bloc),
-              buildPassword(bloc),
-              builtButton(bloc)
-            ],
-          ),
+          image: AssetImage("assets/graphics/logo_color.png"),
         ),
-        Positioned(
-          bottom: -16.0,
-          child: Column(children: <Widget>[
-            Text("Don't have an account? "),
-            WhiteButton(
-              text: 'SIGN UP',
-              onPressed: () {},
-            )
-          ]),
-        )
-      ],
-    ));
+      ),
+    );
   }
 
   Widget buildUsername(LoginBloc bloc) {
@@ -53,10 +56,10 @@ class LoginScreen extends StatelessWidget {
       stream: bloc.username$,
       builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
         return Container(
-          height: 80.0,
-          margin: EdgeInsets.fromLTRB(0.0, 40.0, 0.0, 10.0),
+          // alignment: Alignment.center,
+          margin: EdgeInsets.fromLTRB(0.0, 40.0, 0.0, 0.0),
           decoration: BoxDecoration(
-            // border: Border.all(color: Colors.red, width: 0.5),
+            // color: Colors.white,
             boxShadow: [
               BoxShadow(
                   color: snapshot.hasError
@@ -68,21 +71,25 @@ class LoginScreen extends StatelessWidget {
             ],
           ),
           child: TextField(
+            style: TextStyle(fontSize: 13.0, color: Colors.black87),
             onChanged: bloc.changeUsername$,
             keyboardType: TextInputType.text,
             decoration: InputDecoration(
                 contentPadding: const EdgeInsets.symmetric(
-                  vertical: 24.0,
-                  horizontal: 16.0,
+                  vertical: 25.0,
+                  horizontal: 0.0,
                 ),
                 border: InputBorder.none,
                 filled: true,
                 fillColor: Colors.white,
                 errorText: snapshot.error,
-                errorStyle: TextStyle(),
+                errorStyle: TextStyle(
+                  fontSize: 10.0,
+                  decorationColor: Colors.red,
+                ),
                 hintText: 'Username',
                 prefixIcon: Padding(
-                  padding: EdgeInsets.only(right: 16.0),
+                padding: EdgeInsets.symmetric(horizontal: 8.0),
                   child: Icon(
                     Icons.person,
                     color: snapshot.hasError
@@ -101,9 +108,8 @@ class LoginScreen extends StatelessWidget {
       stream: bloc.password$,
       builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
         return Container(
-          height: 80.0,
-          margin: EdgeInsets.only(bottom: 10.0),
-          decoration: BoxDecoration(boxShadow: [
+          margin: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 20.0),
+          decoration: BoxDecoration(color: Colors.transparent, boxShadow: [
             BoxShadow(
                 color: snapshot.hasError
                     ? Colors.red.withOpacity(0.1)
@@ -118,17 +124,18 @@ class LoginScreen extends StatelessWidget {
             obscureText: true,
             decoration: InputDecoration(
               contentPadding: const EdgeInsets.symmetric(
-                vertical: 24.0,
-                horizontal: 16.0,
+                vertical: 25.0,
+                horizontal: 0.0,
               ),
               errorText: snapshot.error,
               border: InputBorder.none,
               filled: true,
               fillColor: Colors.white,
               hintText: 'Password',
+              errorStyle: TextStyle(fontSize: 10.0),
               hintStyle: TextStyle(),
               prefixIcon: Padding(
-                padding: EdgeInsets.only(right: 16.0),
+                padding: EdgeInsets.symmetric(horizontal: 8.0),
                 child: Icon(
                   Icons.lock,
                   color: snapshot.hasError
@@ -148,7 +155,7 @@ class LoginScreen extends StatelessWidget {
       stream: bloc.submitValid,
       builder: (context, AsyncSnapshot<bool> snapshot) {
         return DefaultButton(
-          text: Text("SIGN IN"),
+          text: "SIGN IN",
           onPressed: snapshot.hasData ? bloc.submit : null,
           isDisabled: !snapshot.hasData,
         );
