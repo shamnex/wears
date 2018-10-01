@@ -157,14 +157,14 @@ class BluredMenuState extends State<BluredMenu> with TickerProviderStateMixin {
       //   crossAxisAlignment: CrossAxisAlignment.center,
       //   children: <Widget>[
       //     MaterialButton(
-      //         child: Image.asset(AppIcons.close,
+      //         child: Image.asset(WearsIcons.close,
       //             color: Theme.of(context).primaryColor),
       //         onPressed: () => menuController.isAnimating
       //             ? null
       //             : menuController.closeMenu$),
       //     MaterialButton(
       //       onPressed: null,
-      //       child: Image.asset(AppIcons.logoIcon,
+      //       child: Image.asset(WearsIcons.logoIcon,
       //           color: Theme.of(context).primaryColor
       //           // color: Colors.white,
       //           ),
@@ -222,7 +222,7 @@ class BluredMenuState extends State<BluredMenu> with TickerProviderStateMixin {
               title,
               style: TextStyle(
                   color: isActive
-                      ? AppColors.primary
+                      ? WearsColors.primary
                       : Colors.black.withOpacity(0.6),
                   fontWeight: isActive ? FontWeight.w900 : FontWeight.normal),
             ),

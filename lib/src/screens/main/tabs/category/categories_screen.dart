@@ -1,13 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:wears/data/constants.dart';
 import 'package:wears/src/screens/main/tabs/category/category_link.dart';
+import 'package:wears/src/widgets/main_title.dart';
 
-class CategoryHomeScreen extends StatelessWidget {
+class CategoriesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
-      color: AppColors.background,
+      color: WearsColors.background,
       child: Column(children: <Widget>[
-        SizedBox(height: 80.0),
+        SafeArea(
+          child: Container(
+            height: 50.0,
+            padding: EdgeInsets.only(
+              right: 20.0,
+            ),
+            alignment: Alignment.centerRight,
+            child: GestureDetector(
+              onTap: () {},
+              child: Hero(
+                tag: "searchButton",
+                child: Icon(
+                  Icons.search,
+                  size: 25.0,
+                  color: WearsColors.primary,
+                ),
+              ),
+            ),
+          ),
+        ),
         buildHome(context),
       ]),
     );
@@ -29,8 +49,10 @@ class CategoryHomeScreen extends StatelessWidget {
                       child: Hero(
                         tag: "categeory/suits",
                         child: CategoryLink(
-                          rotateTitle: true,
-                          text: 'SUITS',
+                          title: WearsTitle(
+                            text: 'SUITS',
+                            rotate: true,
+                          ),
                           image: AssetImage('assets/imgs/suits_bg.jpg'),
                           onPressed: () {
                             Navigator.pushNamed(context, "/suits");
@@ -44,8 +66,10 @@ class CategoryHomeScreen extends StatelessWidget {
                     child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: CategoryLink(
-                          rotateTitle: true,
-                          text: 'WATCHES',
+                          title: WearsTitle(
+                            text: 'WATCHES',
+                            rotate: true,
+                          ),
                           image: AssetImage("assets/imgs/watch.jpg"),
                           onPressed: () {},
                         )),
@@ -62,8 +86,10 @@ class CategoryHomeScreen extends StatelessWidget {
                       child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: CategoryLink(
-                              rotateTitle: true,
-                              text: 'SHOES',
+                              title: WearsTitle(
+                                text: 'SHOES',
+                                rotate: true,
+                              ),
                               image: AssetImage('assets/imgs/shoe.png'),
                               onPressed: () {})),
                     ),
@@ -73,8 +99,10 @@ class CategoryHomeScreen extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: CategoryLink(
-                          rotateTitle: true,
-                          text: 'ACCESORIES',
+                          title: WearsTitle(
+                            text: 'ACCESORIES',
+                            rotate: true,
+                          ),
                           image: AssetImage('assets/imgs/tie.jpg'),
                           onPressed: () {}),
                     ),
@@ -99,8 +127,7 @@ class CategoryHomeScreen extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: CategoryLink(
-                  rotateTitle: false,
-                  text: 'SUITS',
+                  title: WearsTitle(text: 'SUITS'),
                   image: AssetImage('assets/imgs/suits_bg.jpg'),
                   onPressed: () {},
                 ),
@@ -111,8 +138,7 @@ class CategoryHomeScreen extends StatelessWidget {
               child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: CategoryLink(
-                    rotateTitle: false,
-                    text: 'WATCHES',
+                    title: WearsTitle(text: 'WATCHES'),
                     image: AssetImage("assets/imgs/watch.jpg"),
                     onPressed: () {},
                   )),
@@ -123,8 +149,7 @@ class CategoryHomeScreen extends StatelessWidget {
                 child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: CategoryLink(
-                        rotateTitle: false,
-                        text: 'SHOES',
+                        title: WearsTitle(text: "SHOES"),
                         image: AssetImage('assets/imgs/shoe.png'),
                         onPressed: () {})),
               ),
@@ -134,8 +159,9 @@ class CategoryHomeScreen extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: CategoryLink(
-                    rotateTitle: false,
-                    text: 'ACCESORIES',
+                    title: WearsTitle(
+                      text: "ACCESORIES",
+                    ),
                     image: AssetImage('assets/imgs/tie.jpg'),
                     onPressed: () {}),
               ),
@@ -161,8 +187,7 @@ class CategoryHomeScreen extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: CategoryLink(
-                        rotateTitle: false,
-                        text: 'SUITS',
+                        title: WearsTitle(text: 'Suits'),
                         image: AssetImage('assets/imgs/suits_bg.jpg'),
                         onPressed: () {},
                       ),
@@ -176,8 +201,7 @@ class CategoryHomeScreen extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: CategoryLink(
-                              rotateTitle: false,
-                              text: 'WATCHES',
+                              title: WearsTitle(text: 'WATCHES'),
                               image: AssetImage("assets/imgs/watch.jpg"),
                               onPressed: () {},
                             ),
@@ -189,8 +213,7 @@ class CategoryHomeScreen extends StatelessWidget {
                             child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: CategoryLink(
-                                    rotateTitle: false,
-                                    text: 'SHOES',
+                                    title: WearsTitle(text: 'SHOES'),
                                     image: AssetImage('assets/imgs/shoe.png'),
                                     onPressed: () {})),
                           ),
@@ -206,8 +229,7 @@ class CategoryHomeScreen extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: CategoryLink(
-                    rotateTitle: false,
-                    text: 'ACCESORIES',
+                    title: WearsTitle(text: 'ACCESORIES'),
                     image: AssetImage('assets/imgs/tie.jpg'),
                     onPressed: () {}),
               ),
@@ -234,13 +256,15 @@ class CategoryHomeScreen extends StatelessWidget {
                       padding: const EdgeInsets.all(8.0),
                       child: Hero(
                         tag: "category/suits",
-                        child: CategoryLink(
-                          rotateTitle: false,
-                          text: 'SUITS',
-                          image: AssetImage('assets/imgs/suits_bg.jpg'),
-                          onPressed: () {
-                            Navigator.pushNamed(context, "category/suits");
-                          },
+                        child: Material(
+                          child: CategoryLink(
+                            textAlignment: Alignment.bottomLeft,
+                            title: WearsTitle(text: 'SUITS'),
+                            image: AssetImage('assets/imgs/suits_bg.jpg'),
+                            onPressed: () {
+                              Navigator.pushNamed(context, "category/suits");
+                            },
+                          ),
                         ),
                       ),
                     ),
@@ -253,8 +277,8 @@ class CategoryHomeScreen extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: CategoryLink(
-                              rotateTitle: false,
-                              text: 'WATCHES',
+                              textAlignment: Alignment.bottomLeft,
+                              title: WearsTitle(text: 'SUITS'),
                               image: AssetImage("assets/imgs/watch.jpg"),
                               onPressed: () {},
                             ),
@@ -266,8 +290,8 @@ class CategoryHomeScreen extends StatelessWidget {
                             child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: CategoryLink(
-                                    rotateTitle: false,
-                                    text: 'SHOES',
+                                    textAlignment: Alignment.bottomLeft,
+                                    title: WearsTitle(text: 'SHOES'),
                                     image: AssetImage('assets/imgs/shoe.png'),
                                     onPressed: () {})),
                           ),
@@ -277,8 +301,8 @@ class CategoryHomeScreen extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: CategoryLink(
-                                rotateTitle: false,
-                                text: 'ACCESORIES',
+                                textAlignment: Alignment.bottomLeft,
+                                title: WearsTitle(text: 'ACCESORIES'),
                                 image: AssetImage('assets/imgs/tie.jpg'),
                                 onPressed: () {}),
                           ),

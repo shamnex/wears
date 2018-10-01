@@ -31,12 +31,12 @@ class OutLineButton extends StatelessWidget {
   }
 }
 
-class DefaultButton extends StatelessWidget {
+class WearsButton extends StatelessWidget {
   final String text;
   final Function onPressed;
   final bool isDisabled;
 
-  DefaultButton({this.text, this.onPressed, this.isDisabled});
+  WearsButton({this.text, this.onPressed, this.isDisabled});
 
   @override
   Widget build(BuildContext context) {
@@ -73,10 +73,10 @@ class DefaultButton extends StatelessWidget {
   }
 }
 
-class WhiteButton extends StatelessWidget {
+class WearsWhiteButton extends StatelessWidget {
   final String text;
   final Function onPressed;
-  WhiteButton({this.text, this.onPressed});
+  WearsWhiteButton({this.text, this.onPressed});
 
   @override
   Widget build(BuildContext context) {

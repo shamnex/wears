@@ -25,8 +25,8 @@ class BluredMenuScaffoldState extends State<BluredMenuScaffold>
   @override
   void initState() {
     super.initState();
-    animationController = AnimationController(
-        vsync: this, duration: Duration(milliseconds: 800));
+    animationController =
+        AnimationController(vsync: this, duration: Duration(milliseconds: 800));
 
     blur = Tween(
       begin: 0.0,
@@ -125,44 +125,50 @@ class BluredMenuScaffoldState extends State<BluredMenuScaffold>
             BluredMenu(
               screens: widget.screens,
             ),
-            GestureDetector(
-              onTap: () => menuController.toggleMenu$,
-              child: Container(
-                alignment: Alignment.center,
-                width: 50.0,
-                color: Colors.transparent,
-                height: 50.0,
-                margin: EdgeInsets.symmetric(vertical: 25.0, horizontal: 15.0),
-                child: Stack(
-                  children: <Widget>[
-                    AnimatedBuilder(
-                      animation: menuAnimation,
-                      builder: (context, child) {
-                        return Transform.rotate(
-                          angle: -0.785398 * menuAnimation.value,
-                          child: Container(
-                            height:2.5,
-                            width: 30.0 + (menuAnimation.value * 10),
-                            color: Theme.of(context).primaryColor,
-                          ),
-                        );
-                      },
+            SafeArea(
+              child: Hero(
+                tag: "menuButton",
+                child: GestureDetector(
+                  onTap: () => menuController.toggleMenu$,
+                  child: Container(
+                    margin: EdgeInsets.only(left: 20.0),
+                    alignment: Alignment.centerLeft,
+                    width: 50.0,
+                    color: Colors.transparent,
+                    height: 50.0,
+                    child: Stack(
+                      children: <Widget>[
+                        AnimatedBuilder(
+                          animation: menuAnimation,
+                          builder: (context, child) {
+                            return Transform.rotate(
+                              angle: -0.785398 * menuAnimation.value,
+                              child: Container(
+                                height: 2.5,
+                                width: 20.0 + (menuAnimation.value * 10),
+                                color: Theme.of(context).primaryColor,
+                              ),
+                            );
+                          },
+                        ),
+                        AnimatedBuilder(
+                          animation: menuAnimation,
+                          builder: (context, child) {
+                            return Transform.rotate(
+                              angle: 0.785398 * menuAnimation.value,
+                              child: Container(
+                                margin: EdgeInsets.only(
+                                    top: 8.0 * (1 - menuAnimation.value)),
+                                height: 2.5,
+                                width: 30.0,
+                                color: Theme.of(context).primaryColor,
+                              ),
+                            );
+                          },
+                        ),
+                      ],
                     ),
-                    AnimatedBuilder(
-                      animation: menuAnimation,
-                      builder: (context, child) {
-                        return Transform.rotate(
-                          angle: 0.785398 * menuAnimation.value,
-                          child: Container(
-                            margin: EdgeInsets.only(top: 8.0 * (1 -menuAnimation.value)),
-                            height:2.5,
-                            width: 40.0,
-                            color: Theme.of(context).primaryColor,
-                          ),
-                        );
-                      },
-                    ),
-                  ],
+                  ),
                 ),
               ),
             ),

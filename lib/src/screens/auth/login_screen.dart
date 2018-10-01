@@ -154,7 +154,7 @@ class LoginScreen extends StatelessWidget {
     return StreamBuilder(
       stream: bloc.submitValid,
       builder: (context, AsyncSnapshot<bool> snapshot) {
-        return DefaultButton(
+        return WearsButton(
           text: "SIGN IN",
           onPressed: snapshot.hasData ? bloc.submit : null,
           isDisabled: !snapshot.hasData,

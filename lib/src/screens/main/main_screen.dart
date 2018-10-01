@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:wears/data/constants.dart';
 import 'package:wears/generic_widgets/bottom_app_bar/wears_bottom_app_bar.dart';
 import 'package:wears/src/screens/main/favorites_screen.dart';
-import 'package:wears/src/screens/main/home_screen.dart';
 import 'package:wears/src/screens/main/settings_screen.dart';
-import 'package:wears/src/screens/main/tabs/category/category_home_screen.dart';
+import 'package:wears/src/screens/main/tabs/category/categories_screen.dart';
+import 'package:wears/src/screens/main/tabs/home/home_screen.dart';
 
 class MainScreen extends StatelessWidget {
   @override
@@ -14,9 +14,9 @@ class MainScreen extends StatelessWidget {
       fab: FloatingActionButton(
         backgroundColor: Colors.white,
         child: Image.asset(
-          AppIcons.cart,
+          WearsIcons.cart,
           height: 25.0,
-          color: AppColors.primary,
+          color: WearsColors.primary,
         ),
         onPressed: () {},
       ),
@@ -24,21 +24,21 @@ class MainScreen extends StatelessWidget {
         WearsTabBarView(
           screen: HomeScreen(),
           name: "Home",
-          iconImageLink: AppIcons.home,
+          iconImageLink: WearsIcons.home,
         ),
         WearsTabBarView(
-            screen: CategoryHomeScreen(),
+            screen: CategoriesScreen(),
             name: "Category",
-            iconImageLink: AppIcons.category),
+            iconImageLink: WearsIcons.category),
         WearsTabBarView(
           screen: FavoritesScreen(),
           name: "Favorites",
-          iconImageLink: AppIcons.favorite,
+          iconImageLink: WearsIcons.favorite,
         ),
         WearsTabBarView(
           screen: SettingsScreen(),
           name: "settings",
-          iconImageLink: AppIcons.user,
+          iconImageLink: WearsIcons.user,
         ),
       ],
     );

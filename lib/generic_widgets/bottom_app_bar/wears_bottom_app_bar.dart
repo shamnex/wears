@@ -32,7 +32,7 @@ class WearsTabBarState extends State<WearsTabBar> {
       floatingActionButton: widget.fab,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       // appBar: buildAppBar(context),
-      backgroundColor: AppColors.background,
+      backgroundColor: WearsColors.background,
       body: _currentScreen,
       bottomNavigationBar: buildBottomNavigation(),
     );
@@ -77,8 +77,8 @@ class WearsTabBarState extends State<WearsTabBar> {
                 WearsTabBarButton(
                   name: item.name,
                   color: _currentScreenIndex == index
-                      ? AppColors.primary
-                      : AppColors.background,
+                      ? WearsColors.primary
+                      : WearsColors.background,
                   iconImageLink: item.iconImageLink,
                   onPressed: () {
                     setState(() {
@@ -105,7 +105,7 @@ class WearsTabBarState extends State<WearsTabBar> {
               fontFamily: 'Antonio',
               fontWeight: FontWeight.w900,
               fontSize: 22.0,
-              color: AppColors.primary),
+              color: WearsColors.primary),
         ),
       ),
     );
