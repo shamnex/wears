@@ -14,9 +14,17 @@ class ItemCard extends StatelessWidget {
       color: Colors.white,
       margin: EdgeInsets.only(right: 15.0),
       height: 200.0,
-      width: width?? 140.0,
+      width: width ?? 160.0,
       child: Column(children: [
-        Image.asset("assets/imgs/suit2.png"),
+        Container(
+          height: 180.0,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              fit: BoxFit.cover,
+              image: AssetImage(WearsImages.suit8,)
+            )
+          ),
+        ),
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Row(

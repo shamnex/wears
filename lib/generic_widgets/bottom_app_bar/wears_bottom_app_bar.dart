@@ -33,7 +33,13 @@ class WearsTabBarState extends State<WearsTabBar> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       // appBar: buildAppBar(context),
       backgroundColor: WearsColors.background,
-      body: _currentScreen,
+      body: Scaffold(
+        backgroundColor:  WearsColors.background,
+          // appBar: AppBar(
+          //   backgroundColor: WearsColors.background,
+          //   elevation: 0.0,
+          // ),
+          body: _currentScreen),
       bottomNavigationBar: buildBottomNavigation(),
     );
   }

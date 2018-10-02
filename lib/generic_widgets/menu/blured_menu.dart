@@ -150,28 +150,6 @@ class BluredMenuState extends State<BluredMenu> with TickerProviderStateMixin {
   Widget buildMenuBar() {
     return Container(
       height: 80.0,
-      // padding: EdgeInsets.only(top: 15.0),
-      // decoration: BoxDecoration(color: Colors.white.withOpacity(0.5)),
-      // child: Row(
-      //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      //   crossAxisAlignment: CrossAxisAlignment.center,
-      //   children: <Widget>[
-      //     MaterialButton(
-      //         child: Image.asset(WearsIcons.close,
-      //             color: Theme.of(context).primaryColor),
-      //         onPressed: () => menuController.isAnimating
-      //             ? null
-      //             : menuController.closeMenu$),
-      //     MaterialButton(
-      //       onPressed: null,
-      //       child: Image.asset(WearsIcons.logoIcon,
-      //           color: Theme.of(context).primaryColor
-      //           // color: Colors.white,
-      //           ),
-      //       height: 10.0,
-      //     )
-      //   ],
-      // ),
     );
   }
 

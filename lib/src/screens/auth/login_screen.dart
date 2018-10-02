@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wears/data/constants.dart';
 import 'package:wears/src/blocs/bloc.dart';
 import 'package:wears/src/blocs/login/login_bloc.dart';
 import 'package:wears/src/widgets/buttons.dart';
@@ -8,29 +9,31 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final LoginBloc bloc = BlocProvider.of<LoginBloc>(context);
     return Scaffold(
-        resizeToAvoidBottomPadding: false,
-        body: Stack(
-          children: <Widget>[
-            _buildBg(bloc),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 40.0, vertical: 60.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  Image.asset(
-                    "assets/graphics/logo_color.png",
-                    // color: Colors.green.shade100,
-                    height: 100.0,
-                  ),
-                  buildUsername(bloc),
-                  buildPassword(bloc),
-                  builtButton(bloc),
-                  Text("Forgot Password?")
-                ],
-              ),
+      resizeToAvoidBottomPadding: false,
+      body: Stack(
+        children: <Widget>[
+          _buildBg(bloc),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 40.0, vertical: 60.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Image.asset(
+                  WearsGraphics.logo_color,
+                  height: 100.0,
+                ),
+                // color: Colors.green.shade100,
+
+                buildUsername(bloc),
+                buildPassword(bloc),
+                builtButton(bloc),
+                Text("Forgot Password?")
+              ],
             ),
-          ],
-        ));
+          ),
+        ],
+      ),
+    );
   }
 
   Widget _buildBg(bloc) {
@@ -45,7 +48,7 @@ class LoginScreen extends StatelessWidget {
             // Colors.white.withOpacity(0.1),
             BlendMode.dstATop,
           ),
-          image: AssetImage("assets/graphics/logo_color.png"),
+          image: AssetImage(WearsGraphics.logo_color),
         ),
       ),
     );
@@ -89,7 +92,7 @@ class LoginScreen extends StatelessWidget {
                 ),
                 hintText: 'Username',
                 prefixIcon: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 8.0),
+                  padding: EdgeInsets.symmetric(horizontal: 8.0),
                   child: Icon(
                     Icons.person,
                     color: snapshot.hasError

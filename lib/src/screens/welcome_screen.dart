@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wears/data/constants.dart';
 import '../widgets/gradient_overlay.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -21,7 +22,7 @@ class WelcomeScreen extends StatelessWidget {
           colorFilter: ColorFilter.mode(
               const Color(0xFF481300).withOpacity(1.0), BlendMode.softLight),
           fit: BoxFit.cover,
-          image: AssetImage("assets/imgs/landing_bg3.png"),
+          image: AssetImage(WearsImages.suit7),
         ),
       ),
     );
@@ -42,7 +43,7 @@ class WelcomeScreen extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        Image.asset("assets/graphics/logo.png"),
+        Image.asset(WearsGraphics.logo_white),
         Padding(padding: EdgeInsets.symmetric(vertical: 4.0)),
         Text(
           "WEARS",

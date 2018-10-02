@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:wears/data/constants.dart';
-import 'package:wears/src/screens/main/tabs/category/category_header.dart';
+import 'package:wears/src/screens/shop/tabs/category/category_header.dart';
 import 'package:wears/src/widgets/buttons.dart';
 import 'package:wears/src/widgets/image_container.dart';
 import 'package:wears/src/widgets/item_card.dart';
@@ -28,7 +28,7 @@ class CategoryScreen extends StatelessWidget {
                   collapsedHeight: 80.0 + 25,
                   onScroll: (double offset) {},
                   onScrollToTop: (bool isAtTop) {},
-                  bgImage: AssetImage('assets/imgs/suits_bg.jpg'),
+                  bgImage: AssetImage(WearsImages.suit_bg),
                   title: "SUITS",
                 ),
               ),
@@ -127,7 +127,7 @@ class CategoryScreen extends StatelessWidget {
             height: 20.0,
           ),
           SizedBox.fromSize(
-            size: Size.fromHeight(220.0),
+            size: Size.fromHeight(280.0),
             child: Column(
               children: <Widget>[
                 Expanded(
@@ -164,7 +164,7 @@ class CategoryScreen extends StatelessWidget {
               children: <Widget>[
                 Expanded(
                   child: Image.asset(
-                    "assets/imgs/suit1.png",
+                    WearsImages.suit1,
                     fit: BoxFit.cover,
                   ),
                 ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wears/data/constants.dart';
-import 'package:wears/src/screens/main/tabs/category/category_link.dart';
+import 'package:wears/src/screens/shop/tabs/category/category_link.dart';
 import 'package:wears/src/widgets/main_title.dart';
 
 class CategoriesScreen extends StatelessWidget {
@@ -53,7 +53,7 @@ class CategoriesScreen extends StatelessWidget {
                             text: 'SUITS',
                             rotate: true,
                           ),
-                          image: AssetImage('assets/imgs/suits_bg.jpg'),
+                          image: AssetImage(WearsImages.suit5),
                           onPressed: () {
                             Navigator.pushNamed(context, "/suits");
                           },
@@ -70,7 +70,7 @@ class CategoriesScreen extends StatelessWidget {
                             text: 'WATCHES',
                             rotate: true,
                           ),
-                          image: AssetImage("assets/imgs/watch.jpg"),
+                          image: AssetImage(WearsImages.watch),
                           onPressed: () {},
                         )),
                   ),
@@ -90,7 +90,7 @@ class CategoriesScreen extends StatelessWidget {
                                 text: 'SHOES',
                                 rotate: true,
                               ),
-                              image: AssetImage('assets/imgs/shoe.png'),
+                              image: AssetImage(WearsImages.shoe),
                               onPressed: () {})),
                     ),
                   ),
@@ -103,7 +103,7 @@ class CategoriesScreen extends StatelessWidget {
                             text: 'ACCESORIES',
                             rotate: true,
                           ),
-                          image: AssetImage('assets/imgs/tie.jpg'),
+                          image: AssetImage(WearsImages.tie),
                           onPressed: () {}),
                     ),
                   ),
@@ -128,7 +128,7 @@ class CategoriesScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: CategoryLink(
                   title: WearsTitle(text: 'SUITS'),
-                  image: AssetImage('assets/imgs/suits_bg.jpg'),
+                  image: AssetImage(WearsImages.suit_bg),
                   onPressed: () {},
                 ),
               ),
@@ -139,7 +139,7 @@ class CategoriesScreen extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: CategoryLink(
                     title: WearsTitle(text: 'WATCHES'),
-                    image: AssetImage("assets/imgs/watch.jpg"),
+                    image: AssetImage(WearsImages.watch),
                     onPressed: () {},
                   )),
             ),
@@ -150,7 +150,7 @@ class CategoriesScreen extends StatelessWidget {
                     padding: const EdgeInsets.all(8.0),
                     child: CategoryLink(
                         title: WearsTitle(text: "SHOES"),
-                        image: AssetImage('assets/imgs/shoe.png'),
+                        image: AssetImage(WearsImages.shoe),
                         onPressed: () {})),
               ),
             ),
@@ -162,7 +162,7 @@ class CategoriesScreen extends StatelessWidget {
                     title: WearsTitle(
                       text: "ACCESORIES",
                     ),
-                    image: AssetImage('assets/imgs/tie.jpg'),
+                    image: AssetImage(WearsImages.tie),
                     onPressed: () {}),
               ),
             ),
@@ -188,7 +188,7 @@ class CategoriesScreen extends StatelessWidget {
                       padding: const EdgeInsets.all(8.0),
                       child: CategoryLink(
                         title: WearsTitle(text: 'Suits'),
-                        image: AssetImage('assets/imgs/suits_bg.jpg'),
+                        image: AssetImage(WearsImages.suit_bg),
                         onPressed: () {},
                       ),
                     ),
@@ -202,7 +202,7 @@ class CategoriesScreen extends StatelessWidget {
                             padding: const EdgeInsets.all(8.0),
                             child: CategoryLink(
                               title: WearsTitle(text: 'WATCHES'),
-                              image: AssetImage("assets/imgs/watch.jpg"),
+                              image: AssetImage(WearsImages.watch),
                               onPressed: () {},
                             ),
                           ),
@@ -214,7 +214,7 @@ class CategoriesScreen extends StatelessWidget {
                                 padding: const EdgeInsets.all(8.0),
                                 child: CategoryLink(
                                     title: WearsTitle(text: 'SHOES'),
-                                    image: AssetImage('assets/imgs/shoe.png'),
+                                    image: AssetImage(WearsImages.shoe),
                                     onPressed: () {})),
                           ),
                         ),
@@ -230,7 +230,7 @@ class CategoriesScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: CategoryLink(
                     title: WearsTitle(text: 'ACCESORIES'),
-                    image: AssetImage('assets/imgs/tie.jpg'),
+                    image: AssetImage(WearsImages.tie),
                     onPressed: () {}),
               ),
             ),
@@ -260,7 +260,7 @@ class CategoriesScreen extends StatelessWidget {
                           child: CategoryLink(
                             textAlignment: Alignment.bottomLeft,
                             title: WearsTitle(text: 'SUITS'),
-                            image: AssetImage('assets/imgs/suits_bg.jpg'),
+                            image: AssetImage(WearsImages.suit_bg),
                             onPressed: () {
                               Navigator.pushNamed(context, "category/suits");
                             },
@@ -279,7 +279,7 @@ class CategoriesScreen extends StatelessWidget {
                             child: CategoryLink(
                               textAlignment: Alignment.bottomLeft,
                               title: WearsTitle(text: 'SUITS'),
-                              image: AssetImage("assets/imgs/watch.jpg"),
+                              image: AssetImage(WearsImages.watch),
                               onPressed: () {},
                             ),
                           ),
@@ -292,7 +292,7 @@ class CategoriesScreen extends StatelessWidget {
                                 child: CategoryLink(
                                     textAlignment: Alignment.bottomLeft,
                                     title: WearsTitle(text: 'SHOES'),
-                                    image: AssetImage('assets/imgs/shoe.png'),
+                                    image: AssetImage(WearsImages.shoe),
                                     onPressed: () {})),
                           ),
                         ),
@@ -303,7 +303,7 @@ class CategoriesScreen extends StatelessWidget {
                             child: CategoryLink(
                                 textAlignment: Alignment.bottomLeft,
                                 title: WearsTitle(text: 'ACCESORIES'),
-                                image: AssetImage('assets/imgs/tie.jpg'),
+                                image: AssetImage(WearsImages.tie),
                                 onPressed: () {}),
                           ),
                         ),

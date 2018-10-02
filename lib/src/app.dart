@@ -5,12 +5,12 @@ import 'package:wears/generic_widgets/route_animations/route_animations.dart';
 import 'package:wears/src/blocs/bloc.dart';
 import 'package:wears/src/blocs/login/login_bloc.dart';
 import 'package:wears/src/screens/auth/login_screen.dart';
-import 'package:wears/src/screens/main/cart_screen.dart';
-import 'package:wears/src/screens/main/favorites_screen.dart';
-import 'package:wears/src/screens/main/main_screen.dart';
-import 'package:wears/src/screens/main/settings_screen.dart';
-import 'package:wears/src/screens/main/tabs/category/category_screen.dart';
-import 'package:wears/src/screens/main/tabs/category/categories_screen.dart';
+import 'package:wears/src/screens/shop/tabs/cart_screen.dart';
+import 'package:wears/src/screens/shop/tabs/favorites_screen.dart';
+import 'package:wears/src/screens/shop/shop_screen.dart';
+import 'package:wears/src/screens/shop/tabs/settings_screen.dart';
+import 'package:wears/src/screens/shop/tabs/category/category_screen.dart';
+import 'package:wears/src/screens/shop/tabs/category/categories_screen.dart';
 
 class App extends StatelessWidget {
   Widget build(BuildContext context) {
@@ -41,21 +41,21 @@ class App extends StatelessWidget {
           return BluredMenuScaffold(
             screens: [
               BluredMenuScreen(
-                title: "Main",
-                body: MainScreen(),
+                title: "Shop",
+                body: ShopScreen(),
               ),
-              BluredMenuScreen(
-                title: "Cart",
-                body: CartScreen(),
-              ),
-              BluredMenuScreen(
-                title: "Favorites",
-                body: FavoritesScreen(),
-              ),
-              BluredMenuScreen(
-                title: "Settings",
-                body: SettingsScreen(),
-              ),
+              // BluredMenuScreen(
+              //   title: "Cart",
+              //   body: CartScreen(),
+              // ),
+              // BluredMenuScreen(
+              //   title: "Favorites",
+              //   body: FavoritesScreen(),
+              // ),
+              // BluredMenuScreen(
+              //   title: "Settings",
+              //   body: SettingsScreen(),
+              // ),
             ],
           );
         });

@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:wears/data/constants.dart';
+import 'package:wears/src/widgets/gradient_overlay.dart';
 
 class WearsImageContainer extends StatelessWidget {
   final ImageProvider image;
   final Widget child;
   final Size size;
+  final BlendMode blendMode;
   final Alignment alignChild;
   const WearsImageContainer({
     Key key,
     @required this.size,
     this.image,
     this.child,
+    this.blendMode,
     this.alignChild,
   })  : assert(size != null),
         super(key: key);
@@ -22,31 +25,29 @@ class WearsImageContainer extends StatelessWidget {
       child: Stack(
         fit: StackFit.expand,
         children: <Widget>[
-          Container(
-            color: WearsColors.primaryDark2,
-          ),
+          GradientOverlay(colors: [
+                    WearsColors.primaryDark,
+                   WearsColors.primaryDark,
+          ]),
           Opacity(
-            opacity: 0.4,
+            opacity: 0.39,
             child: Container(
               padding: EdgeInsets.all(25.0),
               decoration: BoxDecoration(
+          
                 image: DecorationImage(
-                  colorFilter: ColorFilter.mode(Colors.black, BlendMode.color),
-                  image: image ?? AssetImage('assets/imgs/suits_bg.jpg'),
+                  // colorFilter: ColorFilter.mode(
+                  //   WearsColors.background,
+                  //   BlendMode.color,
+                  // ),
+                  image: image ?? AssetImage(WearsImages.suit_bg),
                   fit: BoxFit.cover,
                 ),
               ),
             ),
+            
           ),
-          // BackdropFilter(
-          //   filter: ImageFilter.blur(
-          //     sigmaX: 2.0,
-          //     sigmaY: 2.0,
-          //   ),
-          //   child: Container(
-          //     color: Colors.transparent,
-          //   ),
-          // ),
+
           Flex(
             direction: Axis.vertical,
             children: <Widget>[
