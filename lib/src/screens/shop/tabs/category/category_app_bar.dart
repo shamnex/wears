@@ -4,7 +4,7 @@ import 'package:flutter/rendering.dart';
 import 'package:wears/data/constants.dart';
 import 'package:wears/src/widgets/main_title.dart';
 
-class CategoryHeader implements SliverPersistentHeaderDelegate {
+class CategoryAppBar implements SliverPersistentHeaderDelegate {
   final ImageProvider bgImage;
   final String title;
   Function(double) onScroll;
@@ -12,7 +12,7 @@ class CategoryHeader implements SliverPersistentHeaderDelegate {
   final double collapsedHeight;
   final double expandedHeight;
 
-  CategoryHeader({
+  CategoryAppBar({
     @required this.bgImage,
     @required this.title,
     this.onScroll,

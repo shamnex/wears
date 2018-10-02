@@ -13,19 +13,28 @@ class ItemCard extends StatelessWidget {
     return Container(
       color: Colors.white,
       margin: EdgeInsets.only(right: 15.0),
-      height: 200.0,
       width: width ?? 160.0,
       child: Column(children: [
-        Container(
-          height: 180.0,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              fit: BoxFit.cover,
-              image: AssetImage(WearsImages.suit8,)
-            )
+        ConstrainedBox(
+          constraints: BoxConstraints(
+            maxWidth: MediaQuery.of(context).size.width,
+            minWidth: 140.0,
+            minHeight: 180.0,
+            maxHeight: 180.0,
+            
+          ),
+          child: Container(
+            height: 180.0,
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: AssetImage(
+                      WearsImages.suit8,
+                    ))),
           ),
         ),
-        Padding(
+        Container(
+          height: 60.0,
           padding: const EdgeInsets.all(8.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

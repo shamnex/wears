@@ -25,6 +25,9 @@ class WearsIcons {
 class WearsImages {
   static const String bag = "assets/imgs/bag.jpg";
   static const String suit_bg = "assets/imgs/suit_bg.jpg";
+  static const String shoe = "assets/imgs/shoe.jpg";
+  static const String watch = "assets/imgs/watch.jpg";
+  static const String tie = "assets/imgs/tie.jpg";
   static const String suit1 = "assets/imgs/suit1.jpg";
   static const String suit2 = "assets/imgs/suit2.jpg";
   static const String suit3 = "assets/imgs/suit3.jpg";
@@ -34,13 +37,21 @@ class WearsImages {
   static const String suit7 = "assets/imgs/suit7.jpg";
   static const String suit8 = "assets/imgs/suit8.jpg";
   static const String suit9 = "assets/imgs/suit9.jpg";
-  static const String shoe = "assets/imgs/shoe.jpg";
-  static const String watch = "assets/imgs/watch.jpg";
-  static const String tie = "assets/imgs/tie.jpg";
+  static const String suit10 = "assets/imgs/suit10.jpg";
+  static const String suit11 = "assets/imgs/suit11.jpg";
+  static const String suit12 = "assets/imgs/suit12.jpg";
+  static const String suit13 = "assets/imgs/suit13.jpg";
+  static const String suit14 = "assets/imgs/suit14.jpg";
+  static const String suit15 = "assets/imgs/suit15.jpg";
+  static const String suit16 = "assets/imgs/suit16.jpg";
+  static const String suit17 = "assets/imgs/suit17.jpg";
+  static const String suit18 = "assets/imgs/suit18.jpg";
+  static const String suit19 = "assets/imgs/suit19.jpg";
+  static const String suit20 = "assets/imgs/suit21.jpg";
+  static const String suit21 = "assets/imgs/suit22.jpg";
 }
 
 class WearsGraphics {
   static const String logo_white = "assets/graphics/logo.png";
   static const String logo_color = "assets/graphics/logo_color.png";
-
 }
