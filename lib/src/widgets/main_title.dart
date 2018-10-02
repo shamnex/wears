@@ -29,9 +29,9 @@ class WearsTitle extends StatelessWidget {
               ]),
               child: Text(
                 text,
-                style: textStyle ??
+                style: 
                     TextStyle(
-                        color: Colors.white,
+                        color: Colors.white ,
                         fontSize: 24.0,
                         fontWeight: FontWeight.w900,
                         fontFamily: 'Antonio'),

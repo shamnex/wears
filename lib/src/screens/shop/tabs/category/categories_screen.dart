@@ -2,38 +2,69 @@ import 'package:flutter/material.dart';
 import 'package:wears/data/constants.dart';
 import 'package:wears/src/screens/shop/tabs/category/category_link.dart';
 import 'package:wears/src/widgets/main_title.dart';
+import 'package:wears/src/widgets/sliver_app_bar.dart';
 
 class CategoriesScreen extends StatelessWidget {
+
+  @override
   Widget build(BuildContext context) {
+    final double screenHeight = MediaQuery.of(context).size.height;
     return Material(
       color: WearsColors.background,
-      child: Column(children: <Widget>[
-        SafeArea(
-          child: Container(
-            height: 50.0,
-            padding: EdgeInsets.only(
-              right: 20.0,
+      child: NestedScrollView(
+        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+          return <Widget>[
+            new SliverOverlapAbsorber(
+              handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
+              child: _buildAppBar(),
             ),
-            alignment: Alignment.centerRight,
-            child: GestureDetector(
-              onTap: () {},
-              child: Hero(
-                tag: "searchButton",
-                child: Icon(
-                  Icons.search,
-                  size: 25.0,
-                  color: WearsColors.primary,
+          ];
+        },
+        body: Builder(
+          builder: (BuildContext context) {
+            return CustomScrollView(
+              slivers: <Widget>[
+                new SliverOverlapInjector(
+                  handle:
+                      NestedScrollView.sliverOverlapAbsorberHandleFor(context),
                 ),
-              ),
-            ),
-          ),
+                SliverFillRemaining(
+                    child:
+                  SizedBox.fromSize(
+                    child: Column(children: <Widget>[_buildGrid(context)]),
+                  ),
+                ),
+              ],
+            );
+          },
         ),
-        buildHome(context),
-      ]),
+      ),
     );
   }
 
-  Widget buildHome3(BuildContext context) {
+  Widget _buildAppBar() {
+    return SliverPersistentHeader(
+        pinned: true,
+        delegate: WearsSliverAppBar(
+          color: WearsColors.background,
+          expandedHeight: 80.0,
+          collapsedHeight: 80.0,
+          onScroll: (double offset) {},
+          onScrollToTop: (bool isAtTop) {},
+          bgImage: AssetImage(WearsImages.suit21),
+          colapsedTitle: Text(
+            "Home",
+            style: TextStyle(
+                fontFamily: 'Antonio',
+                fontWeight: FontWeight.w900,
+                fontSize: 22.0,
+                color: WearsColors.primary),
+          ),
+          expandedTitle: null,
+        ));
+  }
+
+  Widget _buildGrid3(BuildContext context) {
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 16.0),
@@ -116,7 +147,7 @@ class CategoriesScreen extends StatelessWidget {
     );
   }
 
-  Widget buildHome2(BuildContext context) {
+  Widget _buildGrid2(BuildContext context) {
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 16.0),
@@ -172,7 +203,7 @@ class CategoriesScreen extends StatelessWidget {
     );
   }
 
-  Widget buildHome4(BuildContext context) {
+  Widget _buildGrid4(BuildContext context) {
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -240,7 +271,7 @@ class CategoriesScreen extends StatelessWidget {
     );
   }
 
-  Widget buildHome(BuildContext context) {
+  Widget _buildGrid(BuildContext context) {
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.all(8.0),

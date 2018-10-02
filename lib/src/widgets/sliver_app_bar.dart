@@ -8,6 +8,7 @@ class WearsSliverAppBar implements SliverPersistentHeaderDelegate {
   final ImageProvider bgImage;
   final Widget expandedTitle;
   final Color color;
+  final bool showElevation;
   final Widget leading;
   final List<Widget> actions;
   final Widget colapsedTitle;
@@ -21,6 +22,7 @@ class WearsSliverAppBar implements SliverPersistentHeaderDelegate {
     @required this.expandedTitle,
     @required this.colapsedTitle,
     this.actions,
+    this.showElevation = false,
     this.leading,
     this.color,
     this.onScroll,
@@ -78,65 +80,47 @@ class WearsSliverAppBar implements SliverPersistentHeaderDelegate {
       fit: StackFit.expand,
       alignment: Alignment.center,
       children: <Widget>[
-        Padding(
-          padding: EdgeInsets.only(
-            left: 20.0 * _fadeOut() ?? 20.0,
-            right: 20.0 * _fadeOut() ?? 20.0,
-            top: 50.0 * _fadeOut() ?? 50.0,
-            bottom: 20.0 * _fadeOut() ?? 20.0,
-          ),
-          child: Material(
-            child: _buildBackgroundAndTitle(context),
-          ),
-        ),
-        _buildNavBar(context),
+        _buildNavBar(context, _isScrolledToTop()),
       ],
     );
     // TODO: implement build
   }
 
-  Widget _buildNavBar(BuildContext context) {
-    return SafeArea(
-      child: Column(
-        children: <Widget>[
-          maxExtent > 80.0
-              ? Container()
-              : SizedBox(height: 10.0 * _fadeOut() ?? 0.0),
-          Container(
-            margin: EdgeInsets.all(
-              maxExtent > 80.0 ? 0.0 : (20.0 * _fadeOut() ?? 20.0),
-            ),
-            child: AppBar(
-              backgroundColor: color ?? Colors.transparent,
-              leading: leading,
-              elevation: 0.0,
-              actions: actions,
-              centerTitle: true,
-              title: Transform.translate(
-                offset: Offset(0.0, 80.0 * _fadeOut()),
-                child: Opacity(
-                  opacity: 1.0,
-                  child: colapsedTitle,
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildBackgroundAndTitle(context) {
+  Widget _buildNavBar(BuildContext context, bool isAtTop) {
     return Column(
       children: <Widget>[
-        Expanded(
-          flex: 2,
-          child: Opacity(
-            opacity: _fadeOut(),
-            child: colapsedTitle,
+        Container(
+          child: AppBar(
+            
+            backgroundColor: color ?? Colors.transparent,
+            leading: leading,
+            elevation: showElevation? (isAtTop?  30.0: 0.0): 0.0,
+            actions: actions,
+            centerTitle: true,
+            title: Opacity(
+              opacity: 1.0,
+              child: colapsedTitle,
+            ),
           ),
         ),
       ],
     );
   }
+
+  // Widget _buildBackgroundAndTitle(context) {
+  //   return Column(
+  //     children: <Widget>[
+  //       Expanded(
+  //         flex: 2,
+  //         child: Align(
+  //           alignment: Alignment.bottomCenter,
+  //           child: Opacity(
+  //             opacity: _fadeOut(),
+  //             child: colapsedTitle,
+  //           ),
+  //         ),
+  //       ),
+  //     ],
+  //   );
+  // }
 }

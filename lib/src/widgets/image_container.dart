@@ -6,12 +6,14 @@ class WearsImageContainer extends StatelessWidget {
   final ImageProvider image;
   final Widget child;
   final Size size;
+  final bool dark;
   final BlendMode blendMode;
   final Alignment alignChild;
   const WearsImageContainer({
     Key key,
     @required this.size,
     this.image,
+    this.dark = true,
     this.child,
     this.blendMode,
     this.alignChild,
@@ -25,12 +27,13 @@ class WearsImageContainer extends StatelessWidget {
       child: Stack(
         fit: StackFit.expand,
         children: <Widget>[
+
           GradientOverlay(colors: [
                     WearsColors.primaryDark,
                    WearsColors.primaryDark,
           ]),
           Opacity(
-            opacity: 0.39,
+            opacity: dark? 0.4: 1.0,
             child: Container(
               padding: EdgeInsets.all(25.0),
               decoration: BoxDecoration(
