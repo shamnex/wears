@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:meta/meta.dart';
 import 'package:wears/data/constants.dart';
 import 'package:wears/src/models/items.dart';
@@ -43,5 +45,17 @@ class Category {
         title: "WATCHES",
       ),
     ];
+  }
+
+  // static Future<Category> getCategoryByName(String title) {
+  //   return Future.delayed(Duration(milliseconds: 1000), () {
+  //     return getAllCategories().firstWhere(
+  //         (category) => title.toLowerCase() == category.title.toLowerCase());
+  //   });
+  // }
+
+  static Category getCategoryByName(String title) {
+    return getAllCategories().firstWhere(
+        (category) => title.toLowerCase() == category.title.toLowerCase());
   }
 }

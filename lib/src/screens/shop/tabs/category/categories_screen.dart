@@ -40,7 +40,7 @@ class CategoriesScreenState extends State<CategoriesScreen> {
                   child: SizedBox.fromSize(
                     child: Column(
                       children: <Widget>[
-                        _buildGrid4(context),
+                        _buildGrid(context),
                       ],
                     ),
                   ),
@@ -189,8 +189,10 @@ class CategoriesScreenState extends State<CategoriesScreen> {
 
 class _CategoryLink extends StatelessWidget {
   final Category category;
+  final bool rotateTitle;
   const _CategoryLink({
     Key key,
+    this.rotateTitle = false,
     this.category,
   }) : super(key: key);
 
@@ -203,21 +205,23 @@ class _CategoryLink extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: Hero(
             tag: "categeory/${category.title}",
-            child: WearsImageContainer(
-              alignChild: Alignment.bottomLeft,
-              size: Size.infinite,
-              image: AssetImage(category.image),
-              child: RotatedBox(
-                quarterTurns: -1,
-                child: WearsTitle(
-                  text: category.title,
+            child: Material(
+              child: WearsImageContainer(
+                alignChild: Alignment.bottomLeft,
+                size: Size.infinite,
+                image: AssetImage(category.image),
+                child: RotatedBox(
+                  quarterTurns: rotateTitle ? -1 : 0,
+                  child: WearsTitle(
+                    text: category.title,
+                  ),
                 ),
               ),
             ),
           ),
         ),
         onTap: () {
-          Navigator.pushNamed(context, "suits/${category.title}");
+          Navigator.pushNamed(context, "category/${category.title}");
         },
       ),
     );

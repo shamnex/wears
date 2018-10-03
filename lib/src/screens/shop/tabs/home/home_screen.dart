@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:wears/data/constants.dart';
 import 'package:wears/generic_widgets/slider/slider.dart';
 import 'package:wears/generic_widgets/slider/sliderItems.dart';
-import 'package:wears/src/screens/shop/tabs/category/category_app_bar.dart';
 import 'package:wears/src/widgets/image_container.dart';
 import 'package:wears/src/widgets/item_card.dart';
 import 'package:wears/src/widgets/main_title.dart';

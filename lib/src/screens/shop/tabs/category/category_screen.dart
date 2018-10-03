@@ -1,14 +1,32 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:wears/data/constants.dart';
-import 'package:wears/src/screens/shop/tabs/category/category_app_bar.dart';
+import 'package:wears/src/models/category.dart';
+import 'package:wears/src/screens/shop/tabs/category/partials/category_app_bar.dart';
 import 'package:wears/src/widgets/buttons.dart';
 import 'package:wears/src/widgets/image_container.dart';
 import 'package:wears/src/widgets/item_card.dart';
 import 'package:wears/src/widgets/main_title.dart';
 
-class CategoryScreen extends StatelessWidget {
-  CategoryScreen();
+class CategoryScreen extends StatefulWidget {
+  final String categoryName;
+
+  CategoryScreen({@required this.categoryName}) : assert(categoryName != null);
+
+  @override
+  CategoryScreenState createState() {
+    return new CategoryScreenState();
+  }
+}
+
+class CategoryScreenState extends State<CategoryScreen> {
+  Category category;
+  @override
+  void initState() {
+    category = Category.getCategoryByName(widget.categoryName);
+    print(widget.categoryName);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +46,8 @@ class CategoryScreen extends StatelessWidget {
                   collapsedHeight: 80.0 + 25,
                   onScroll: (double offset) {},
                   onScrollToTop: (bool isAtTop) {},
-                  bgImage: AssetImage(WearsImages.suit_bg),
-                  title: "SUITS",
+                  bgImage: AssetImage(category.image),
+                  category: category,
                 ),
               ),
             ),

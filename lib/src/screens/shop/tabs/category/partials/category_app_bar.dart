@@ -2,11 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:wears/data/constants.dart';
+import 'package:wears/src/models/category.dart';
 import 'package:wears/src/widgets/main_title.dart';
 
 class CategoryAppBar implements SliverPersistentHeaderDelegate {
   final ImageProvider bgImage;
-  final String title;
+  final Category category;
   Function(double) onScroll;
   Function(bool) onScrollToTop;
   final double collapsedHeight;
@@ -14,7 +15,7 @@ class CategoryAppBar implements SliverPersistentHeaderDelegate {
 
   CategoryAppBar({
     @required this.bgImage,
-    @required this.title,
+    @required this.category,
     this.onScroll,
     this.onScrollToTop,
     @required this.collapsedHeight,
@@ -78,7 +79,7 @@ class CategoryAppBar implements SliverPersistentHeaderDelegate {
             bottom: 20.0 * _fadeOut() ?? 20.0,
           ),
           child: Hero(
-            tag: "category/suits",
+            tag: "categeory/${category.title}",
             child: Material(
               child: _buildBackgroundAndTitle(context),
             ),
@@ -159,7 +160,7 @@ class CategoryAppBar implements SliverPersistentHeaderDelegate {
                 offset: Offset(0.0, 100.0 * _fadeOut()),
                 child: Opacity(
                   opacity: 1.0,
-                  child: WearsTitle(text: title),
+                  child: WearsTitle(text: category.title),
                 ),
               ),
             ),
@@ -201,7 +202,7 @@ class CategoryAppBar implements SliverPersistentHeaderDelegate {
                         opacity: _fadeOut(),
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                          child: WearsTitle(text: title),
+                          child: WearsTitle(text: category.title),
                         ),
                       ),
                     ),
