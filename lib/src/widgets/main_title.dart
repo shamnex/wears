@@ -28,13 +28,12 @@ class WearsTitle extends StatelessWidget {
                 )
               ]),
               child: Text(
-                text,
-                style: 
-                    TextStyle(
-                        color: Colors.white ,
-                        fontSize: 24.0,
-                        fontWeight: FontWeight.w900,
-                        fontFamily: 'Antonio'),
+                text.toUpperCase(),
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 24.0,
+                    fontWeight: FontWeight.w900,
+                    fontFamily: 'Antonio'),
               ),
             ),
           ),

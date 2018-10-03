@@ -1,14 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:wears/data/constants.dart';
-import 'package:wears/src/screens/shop/tabs/category/category_link.dart';
+import 'package:wears/src/models/category.dart';
+import 'package:wears/src/widgets/image_container.dart';
 import 'package:wears/src/widgets/main_title.dart';
 import 'package:wears/src/widgets/sliver_app_bar.dart';
 
-class CategoriesScreen extends StatelessWidget {
+class CategoriesScreen extends StatefulWidget {
+  @override
+  CategoriesScreenState createState() {
+    return new CategoriesScreenState();
+  }
+}
+
+class CategoriesScreenState extends State<CategoriesScreen> {
+  final List<Category> _categories = Category.getAllCategories();
 
   @override
   Widget build(BuildContext context) {
-    final double screenHeight = MediaQuery.of(context).size.height;
     return Material(
       color: WearsColors.background,
       child: NestedScrollView(
@@ -29,9 +37,12 @@ class CategoriesScreen extends StatelessWidget {
                       NestedScrollView.sliverOverlapAbsorberHandleFor(context),
                 ),
                 SliverFillRemaining(
-                    child:
-                  SizedBox.fromSize(
-                    child: Column(children: <Widget>[_buildGrid(context)]),
+                  child: SizedBox.fromSize(
+                    child: Column(
+                      children: <Widget>[
+                        _buildGrid4(context),
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -44,24 +55,25 @@ class CategoriesScreen extends StatelessWidget {
 
   Widget _buildAppBar() {
     return SliverPersistentHeader(
-        pinned: true,
-        delegate: WearsSliverAppBar(
-          color: WearsColors.background,
-          expandedHeight: 80.0,
-          collapsedHeight: 80.0,
-          onScroll: (double offset) {},
-          onScrollToTop: (bool isAtTop) {},
-          bgImage: AssetImage(WearsImages.suit21),
-          colapsedTitle: Text(
-            "Home",
-            style: TextStyle(
-                fontFamily: 'Antonio',
-                fontWeight: FontWeight.w900,
-                fontSize: 22.0,
-                color: WearsColors.primary),
-          ),
-          expandedTitle: null,
-        ));
+      pinned: true,
+      delegate: WearsSliverAppBar(
+        color: WearsColors.background,
+        expandedHeight: 80.0,
+        collapsedHeight: 80.0,
+        onScroll: (double offset) {},
+        onScrollToTop: (bool isAtTop) {},
+        bgImage: AssetImage(WearsImages.suit21),
+        colapsedTitle: Text(
+          "Home",
+          style: TextStyle(
+              fontFamily: 'Antonio',
+              fontWeight: FontWeight.w900,
+              fontSize: 22.0,
+              color: WearsColors.primary),
+        ),
+        expandedTitle: null,
+      ),
+    );
   }
 
   Widget _buildGrid3(BuildContext context) {
@@ -72,73 +84,20 @@ class CategoriesScreen extends StatelessWidget {
           children: <Widget>[
             Expanded(
               child: Row(
-                children: <Widget>[
-                  Expanded(
-                    flex: 1,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Hero(
-                        tag: "categeory/suits",
-                        child: CategoryLink(
-                          title: WearsTitle(
-                            text: 'SUITS',
-                            rotate: true,
-                          ),
-                          image: AssetImage(WearsImages.suit5),
-                          onPressed: () {
-                            Navigator.pushNamed(context, "/suits");
-                          },
-                        ),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    flex: 1,
-                    child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: CategoryLink(
-                          title: WearsTitle(
-                            text: 'WATCHES',
-                            rotate: true,
-                          ),
-                          image: AssetImage(WearsImages.watch),
-                          onPressed: () {},
-                        )),
-                  ),
-                ],
+                children: _categories.sublist(0, 2).map((category) {
+                  return new _CategoryLink(
+                    category: category,
+                  );
+                }).toList(),
               ),
             ),
             Expanded(
               child: Row(
-                children: <Widget>[
-                  Expanded(
-                    flex: 1,
-                    child: Container(
-                      child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: CategoryLink(
-                              title: WearsTitle(
-                                text: 'SHOES',
-                                rotate: true,
-                              ),
-                              image: AssetImage(WearsImages.shoe),
-                              onPressed: () {})),
-                    ),
-                  ),
-                  Expanded(
-                    flex: 1,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: CategoryLink(
-                          title: WearsTitle(
-                            text: 'ACCESORIES',
-                            rotate: true,
-                          ),
-                          image: AssetImage(WearsImages.tie),
-                          onPressed: () {}),
-                    ),
-                  ),
-                ],
+                children: _categories.sublist(2, 4).map((category) {
+                  return new _CategoryLink(
+                    category: category,
+                  );
+                }).toList(),
               ),
             ),
           ],
@@ -152,52 +111,11 @@ class CategoriesScreen extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 16.0),
         child: Column(
-          children: <Widget>[
-            Expanded(
-              flex: 1,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: CategoryLink(
-                  title: WearsTitle(text: 'SUITS'),
-                  image: AssetImage(WearsImages.suit_bg),
-                  onPressed: () {},
-                ),
-              ),
-            ),
-            Expanded(
-              flex: 1,
-              child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: CategoryLink(
-                    title: WearsTitle(text: 'WATCHES'),
-                    image: AssetImage(WearsImages.watch),
-                    onPressed: () {},
-                  )),
-            ),
-            Expanded(
-              flex: 1,
-              child: Container(
-                child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: CategoryLink(
-                        title: WearsTitle(text: "SHOES"),
-                        image: AssetImage(WearsImages.shoe),
-                        onPressed: () {})),
-              ),
-            ),
-            Expanded(
-              flex: 1,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: CategoryLink(
-                    title: WearsTitle(
-                      text: "ACCESORIES",
-                    ),
-                    image: AssetImage(WearsImages.tie),
-                    onPressed: () {}),
-              ),
-            ),
-          ],
+          children: _categories.map((category) {
+            return new _CategoryLink(
+              category: category,
+            );
+          }).toList(),
         ),
       ),
     );
@@ -213,57 +131,23 @@ class CategoriesScreen extends StatelessWidget {
               flex: 2,
               child: Row(
                 children: <Widget>[
-                  Expanded(
-                    flex: 1,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: CategoryLink(
-                        title: WearsTitle(text: 'Suits'),
-                        image: AssetImage(WearsImages.suit_bg),
-                        onPressed: () {},
-                      ),
-                    ),
+                  _CategoryLink(
+                    category: _categories.first,
                   ),
                   Expanded(
                     child: Column(
-                      children: <Widget>[
-                        Expanded(
-                          flex: 1,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: CategoryLink(
-                              title: WearsTitle(text: 'WATCHES'),
-                              image: AssetImage(WearsImages.watch),
-                              onPressed: () {},
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: Container(
-                            child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: CategoryLink(
-                                    title: WearsTitle(text: 'SHOES'),
-                                    image: AssetImage(WearsImages.shoe),
-                                    onPressed: () {})),
-                          ),
-                        ),
-                      ],
+                      children: _categories.sublist(1, 3).map((category) {
+                        return new _CategoryLink(
+                          category: category,
+                        );
+                      }).toList(),
                     ),
                   ),
                 ],
               ),
             ),
-            Expanded(
-              flex: 1,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: CategoryLink(
-                    title: WearsTitle(text: 'ACCESORIES'),
-                    image: AssetImage(WearsImages.tie),
-                    onPressed: () {}),
-              ),
+            new _CategoryLink(
+              category: _categories.last,
             ),
           ],
         ),
@@ -281,64 +165,16 @@ class CategoriesScreen extends StatelessWidget {
               flex: 2,
               child: Row(
                 children: <Widget>[
-                  Expanded(
-                    flex: 1,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Hero(
-                        tag: "category/suits",
-                        child: Material(
-                          child: CategoryLink(
-                            textAlignment: Alignment.bottomLeft,
-                            title: WearsTitle(text: 'SUITS'),
-                            image: AssetImage(WearsImages.suit_bg),
-                            onPressed: () {
-                              Navigator.pushNamed(context, "category/suits");
-                            },
-                          ),
-                        ),
-                      ),
-                    ),
+                  _CategoryLink(
+                    category: _categories.first,
                   ),
                   Expanded(
                     child: Column(
-                      children: <Widget>[
-                        Expanded(
-                          flex: 1,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: CategoryLink(
-                              textAlignment: Alignment.bottomLeft,
-                              title: WearsTitle(text: 'SUITS'),
-                              image: AssetImage(WearsImages.watch),
-                              onPressed: () {},
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: Container(
-                            child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: CategoryLink(
-                                    textAlignment: Alignment.bottomLeft,
-                                    title: WearsTitle(text: 'SHOES'),
-                                    image: AssetImage(WearsImages.shoe),
-                                    onPressed: () {})),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: CategoryLink(
-                                textAlignment: Alignment.bottomLeft,
-                                title: WearsTitle(text: 'ACCESORIES'),
-                                image: AssetImage(WearsImages.tie),
-                                onPressed: () {}),
-                          ),
-                        ),
-                      ],
+                      children: _categories.sublist(1, 4).map((category) {
+                        return new _CategoryLink(
+                          category: category,
+                        );
+                      }).toList(),
                     ),
                   ),
                 ],
@@ -346,6 +182,43 @@ class CategoriesScreen extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _CategoryLink extends StatelessWidget {
+  final Category category;
+  const _CategoryLink({
+    Key key,
+    this.category,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      flex: 1,
+      child: GestureDetector(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Hero(
+            tag: "categeory/${category.title}",
+            child: WearsImageContainer(
+              alignChild: Alignment.bottomLeft,
+              size: Size.infinite,
+              image: AssetImage(category.image),
+              child: RotatedBox(
+                quarterTurns: -1,
+                child: WearsTitle(
+                  text: category.title,
+                ),
+              ),
+            ),
+          ),
+        ),
+        onTap: () {
+          Navigator.pushNamed(context, "suits/${category.title}");
+        },
       ),
     );
   }
